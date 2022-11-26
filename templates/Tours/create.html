@@ -1,0 +1,5 @@
+<form method='POST' action='{% url "create-tour" %}' enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type='submit'>Tạo Tour</button>
+</form>
