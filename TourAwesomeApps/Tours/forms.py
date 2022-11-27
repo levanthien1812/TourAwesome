@@ -19,15 +19,12 @@ class CreateTourForm(ModelForm):
         label='Mô tả những điểm nổi bật của tour', max_length=1000, widget=forms.Textarea)
     timeline = forms.FileField(
         label='Chọn file HTML hiển thị nội dung của lịch trình', required=False)
-    # vehicles = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple, choices=vehicles_choices)
     isDomestic = forms.BooleanField(label='Trong nước?', required=False)
-    duration_days = forms.IntegerField(
-        label='Số ngày', widget=forms.NumberInput)
-    duration_nights = forms.IntegerField(
-        label='Số đêm', widget=forms.NumberInput)
+    duration_days = forms.IntegerField(label='Số ngày',min_value=0)
+    duration_nights = forms.IntegerField(label='Số đêm',min_value=0)
 
     class Meta:
         model = Tour
         fields = ['id', 'name', 'location', 'price', 'startDate',
                   'description', 'highlight', 'isDomestic', 'timeline', 'duration_days', 'duration_nights']
+        # fields = '__all__'

@@ -1,0 +1,155 @@
+:root {
+    --color-main: rgb(0, 150, 150);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+}
+
+button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+a:link,
+a:hover,
+a:visited,
+a:focus {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-info {
+    height: 35px;
+    background-color: var(--color-main);
+    display: flex;
+    padding: 0 3%;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-style: italic;
+}
+
+.nav-info .contacts ul{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-info .contacts ul li svg {
+    width: 20px;
+    fill: white;
+}
+
+.nav-main {
+    display: grid;
+    grid-template-columns: 2fr 8fr 3fr;
+    align-items: center;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 0 6%;
+    height: 70px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.258);
+}
+
+.nav-main .logo img{
+    width: 200px;
+}
+
+.nav-main .menu {
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-shrink: 0;
+    padding-left: 1rem;
+}
+
+.nav-main .menu-item {
+    height: 100%;
+    padding: .5rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-main .menu-item .title .chevron-right {
+    width: 15px;
+    transition: transform 1s ease;
+}
+
+.nav-main .menu-item .title:hover .chevron-right {
+    transform: rotate(90deg);
+}
+
+.nav-main .menu-item .title:hover {
+    color: var(--color-main);
+}
+
+.nav-main .menu-item .sub-menu {
+    display: none;
+    background-color: white;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.282);
+    border-radius: 5px;
+    padding: 15px;
+    top: 90%;
+}
+
+.nav-main .menu-item:hover .sub-menu {
+    display: grid;
+}
+
+.nav-main .log,
+.nav-main .account {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-main .log a:first-child{
+    margin-right: .7rem;
+}
+
+.nav-main .log > a {
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.nav-main .account .avt img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.signup-btn {
+    padding: 8px 16px;
+    background-color: #ff6a00;
+    border-radius: 20px;
+}
+
+.signup-btn:hover {
+    position: relative;
+    top: -2px;
+    left: -2px;
+    background-color: #ff7d1f;
+    box-shadow: 2px 2px 0 #aaa;
+}
+
+.login-btn:hover {
+    color: #ff6a00;
+}

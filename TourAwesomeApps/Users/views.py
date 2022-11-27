@@ -4,6 +4,7 @@ from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.contrib import messages
 
 from TourAwesomeApps.Users.forms import SignupForm, LoginForm
 from TourAwesome.decorators import unauthenticated_user, allowed_user
@@ -14,9 +15,9 @@ User = get_user_model()
 def signup(request):
     form = SignupForm()
 
-    if (request.method == 'POST'):
+    if request.method == 'POST':
         form = SignupForm(request.POST)
-        if (form.is_valid()):
+        if form.is_valid():
             username = form.cleaned_data.get('username')
             phoneNum = form.cleaned_data.get('phoneNum')
             password = form.cleaned_data.get('password')
@@ -27,16 +28,14 @@ def signup(request):
                 user.phoneNum = phoneNum
                 
                 group = Group.objects.get(name = 'customer')
-                user.groups.add(group.name)
+                user.groups.add(group)
                 
                 user.save()
+                
+                messages.success(request, 'Tài khoản đã được tạo cho ' + username + '.Xin vui lòng đăng nhập!')
+                return redirect(reverse('login'))
             except:
                 user = None
-                
-            if (user != None):
-                login(request, user)
-                return redirect(reverse('home'))
-            else:
                 request.session['register_error'] = 1
             
     return render(request, 'Users/signup.html', {'form': form})

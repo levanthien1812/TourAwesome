@@ -8,6 +8,7 @@ from TourAwesomeApps.Tours.forms import CreateTourForm
 from TourAwesome.decorators import allowed_user, unauthenticated_user
 
 def homeView(request):
+    print(request.GET)
     return render(request, 'home.html')
 
 @login_required
