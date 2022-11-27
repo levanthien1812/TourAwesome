@@ -1,9 +1,7 @@
 from django.db import models
 
-from django.db import models
-
 class Booking(models.Model):
-    userID = models.ForeignKey('User', on_delete=models.CASCADE)
+    userID = models.ForeignKey('Users.MyUser', on_delete=models.CASCADE)
     tourID = models.ForeignKey(
         'Tours.Tour', on_delete=models.CASCADE)
     startDate = models.DateField()

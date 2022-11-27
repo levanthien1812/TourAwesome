@@ -2,11 +2,15 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpResponse, Http404
 from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 
 from TourAwesomeApps.Users.forms import SignupForm, LoginForm
+from TourAwesome.decorators import unauthenticated_user, allowed_user
 
 User = get_user_model()
 
+@unauthenticated_user
 def signup(request):
     form = SignupForm()
 
@@ -21,9 +25,14 @@ def signup(request):
             try:
                 user = User.objects.create_user(username, username, password)
                 user.phoneNum = phoneNum
+                
+                group = Group.objects.get(name = 'customer')
+                user.groups.add(group.name)
+                
                 user.save()
             except:
                 user = None
+                
             if (user != None):
                 login(request, user)
                 return redirect(reverse('home'))
@@ -32,6 +41,7 @@ def signup(request):
             
     return render(request, 'Users/signup.html', {'form': form})
 
+@unauthenticated_user
 def _login(request):
     form = LoginForm()
     if (request.method == 'POST'):
@@ -53,6 +63,7 @@ def _login(request):
 
     return render(request, 'Users/login.html', {'form': form})
 
+@login_required
 def _logout(request):
     logout(request)
     return redirect('home')

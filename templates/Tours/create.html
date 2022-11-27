@@ -1,5 +1,9 @@
 <form method='POST' action='{% url "create-tour" %}' enctype='multipart/form-data'>
     {% csrf_token %}
     {{form.as_p}}
+    <div>
+        <label for="images">Upload các ảnh tour</label>
+        <input type="file" required multiple name='images'>
+    </div>
     <button type='submit'>Tạo Tour</button>
 </form>
