@@ -13,7 +13,8 @@ class CreateTourForm(ModelForm):
         label='Nhập địa điểm tour', max_length=30)
     price = forms.FloatField(
         label='Nhập giá tiền của tour', min_value=0)
-    startDate = forms.DateField(label='Nhập ngày bắt đầu')
+    startDate = forms.DateField(
+        label='Nhập ngày bắt đầu', widget=forms.SelectDateWidget)
     description = forms.CharField(
         label='Nhập mô tả của tour', min_length=10, max_length=1000, widget=forms.Textarea)
     highlight = forms.CharField(
@@ -26,7 +27,7 @@ class CreateTourForm(ModelForm):
     
     def clean_startDate(self):
         startDate = self.cleaned_data.get('startDate')
-        if startDate < datetime.now():
+        if startDate < datetime.now().date():
             raise forms.ValidationError('Ngày khởi hành phải sau ngày hiện tại!')
         return startDate
 

@@ -21,6 +21,8 @@ def homeView(request):
         'foreignTours': foreignTours
     }
     
+    print(context)
+    
     return render(request, 'home.html', context)
 
 def showDomesticTours(request):
@@ -48,6 +50,38 @@ def getHotTours():
             
     return hotTours
 
+def deleteTourImage(tour):
+    TourImage.objects.filter(tour=tour).delete()
+
+def createTourImage(request, tour):
+    images = request.FILES.getlist('images') or None
+    if (images != None):
+        if 'update' in request.path:
+            deleteTourImage(tour)
+            
+        for image in images:
+            TourImage.objects.create(
+                tour=tour,
+                image=image
+            )
+        
+def deleteTourVehicle(tour):
+    TourVehicle.objects.filter(tour=tour).delete()
+    
+def createTourVehicle(request, tour):
+    vehicles_choices = TourVehicle.vehicles_choices
+    if 'update' in request.path:
+        for vehicle in vehicles_choices:
+            if request.POST.get(vehicle[0], False): 
+                deleteTourVehicle(tour=tour)
+                break
+    for vehicle in vehicles_choices:
+        if request.POST.get(vehicle[0], False):
+            TourVehicle.objects.create(
+                tour=tour,
+                vehicle=vehicle[0]
+            )
+            
 @login_required
 @allowed_user(['admin'])
 def createTour(request):
@@ -62,24 +96,32 @@ def createTour(request):
             tour.pub_date = datetime.now()
             tour.save()
             
-            images = request.FILES.getlist('images')
-            for image in images:
-                TourImage.objects.create(
-                    tour = tour,
-                    image = image
-                )
-
-            for vehicle in vehicles_choices:
-                if request.POST.get(vehicle[0], False):
-                    TourVehicle.objects.create(
-                        tour = tour,
-                        vehicle = vehicle[0]
-                    )
+            createTourImage(request, tour)
+            createTourVehicle(request, tour)
             
             return redirect(reverse('home'))
-        else:
-            print('Form is invalid!')
-            raise Http404()
+        
+    return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
+
+@login_required
+@allowed_user(['admin'])
+def updateTour(request, pk):
+    tour = Tour.objects.get(id=pk)
+    form = CreateTourForm(instance=tour)
+    vehicles_choices = TourVehicle.vehicles_choices
+
+    if request.method == 'POST':
+        form = CreateTourForm(request.POST, request.FILES, instance=tour)
+        if form.is_valid():
+            updateTour = form.save(commit=False)
+            updateTour.isDomestic = form.cleaned_data['isDomestic']
+            updateTour.pub_date = datetime.now()
+            updateTour.save()
+            
+            createTourImage(request, tour)
+            createTourVehicle(request, tour)
+            
+            return redirect(reverse('home'))
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 

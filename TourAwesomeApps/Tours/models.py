@@ -3,7 +3,7 @@ from django.db import models
 # from multiselectfield import Multiselectfield
 
 def tour_image_path(instance, filename):
-    return 'tour_{0}/images/{1}'.format(instance.id, filename)
+    return 'tour_{0}/images/{1}'.format(instance.tour.id, filename)
 
 
 def tour_timeline_path(instance, filename):
@@ -15,7 +15,7 @@ class Tour (models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=30)
     price = models.FloatField()
-    startDate = models.CharField(max_length=100)
+    startDate = models.DateField()
     description = models.CharField(max_length=1000)
     highlight = models.CharField(max_length=1000)
     timeline = models.FileField(upload_to=tour_timeline_path, null=True)
