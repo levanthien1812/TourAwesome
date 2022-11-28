@@ -103,10 +103,16 @@ def createTour(request):
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
+def getTour(request):
+    return 
+
 @login_required
 @allowed_user(['admin'])
 def updateTour(request, pk):
-    tour = Tour.objects.get(id=pk)
+    tour = Tour.objects.get(id=pk) or None
+    if tour == None:
+        return Http404('Không tìm thấy tour này!')
+    
     form = CreateTourForm(instance=tour)
     vehicles_choices = TourVehicle.vehicles_choices
 
@@ -125,3 +131,13 @@ def updateTour(request, pk):
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
+@login_required
+@allowed_user(['admin'])
+def deleteTour(request, pk):
+    tour = Tour.objects.get(id=pk) or None
+    if tour == None:
+        return Http404('Không tìm thấy tour này!')
+    
+    Tour.objects.filter(id=pk).delete()
+    return redirect(reverse('home'))
+    
