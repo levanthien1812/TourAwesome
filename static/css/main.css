@@ -39,12 +39,13 @@ a:focus {
     align-items: center;
     color: white;
     font-style: italic;
+    font-size: 14px;
 }
 
 .nav-info .contacts ul{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 13px;
 }
 
 .nav-info .contacts ul li svg {

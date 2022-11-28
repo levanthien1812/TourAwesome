@@ -1,5 +1,6 @@
+from datetime import datetime
 from django.db import models
-
+# from multiselectfield import Multiselectfield
 
 def tour_image_path(instance, filename):
     return 'tour_{0}/images/{1}'.format(instance.id, filename)
@@ -21,15 +22,8 @@ class Tour (models.Model):
     isDomestic = models.BooleanField(default=True)
     duration_days = models.PositiveIntegerField()
     duration_nights = models.PositiveIntegerField()
-    # vehicles_choices = [
-    #     ('TRAIN', 'Train'),
-    #     ('PLANE', 'Plane'),
-    #     ('SHIP', 'Ship')
-    # ]
-    # vehicles = models.CharField(
-    #     max_length=6,
-    #     choices=vehicles_choices,
-    # )
+    pub_date = models.DateTimeField(default = datetime.now())
+    isHot = models.BooleanField(default=True)
 
     @property
     def duration(self):
@@ -42,3 +36,17 @@ class Tour (models.Model):
 class TourImage (models.Model):
     tour = models.ForeignKey('Tour', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=tour_image_path)
+    
+class TourVehicle (models.Model):
+    vehicles_choices = [
+        ('TRAIN', 'Tàu hỏa'),
+        ('PLANE', 'Máy bay'),
+        ('COACH', 'Xe khách'),
+        ('SHIP', 'Thuyền')
+    ]
+    
+    tour = models.ForeignKey('Tour', on_delete=models.CASCADE)
+    vehicle = models.CharField(
+        max_length=6,
+        choices=vehicles_choices,
+    )
