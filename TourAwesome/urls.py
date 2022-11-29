@@ -22,6 +22,7 @@ from django.conf import settings
 urlpatterns = [
     path('tours/', include('TourAwesomeApps.Tours.urls')),
     path('users/', include('TourAwesomeApps.Users.urls')),
+    path('blogs/', include('TourAwesomeApps.Blogs.urls')),
     path('admin/', admin.site.urls),
 ]
 

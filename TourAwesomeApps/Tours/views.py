@@ -1,27 +1,28 @@
+from django.http import HttpResponse, Http404
 from django.urls import reverse
 from datetime import datetime, timedelta
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render
 
 from .models import Tour, TourImage, TourVehicle
 from TourAwesomeApps.Blogs.models import Blog
 from TourAwesomeApps.Tours.forms import CreateTourForm
 from TourAwesome.decorators import allowed_user, unauthenticated_user
+from TourAwesomeApps.Blogs.views import getBlogs
 
 def homeView(request):
     hotTours = getHotTours()
     domesticTours = getDomesticTour(True)
     foreignTours = getDomesticTour(False)
+    blogs = getBlogs(request)
     
     context = {
         'hotTours': hotTours,
         'domesticTours': domesticTours,
-        'foreignTours': foreignTours
+        'foreignTours': foreignTours,
+        'blogs': blogs,
     }
-    
-    print(context)
     
     return render(request, 'home.html', context)
 
@@ -45,8 +46,11 @@ def getHotTours():
     if tours != None:
         for tour in tours:
             if tour.pub_date.date() > datetime.now().date() - timedelta(days=10):
-                tour.isHot = False
+                tour.isHot = True
                 hotTours.append(tour)
+            else:
+                tour.isHot = False
+            tour.save()
             
     return hotTours
 

@@ -3,11 +3,11 @@ from django.db import models
 # from multiselectfield import Multiselectfield
 
 def tour_image_path(instance, filename):
-    return 'tour_{0}/images/{1}'.format(instance.tour.id, filename)
+    return 'tours/{0}/images/{1}'.format(instance.tour.id, filename)
 
 
 def tour_timeline_path(instance, filename):
-    return 'tour_{0}/{1}'.format(instance.id, filename)
+    return 'tours/{0}/{1}'.format(instance.id, filename)
 
 
 class Tour (models.Model):
