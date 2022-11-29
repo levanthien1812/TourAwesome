@@ -16,6 +16,7 @@ class Tour (models.Model):
     location = models.CharField(max_length=30)
     price = models.FloatField()
     startDate = models.DateField()
+    specialNote = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=1000)
     highlight = models.CharField(max_length=1000)
     timeline = models.FileField(upload_to=tour_timeline_path, null=True)

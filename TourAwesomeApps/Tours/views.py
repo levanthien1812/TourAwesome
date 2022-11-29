@@ -12,19 +12,29 @@ from TourAwesome.decorators import allowed_user, unauthenticated_user
 from TourAwesomeApps.Blogs.views import getBlogs
 
 def homeView(request):
-    hotTours = getHotTours()
-    domesticTours = getDomesticTour(True)
-    foreignTours = getDomesticTour(False)
-    blogs = getBlogs(request)
+    if (not request.GET['location']):
+        hotTours = getHotTours()
+        domesticTours = getDomesticTour(True)
+        foreignTours = getDomesticTour(False)
+        blogs = getBlogs(request)
+        
+        context = {
+            'hotTours': hotTours,
+            'domesticTours': domesticTours,
+            'foreignTours': foreignTours,
+            'blogs': blogs,
+        }
+        
+        return render(request, 'home.html', context)
+
+    else:
+        location = request.GET['location']
+        # print(location)
+        locationTours = getToursByLocation(location)
+        # print(locationTours)
+        return render(request, 'Tours/search.html', {'tours': locationTours})
+        
     
-    context = {
-        'hotTours': hotTours,
-        'domesticTours': domesticTours,
-        'foreignTours': foreignTours,
-        'blogs': blogs,
-    }
-    
-    return render(request, 'home.html', context)
 
 def showDomesticTours(request):
     domesticTours = getDomesticTour(True)
@@ -53,6 +63,10 @@ def getHotTours():
             tour.save()
             
     return hotTours
+
+def getToursByLocation(location):
+    tours = Tour.objects.filter(location__icontains = location) or None
+    return tours
 
 def deleteTourImage(tour):
     TourImage.objects.filter(tour=tour).delete()

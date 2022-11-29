@@ -15,6 +15,8 @@ class CreateTourForm(ModelForm):
         label='Nhập giá tiền của tour', min_value=0)
     startDate = forms.DateField(
         label='Nhập ngày bắt đầu', widget=forms.SelectDateWidget)
+    specialNote = forms.CharField(
+        label='Nhập điểm đặc biệt', max_length=50)
     description = forms.CharField(
         label='Nhập mô tả của tour', min_length=10, max_length=1000, widget=forms.Textarea)
     highlight = forms.CharField(
@@ -33,6 +35,6 @@ class CreateTourForm(ModelForm):
 
     class Meta:
         model = Tour
-        fields = ['id', 'name', 'location', 'price', 'startDate',
+        fields = ['id', 'name', 'location', 'price', 'startDate', 'specialNote',
                   'description', 'highlight', 'isDomestic', 'timeline', 'duration_days', 'duration_nights']
         # fields = '__all__'
