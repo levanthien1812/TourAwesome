@@ -1,0 +1,35 @@
+{% extends "Users/manage.html" %}
+
+{% load static %}
+
+{% block manage %}
+
+    <form class="personal-info">
+        <div class="avt">
+            <div class="img">
+                <img src="{{MEDIA_URL}}{{request.user.image}}" alt="">
+            </div>
+            <input type="file" name="image" id="image" text="Cập nhật ảnh đại điện">
+        </div>
+        <div class="form-control">
+            <label for="username">Tên người dùng</label>
+            <input type="text" name="username" id="username" value="{{request.user.username}}">
+        </div>
+        <div class="form-control">
+            <label for="birthday">Ngày sinh</label>
+            <input type="date" name="birthday" id="birthday">
+        </div>
+        <div class="form-control">
+            <label for="birthday">Giới tính</label>
+            <input type="radio" name="birthday" value="male" id="male">Nam
+            <input type="radio" name="birthday" value="female" id="female">Nữ
+        </div>
+    </form>
+    <div class="email-phoneNum">
+        
+    </div>
+    <div class="password">
+
+    </div>
+
+{% endblock manage %}

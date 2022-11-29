@@ -12,7 +12,7 @@ from TourAwesome.decorators import allowed_user, unauthenticated_user
 from TourAwesomeApps.Blogs.views import getBlogs
 
 def homeView(request):
-    if (not request.GET['location']):
+    if not ('location' in request.GET):
         hotTours = getHotTours()
         domesticTours = getDomesticTour(True)
         foreignTours = getDomesticTour(False)

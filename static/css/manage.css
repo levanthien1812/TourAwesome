@@ -1,0 +1,51 @@
+
+.manage {
+    width: 70%;
+    margin: auto;
+    padding: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 24px;
+}
+
+.manage .menu,
+.manage .content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.manage .menu .account-info {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    height: 50px;
+}
+
+.manage .menu .account-info img {
+    width: 60px;
+    border-radius: 50%;
+    grid-row: span 2;
+    padding: 0 10px;
+}
+
+.manage .menu hr {
+    margin: 16px 0;
+    border: none;
+    border-top: 2px solid #ccc;
+}
+
+.manage .menu .menu-items li{
+    border-radius: 20px;
+    padding: 8px 24px;
+    margin: 4px 0;
+}
+
+.manage .menu .menu-items li:hover {
+    background-color: var(--color-main);
+}
+.manage .menu .menu-items li:hover a{
+    color: white;
+}
+

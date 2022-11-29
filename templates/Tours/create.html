@@ -1,11 +1,15 @@
+{% extends "main.html" %}
+
+{% block content %}
+
 <form method='POST'  action='' enctype='multipart/form-data'>
     {% csrf_token %}
     {{form.as_p}}
     <div>
         <label for="">Chọn phương tiện:</label>
         {% for value, text in vehicles %}
-            <input type="checkbox" name="{{value}}" id="{{value}}" value="{{value}}">
-            <label for="{{value}}">{{text}}</label>
+        <input type="checkbox" name="{{value}}" id="{{value}}" value="{{value}}">
+        <label for="{{value}}">{{text}}</label>
         {% endfor %}
     </div>
     <div>
@@ -13,11 +17,13 @@
         <input type="file" required multiple name='images' id="images">
     </div>
     {% if 'update' not in request.path %}
-        <button type='submit'>Tạo Tour</button>
+    <button type='submit'>Tạo Tour</button>
     {% else %}
-        <button type='submit'>Cập nhật tour</button>
+    <button type='submit'>Cập nhật tour</button>
     {% endif %}
-
+    
     {{form.errors}}
     
 </form>
+
+{% endblock content %}

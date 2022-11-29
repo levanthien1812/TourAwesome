@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/manage.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="manage">
+    <div class="menu">
+        <div class="account-info">
+            <img src="{{ MEDIA_URL }}{{request.user.image}}" alt="User's avatar">
+            <p class="username">{{request.user.username}}</p>
+            <p class="phoneNum">{{request.user.phoneNum}}</p>
+        </div>
+        <hr>
+        <ul class="menu-items">
+            <li><a href="{% url 'show-bookings' %}">Các tour đã đặt</a></li>
+            <li><a href="{% url 'show-account' %}">Tài khoản</a></li>
+            <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        {% block manage %}
+        
+        {% endblock manage %}
+    </div>
+</div>
+{% endblock content %}

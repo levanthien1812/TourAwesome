@@ -99,26 +99,44 @@ a:focus {
     color: var(--color-main);
 }
 
-.nav-main .menu-item .sub-menu {
-    display: none;
-    background-color: white;
+.nav-main .sub-menu {
+    background-color: rgb(255, 255, 255);
     position: absolute;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.282);
     border-radius: 5px;
-    padding: 15px;
+    padding: 7px;
     top: 90%;
+    display: none;
 }
 
-.nav-main .menu-item:hover .sub-menu {
+.nav-main .sub-menu li {
+    width: 100%;
+    padding: 4px 16px;
+    margin: 2px 0;
+    border-radius: 5px;
+}
+
+.nav-main .sub-menu li a{
+    white-space: nowrap;
+}
+
+.nav-main .sub-menu li:hover {
+    background-color: rgba(0, 150, 150, 0.334);
+}
+
+.nav-main .menu-item:hover .sub-menu,
+.nav-main .account:hover .sub-menu {
     display: grid;
 }
 
 .nav-main .log,
 .nav-main .account {
+    height: 1;
     display: flex;
     justify-content: right;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 .nav-main .log a:first-child{
@@ -153,4 +171,9 @@ a:focus {
 
 .login-btn:hover {
     color: #ff6a00;
+}
+
+.main {
+    height: 100vh;
+    background-color: rgb(232, 232, 232);
 }

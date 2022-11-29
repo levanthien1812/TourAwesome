@@ -85,12 +85,12 @@
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST" action="{% url 'login' %}">
 						{% csrf_token %}
-						{{form.username.errors}}
+						{{form.email.errors}}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							{{form.username}}
+							{{form.email}}
 						</div>
 						{{form.password.errors}}
 						<div class="input-group mb-2">

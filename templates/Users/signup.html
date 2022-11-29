@@ -22,12 +22,19 @@
 
 					<form method="POST" action="{% url 'signup' %}">
                         {% csrf_token %}
-                        {{form.username.errors}}
+                        {{form.name.errors}}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							{{form.username}}
+							{{form.name}}
+						</div>
+                        {{form.email.errors}}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							{{form.email}}
 						</div>
                         {{form.phoneNum.errors}}
 						<div class="input-group mb-2">
@@ -72,10 +79,11 @@
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Email';
-		form_fields[2].placeholder='Số điện thoại...';
-		form_fields[3].placeholder='Mật khẩu...';
-		form_fields[4].placeholder='Xác nhận mật khẩu...';
+		form_fields[1].placeholder='Họ và tên';
+		form_fields[2].placeholder='Email';
+		form_fields[3].placeholder='Số điện thoại...';
+		form_fields[4].placeholder='Mật khẩu...';
+		form_fields[5].placeholder='Xác nhận mật khẩu...';
 
 
 		for (var field in form_fields){	
