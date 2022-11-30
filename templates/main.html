@@ -110,10 +110,10 @@
                     {% endwith %}
                 </div>
                 <div class="name">
-                    <a href="">{{request.user.username}}</a>
+                    <a href="">{{request.user.name}}</a>
                     <ul class="sub-menu">
-                        <li><a href="">Các tour đã đặt</a></li>
-                        <li><a href="">Tài khoản</a></li>
+                        <li><a href="{% url 'show-bookings' %}">Các tour đã đặt</a></li>
+                        <li><a href="{% url 'update-account' %}">Tài khoản</a></li>
                         <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
                     </ul>
                 </div>

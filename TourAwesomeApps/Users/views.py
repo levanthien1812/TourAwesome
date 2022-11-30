@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
 
-from TourAwesomeApps.Users.forms import SignupForm, LoginForm
+from TourAwesomeApps.Users.forms import SignupForm, LoginForm, UpdateForm
+from .models import sex_choices
 from TourAwesome.decorators import unauthenticated_user, allowed_user
 
 User = get_user_model()
@@ -25,8 +26,12 @@ def signup(request):
             password = form.cleaned_data.get('password')
             passwordConfirm = form.cleaned_data.get('passwordConfirm')
             
-            userCount = User.objects.all().count()
-            username = 'user{0}'.format(userCount)
+            lastUser = User.objects.filter(username__startswith='user').last() or None
+            if (lastUser != None):
+                username = 'user{0}'.format(int(lastUser.username.replace('user', '')) + 1)
+                print(username)
+            else:
+                username = 'user1'
 
             try:
                 user = User.objects.create_user(username, email, password)
@@ -34,17 +39,17 @@ def signup(request):
                 user.phoneNum = phoneNum
                 user.name = name
                 
-                # group = Group.objects.get(name = 'customer')
-                # user.groups.add(group)
+                group = Group.objects.get(name = 'customer')
+                user.groups.add(group)
                 
                 user.save()
                 
                 messages.success(request, 'Tài khoản đã được tạo cho ' + email + '.Xin vui lòng đăng nhập!')
                 return redirect(reverse('login'))
             except:
-                print('Something went wrong')
                 user = None
                 request.session['register_error'] = 1
+                raise Http404('Something went wrong')
         else:
             print('Form is invalid')
             
@@ -78,9 +83,25 @@ def _logout(request):
     logout(request)
     return redirect('home')
 
-def showAccount(request):
+@login_required
+def update(request):
+    user = User.objects.get(id=request.user.id)
+    form = UpdateForm(instance=user)
     
-    return render(request, 'Users/account.html')
+    if (request.method == 'POST'):
+        form = UpdateForm(request.POST, request.FILES, instance=user)
+        
+        if form.is_valid():
+            newPassword = form.cleaned_data.get('newPassword')
+            user = form.save(commit=False)
+            user.password = newPassword
+            user.save()
+            return redirect(reverse('show-account'))
+        
+        else:
+            print('Form is invalid!')
+        
+    return render(request, 'Users/account.html', {'form': form, 'sex_choices': sex_choices})
 
 def showBookings(request):
     

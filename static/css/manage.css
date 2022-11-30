@@ -8,8 +8,7 @@
     column-gap: 24px;
 }
 
-.manage .menu,
-.manage .content {
+.manage .menu {
     background-color: white;
     border-radius: 8px;
     padding: 16px;
@@ -49,3 +48,83 @@
     color: white;
 }
 
+.content .section {
+    margin-bottom: 24px;
+    padding: 32px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.content .personal-info {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    column-gap: 16px;
+}
+
+.content .personal-info .avt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    grid-row: span 3;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.content .personal-info .avt .img img{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.content .personal-info .avt .image-label {
+    border: 2px solid #aaa;
+    padding: 6px 24px;
+    border-radius: 30px;
+    background-color: rgb(234, 234, 234);
+}
+
+.content .personal-info .avt .image-label input {
+    display: none;
+}
+
+.content .form-control label{
+    display: block;
+    margin-bottom: 8px;
+}
+
+.content input,
+.content select {
+    border: 2px solid #aaa;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.content select {
+    padding: 4px 24px;
+    margin: 0 4px;
+}
+
+.content input:focus,
+.content select:focus {
+    border: 1px solid #aaa;
+    outline: 2px solid var(--color-main);
+}
+
+.content .email-phoneNum,
+.content .password {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.content .update-btn {
+    background-color: var(--color-main);
+    padding: 12px 32px;
+    border-radius: 10px;
+    color: white;
+    font-size: inherit;
+    font-family: inherit;
+}

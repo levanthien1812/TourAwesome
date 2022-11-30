@@ -12,13 +12,13 @@
     <div class="menu">
         <div class="account-info">
             <img src="{{ MEDIA_URL }}{{request.user.image}}" alt="User's avatar">
-            <p class="username">{{request.user.username}}</p>
+            <p class="username">{{request.user.name}}</p>
             <p class="phoneNum">{{request.user.phoneNum}}</p>
         </div>
         <hr>
         <ul class="menu-items">
             <li><a href="{% url 'show-bookings' %}">Các tour đã đặt</a></li>
-            <li><a href="{% url 'show-account' %}">Tài khoản</a></li>
+            <li><a href="{% url 'update-account' %}">Tài khoản</a></li>
             <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
         </ul>
     </div>

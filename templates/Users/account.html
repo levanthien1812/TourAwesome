@@ -4,32 +4,57 @@
 
 {% block manage %}
 
-    <form class="personal-info">
-        <div class="avt">
-            <div class="img">
-                <img src="{{MEDIA_URL}}{{request.user.image}}" alt="">
+    <form action="{% url 'update-account' %}" method="POST" class="update-user">
+        {% csrf_token %}
+        <div class="section personal-info">
+            <div class="avt">
+                <div class="img">
+                    <img src="{{MEDIA_URL}}{{request.user.image}}" alt="">
+                </div>
+                <label for="image" class="image-label">
+                    {{form.image}}
+                    Chọn ảnh
+                </label>
             </div>
-            <input type="file" name="image" id="image" text="Cập nhật ảnh đại điện">
+            <div class="form-control">
+                <label for="name">Tên người dùng</label>
+                {{form.name}}
+            </div>
+            <div class="form-control">
+                <label for="birthday">Ngày sinh</label>
+                {{form.birthday}}
+            </div>
+            <div class="form-control">
+                <label for="birthday">Giới tính</label>
+                {% for value, text in sex_choices %}
+                    <input type="radio" name="sex" value="{{value}}" id="{{value}}">{{text}}
+                {% endfor %}
+            </div>
         </div>
-        <div class="form-control">
-            <label for="username">Tên người dùng</label>
-            <input type="text" name="username" id="username" value="{{request.user.username}}">
+        <div class="section email-phoneNum">
+            <div class="form-control">
+                <label for="email">Email</label>
+                {{form.email}}
+            </div>
+            <div class="form-control">
+                <label for="phoneNum">Số điện thoại</label>
+                {{form.phoneNum}}
+            </div>
         </div>
-        <div class="form-control">
-            <label for="birthday">Ngày sinh</label>
-            <input type="date" name="birthday" id="birthday">
+        <div class="section password">
+            <div class="form-control">
+                <label for="password">Mật khẩu hiện tại</label>
+                {{form.password}}
+            </div>
+            <div class="form-control">
+                <label for="newPassword">Mật khẩu mới</label>
+                {{form.newPassword}}
+            </div>
         </div>
-        <div class="form-control">
-            <label for="birthday">Giới tính</label>
-            <input type="radio" name="birthday" value="male" id="male">Nam
-            <input type="radio" name="birthday" value="female" id="female">Nữ
-        </div>
-    </form>
-    <div class="email-phoneNum">
-        
-    </div>
-    <div class="password">
 
-    </div>
+        {{form.errors}}
+
+        <button type="submit" class="update-btn">Cập nhật</button>
+    </form>
 
 {% endblock manage %}
