@@ -16,6 +16,11 @@ button {
     background-color: white;
     border: none;
     cursor: pointer;
+    font-family: inherit;
+}
+
+input {
+    font-family: inherit;
 }
 
 ul {
@@ -28,6 +33,12 @@ a:visited,
 a:focus {
     text-decoration: none;
     color: black;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .nav-info {
@@ -57,11 +68,15 @@ a:focus {
     display: grid;
     grid-template-columns: 2fr 8fr 3fr;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #ffffffbb;
     color: rgb(0, 0, 0);
     padding: 0 6%;
     height: 70px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.258);
+}
+
+.nav-main:hover {
+    background-color: white;
 }
 
 .nav-main .logo img{

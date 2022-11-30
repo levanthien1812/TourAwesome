@@ -1,7 +1,570 @@
 {% extends "main.html" %}
 
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/slider.js' %}"></script>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+      />
+{% endblock head %}
+
 {% block content %}
 
-{% comment %} <h1>HOME PAGE</h1> {% endcomment %}
+<body>
+    <div class="header">
+        <div class="img-group__list">
+            <img src="https://is.vnecdn.net/v237/84/89/47/4478984/assets/images/cover__a.jpg" alt=""
+                class="img-fluid aos-init lazyLoaded aos-animate" data-aos="zoom-out" data-aos-duration="1000"
+                data-was-processed="true">
+        </div>
 
+        <form action="{% url 'home' %}" class="search-tour-box">
+            <div class="box-title">Du lịch 5 châu giá rẻ cùng TourAwesome</div>
+            <div class="box-search-tour">
+                <label for="search-tour-input">Nhập địa điểm bạn muốn đến</label>
+                <input
+                    type="text" placeholder="Quốc gia, thành phố, địa điểm du lịch" class="search-tour-input" 
+                    name="location" autocomplete="off" spellcheck="false">
+
+                    {% comment %} <div class="tt-menu"
+                        style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+                        <div class="tt-dataset tt-dataset-locations"></div>
+                        <div class="tt-dataset tt-dataset-tours"></div>
+                        <div class="tt-dataset tt-dataset-popularLocation">
+                            <h5 class="item-title-autocomplete"><span class="glyphicon glyphicon-map-marker"></span> ĐỊA
+                                ĐIỂM HOT</h5>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-sapa-27-12-2018-1-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Sapa</h4> <span
+                                            class="vcolor-primary"><b>27</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-thai-lan-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Thái Lan</h4> <span
+                                            class="vcolor-primary"><b>8</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-da-lat-27122018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Đà Lạt</h4> <span
+                                            class="vcolor-primary"><b>40</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-phu-quoc-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Phú Quốc</h4> <span
+                                            class="vcolor-primary"><b>27</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-singapore-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Singapore</h4> <span
+                                            class="vcolor-primary"><b>9</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-da-nang-27122018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Đà Nẵng</h4> <span
+                                            class="vcolor-primary"><b>48</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-vung-tau-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Vũng Tàu</h4> <span
+                                            class="vcolor-primary"><b>11</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-nhat-ban-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Nhật Bản trọn gói</h4> <span
+                                            class="vcolor-primary"><b>6</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-trung-quoc-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Trung Quốc</h4> <span
+                                            class="vcolor-primary"><b>2</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-ha-noi-27122018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Hà Nội</h4> <span
+                                            class="vcolor-primary"><b>96</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-campuchia-27-12-2018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Campuchia</h4> <span
+                                            class="vcolor-primary"><b>3</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-tour-top tt-suggestion tt-selectable">
+                                <li> <img
+                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-mien-bac-27122018-150x150.jpg">
+                                    <div class="box-info">
+                                        <h4 class="media-heading">Tour du lịch Miền Bắc</h4> <span
+                                            class="vcolor-primary"><b>88</b> tours</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="row"></div>
+                        </div>
+                    </div></span> {% endcomment %}
+                <div class="search-tour-btn">
+                    <button type="submit" class="btn-search-tour"> Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% comment %} HOT TOURS {% endcomment %}
+    <div class="hot-tours tours-section">
+            <div class="section-header">
+                <div class="header-subtitle"><b>Hãy đặt tour sớm nhất</b></div>
+                <h2 class="header-title">CÁC TOUR HOT NHẤT NĂM 2022</h2>
+                <hr>
+                <p class="header-description">Các tour tìm kiếm và được đặt nhiều nhất nhất trong năm 2022, bạn có thể đặt trước từ bây giờ
+                    để có giá tốt nhất</p>
+            </div>
+            <div class="section-content image-slider">
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                        <p class="special-note">Night tour hấp dẫn</p>
+                        <div class="location">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"/></svg>
+                            <p class="location-text">Nha Trang</p>
+                        </div>
+                    </div>
+                    <div class="tour-info">
+                        <div class="tour-name">
+                            <p>
+                                Tour Singapore Malaysia từ Hà Nội 5 ngày 4 đêm cực “chill” tại châu Á
+                            </p>
+                        </div>
+                        <div class="tour-other-info">
+                            <p class="duration">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M32 0C14.3 0 0 14.3 0 32S14.3 64 32 64V75c0 42.4 16.9 83.1 46.9 113.1L146.7 256 78.9 323.9C48.9 353.9 32 394.6 32 437v11c-17.7 0-32 14.3-32 32s14.3 32 32 32H64 320h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V437c0-42.4-16.9-83.1-46.9-113.1L237.3 256l67.9-67.9c30-30 46.9-70.7 46.9-113.1V64c17.7 0 32-14.3 32-32s-14.3-32-32-32H320 64 32zM288 437v11H96V437c0-25.5 10.1-49.9 28.1-67.9L192 301.3l67.9 67.9c18 18 28.1 42.4 28.1 67.9z"/></svg>
+                                <span>5 ngày 4 đêm</span>
+                            </p>
+                            <p class="vehicles">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M482.3 192c34.2 0 93.7 29 93.7 64c0 36-59.5 64-93.7 64l-116.6 0L265.2 495.9c-5.7 10-16.3 16.1-27.8 16.1l-56.2 0c-10.6 0-18.3-10.2-15.4-20.4l49-171.6L112 320 68.8 377.6c-3 4-7.8 6.4-12.8 6.4l-42 0c-7.8 0-14-6.3-14-14c0-1.3 .2-2.6 .5-3.9L32 256 .5 145.9c-.4-1.3-.5-2.6-.5-3.9c0-7.8 6.3-14 14-14l42 0c5 0 9.8 2.4 12.8 6.4L112 192l102.9 0-49-171.6C162.9 10.2 170.6 0 181.2 0l56.2 0c11.5 0 22.1 6.2 27.8 16.1L365.7 192l116.6 0z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M192 32c0-17.7 14.3-32 32-32H352c17.7 0 32 14.3 32 32V64h48c26.5 0 48 21.5 48 48V240l44.4 14.8c23.1 7.7 29.5 37.5 11.5 53.9l-101 92.6c-16.2 9.4-34.7 15.1-50.9 15.1c-19.6 0-40.8-7.7-59.2-20.3c-22.1-15.5-51.6-15.5-73.7 0c-17.1 11.8-38 20.3-59.2 20.3c-16.2 0-34.7-5.7-50.9-15.1l-101-92.6c-18-16.5-11.6-46.2 11.5-53.9L96 240V112c0-26.5 21.5-48 48-48h48V32zM160 218.7l107.8-35.9c13.1-4.4 27.3-4.4 40.5 0L416 218.7V128H160v90.7zM306.5 421.9C329 437.4 356.5 448 384 448c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 501.7 417 512 384 512c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 437.2 165.1 448 192 448c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0C390.4 0 480 35.2 480 80V96l0 32c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32l0 160c0 17.7-14.3 32-32 32v32c0 17.7-14.3 32-32 32H384c-17.7 0-32-14.3-32-32V448H160v32c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32l0-32c-17.7 0-32-14.3-32-32l0-160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h0V96h0V80C32 35.2 121.6 0 256 0zM96 160v96c0 17.7 14.3 32 32 32H240V128H128c-17.7 0-32 14.3-32 32zM272 288H384c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32H272V288zM112 400c17.7 0 32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32zm288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32zM352 80c0-8.8-7.2-16-16-16H176c-8.8 0-16 7.2-16 16s7.2 16 16 16H336c8.8 0 16-7.2 16-16z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96V352c0 48 35.2 87.7 81.1 94.9l-46 46C28.1 499.9 33.1 512 43 512H82.7c8.5 0 16.6-3.4 22.6-9.4L160 448H288l54.6 54.6c6 6 14.1 9.4 22.6 9.4H405c10 0 15-12.1 7.9-19.1l-46-46c46-7.1 81.1-46.9 81.1-94.9V96c0-53-43-96-96-96H96zM64 96c0-17.7 14.3-32 32-32H352c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96zM224 384c-26.5 0-48-21.5-48-48s21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48z"/></svg>
+                            </p>
+                            <p class="start-date">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>
+                                <span>18/07/2022</span>
+                            </p>
+                        </div>
+                        <div class="tour-prices">
+                            <p class="old-price">13,986,000 <sup>đ</sup></p>
+                            <p class="price-differentiate">-2.540.000<sup>đ</sup></p>
+                            <p class="price">11,488,000 <sup>đ</sup></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+            </div>
+    </div>
+
+    {% comment %} TOUR TRONG NƯỚC {% endcomment %}
+    <div class="domestic-tours tours-section">
+
+            <div class="section-header">
+                <div class="header-subtitle"><b>Hãy đặt tour sớm nhất</b></div>
+                <h2 class="header-title">CÁC TOUR TRONG NƯỚC NĂM 2022</h2>
+                <hr>
+                <div class="header-content entry-content">
+                    <div class="more-information">
+                        <p>Các tour du lịch Việt Nam năm 2022</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content image-slider">
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+            </div>
+    </div>
+
+    {% comment %} Tour nước ngoài {% endcomment %}
+    <div class="foreign-tours tours-section">
+            <div class="section-header">
+                <div class="header-subtitle"><b>Hãy đặt tour sớm nhất</b></div>
+                <h2 class="header-title">TOUR NƯỚC NGOÀI NĂM 2022</h2>
+                <hr>
+                <div class="header-content entry-content">
+                    <div class="more-information">
+                        <p>Trải Nghiệm Thế Giới, Khám Phá Bản Thân</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content image-slider">
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+            </div>
+    </div>
+
+    {% comment %} blogs {% endcomment %}
+    <div class="blogs tours-section">
+            <div class="section-header">
+                <div class="header-subtitle"><b>Blogs</b></div>
+                <h2 class="header-title">TỔNG HỢP BLOGS DU LỊCH 2022</h2>
+                <hr>
+                <div class="header-content entry-content">
+                    <div class="more-information">
+                        <a href="https://www.vietnambooking.com/du-lich/blog-du-lich">Xem tất cả blogs</a>
+                    </div>
+                </div>
+            </div>
+
+            {% comment %} blogs {% endcomment %}
+            <div class="section-content image-slider">
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+                <div class="tour-card image-item">
+                    <div class="tour-image">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
+                            alt="test" />
+                    </div>
+                    <h3 class="image-title">this is demo title</h3>
+                </div>
+            </div>
+    </div>
+
+
+    {% comment %} hot places to go {% endcomment %}
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+        <div class="section-header">
+            <div class="header-subtitle"><b>Hãy đặt tour sớm nhất</b></div>
+            <h2 class="header-title">CÁC ĐỊA ĐIỂM DU LỊCH PHỔ BIẾN</h2>
+            <div class="penci-separator penci-separator- penci-separator-center"><span
+                    class="penci-sep_holder penci-sep_holder_l"><span class="penci-sep_line"></span></span><span
+                    class="penci-sep_holder penci-sep_holder_r"><span class="penci-sep_line"></span></span></div>
+            <div class="header-content entry-content">
+                <div class="more-information">
+                    <p>Bao La Thế Giới Bốn Bể Là Nhà</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+            <div class="popularTourList">
+                <div class="row">
+                    <div class="item-m col-xs-4 col-sm-6 col-md-4">
+                        <div class="col-xs-12 cardItem">
+                            <a href="/du-lich/tour-dai-loan">
+                                <div class="col-xs-12 no-padding cardItemContainer">
+                                    <div class="col-xs-12 no-padding cardItemImage">
+                                        <figure>
+                                            <picture>
+
+                                                <img src="//cdn2.ivivu.com/2015/04/27/11/dai-loan-phat-quang-son-1-360x480.jpg"
+                                                    data-src="//cdn2.ivivu.com/2015/04/27/11/dai-loan-phat-quang-son-1-360x480.jpg"
+                                                    class="img-responsive col">
+                                            </picture>
+                                        </figure>
+                                        <div class="cardItemPriceDivOuter">
+                                            <div class="cardItemPriceDivInner">
+                                                <span class="cardItemPriceAfterDiscount">
+                                                    <span>Đài Loan</span>
+                                                    <span class="tourCount hidden-xs">7 Tours</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-m col-xs-4 col-sm-6 col-md-4">
+                        <div class="col-xs-12 cardItem">
+                            <a href="/du-lich/tour-dubai">
+                                <div class="col-xs-12 no-padding cardItemContainer">
+                                    <div class="col-xs-12 no-padding cardItemImage">
+                                        <figure>
+                                            <picture>
+
+                                                <img src="//cdn2.ivivu.com/2022/04/13/15/ivivu-dubai8-360x225.gif"
+                                                    data-src="//cdn2.ivivu.com/2022/04/13/15/ivivu-dubai8-360x225.gif"
+                                                    class="img-responsive">
+                                            </picture>
+                                        </figure>
+                                        <div class="cardItemPriceDivOuter">
+                                            <div class="cardItemPriceDivInner">
+                                                <span class="cardItemPriceAfterDiscount">
+                                                    <span>Dubai</span>
+                                                    <span class="tourCount hidden-xs">5 Tours</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-m col-xs-4 col-sm-6 col-md-4">
+                        <div class="col-xs-12 cardItem">
+                            <a href="/du-lich/tour-nhat-ban">
+                                <div class="col-xs-12 no-padding cardItemContainer">
+                                    <div class="col-xs-12 no-padding cardItemImage">
+                                        <figure>
+                                            <picture>
+
+                                                <img src="//cdn2.ivivu.com/2019/11/05/16/ivivu-nui-phu-si2-360x225.jpg"
+                                                    data-src="//cdn2.ivivu.com/2019/11/05/16/ivivu-nui-phu-si2-360x225.jpg"
+                                                    class="img-responsive">
+                                            </picture>
+                                        </figure>
+                                        <div class="cardItemPriceDivOuter">
+                                            <div class="cardItemPriceDivInner">
+                                                <span class="cardItemPriceAfterDiscount">
+                                                    <span>Nhật Bản</span>
+                                                    <span class="tourCount hidden-xs">6 Tours</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-m col-xs-4 col-sm-6 col-md-4">
+                        <div class="col-xs-12 cardItem">
+                            <a href="/du-lich/tour-phap">
+                                <div class="col-xs-12 no-padding cardItemContainer">
+                                    <div class="col-xs-12 no-padding cardItemImage">
+                                        <figure>
+                                            <picture>
+
+                                                <img src="//cdn2.ivivu.com/2022/03/08/15/ivivu-du-lich-phap-eiffel-360x225.gif"
+                                                    data-src="//cdn2.ivivu.com/2022/03/08/15/ivivu-du-lich-phap-eiffel-360x225.gif"
+                                                    class="img-responsive">
+                                            </picture>
+                                        </figure>
+                                        <div class="cardItemPriceDivOuter">
+                                            <div class="cardItemPriceDivInner">
+                                                <span class="cardItemPriceAfterDiscount">
+                                                    <span>Châu Âu</span>
+                                                    <span class="tourCount hidden-xs">9 Tours</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item-m col-xs-4 col-sm-6 col-md-4">
+                        <div class="col-xs-12 cardItem">
+                            <a href="/du-lich/tour-dong-bac">
+                                <div class="col-xs-12 no-padding cardItemContainer">
+                                    <div class="col-xs-12 no-padding cardItemImage">
+                                        <figure>
+                                            <picture>
+
+                                                <img src="//cdn2.ivivu.com/2020/06/24/13/ivivu-thac-ban-gioc-bia-360x225.gif"
+                                                    data-src="//cdn2.ivivu.com/2020/06/24/13/ivivu-thac-ban-gioc-bia-360x225.gif"
+                                                    class="img-responsive">
+                                            </picture>
+                                        </figure>
+                                        <div class="cardItemPriceDivOuter">
+                                            <div class="cardItemPriceDivInner">
+                                                <span class="cardItemPriceAfterDiscount">
+                                                    <span>Đông Bắc</span>
+                                                    <span class="tourCount hidden-xs">7 Tours</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} dịch vụ du lịch {% endcomment %}
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+    <script>
+        {% comment %} $(document).ready(function () {
+            $('.section-content.image-slider').slick({
+                slidesToShow: 3,
+                slidesToScroll: 2,
+                infinite: true,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 1500,
+            })
+        });
+    </script> {% endcomment %}
+
+</body>
 {% endblock content %}
