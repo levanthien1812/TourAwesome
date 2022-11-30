@@ -25,10 +25,15 @@ class Tour (models.Model):
     duration_nights = models.PositiveIntegerField()
     pub_date = models.DateTimeField(default = datetime.now())
     isHot = models.BooleanField(default=True)
+    old_price = models.FloatField(null=True)
 
     @property
     def duration(self):
         return '%s ngày %s đêm' % (self.duration_days, self.duration_nights)
+    
+    @property
+    def price_differentiate(self):
+        return self.old_price - self.price
 
     def __str__(self):
         return self.name

@@ -13,6 +13,8 @@ class CreateTourForm(ModelForm):
         label='Nhập địa điểm tour', max_length=30)
     price = forms.FloatField(
         label='Nhập giá tiền của tour', min_value=0)
+    old_price = forms.FloatField(
+        label='Nhập giá tiền gốc của tour', min_value=0)
     startDate = forms.DateField(
         label='Nhập ngày bắt đầu', widget=forms.SelectDateWidget)
     specialNote = forms.CharField(
@@ -32,9 +34,16 @@ class CreateTourForm(ModelForm):
         if startDate < datetime.now().date():
             raise forms.ValidationError('Ngày khởi hành phải sau ngày hiện tại!')
         return startDate
+    
+    def clean_old_price(self):
+        old_price = self.cleaned_data.get(old_price)
+        price = self.cleaned_data.get(price)
+        if (old_price < price):
+            raise forms.ValidationError('Gía khuyến mãi phải nhỏ hơn giá gốc!')
+        return old_price
 
     class Meta:
         model = Tour
-        fields = ['id', 'name', 'location', 'price', 'startDate', 'specialNote',
+        fields = ['id', 'name', 'location', 'old_price', 'price', 'startDate', 'specialNote',
                   'description', 'highlight', 'isDomestic', 'timeline', 'duration_days', 'duration_nights']
         # fields = '__all__'
