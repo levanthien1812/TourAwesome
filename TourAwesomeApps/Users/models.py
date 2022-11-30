@@ -17,7 +17,7 @@ class MyUser(AbstractUser):
     name = models.CharField(max_length=30,null=True)
     email = models.EmailField(unique=True)
     birthday = models.DateField(default=now, null=True)
-    sex = models.CharField(max_length=6, choices=sex_choices, null=True)
+    sex = models.CharField(max_length=6, choices=sex_choices, default=sex_choices[0], null=True)
     
 
 class Booking(models.Model):

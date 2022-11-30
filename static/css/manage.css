@@ -83,6 +83,11 @@
     padding: 6px 24px;
     border-radius: 30px;
     background-color: rgb(234, 234, 234);
+    cursor: pointer;
+}
+
+.content .personal-info .avt .image-label:hover {
+    background-color: rgb(190, 190, 190);
 }
 
 .content .personal-info .avt .image-label input {

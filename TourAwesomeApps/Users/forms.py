@@ -42,18 +42,20 @@ class UpdateForm(forms.ModelForm):
     newPassword = forms.CharField(widget=forms.PasswordInput, required=False)
 
     def clean_email(self):
-        email = self.cleaned_data.get("email")
-        user = User.objects.filter(email__iexact=email)
-        if user.exists():
-            raise forms.ValidationError(
-                "Email này đã được dùng cho một tài khoản khác")
+        email = self.cleaned_data.get('email')
+        if 'email' in self.changed_data:
+            user = User.objects.filter(email__iexact=email)
+            if user.exists():
+                raise forms.ValidationError(
+                    "Email này đã được dùng cho một tài khoản khác")
+                
         return email
 
     def clean_password(self):
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get('password')
-        user = User.objects.filter(email__iexact=email).get()
-        if password != user.password:
+        user = User.objects.filter(email__iexact=email, password__iexact=password)
+        if user.exists():
             raise forms.ValidationError("Mật khẩu cũ không đúng")
         return password
 

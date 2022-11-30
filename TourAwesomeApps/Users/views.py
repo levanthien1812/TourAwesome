@@ -90,13 +90,15 @@ def update(request):
     
     if (request.method == 'POST'):
         form = UpdateForm(request.POST, request.FILES, instance=user)
+        # print(request.POST)
         
         if form.is_valid():
-            newPassword = form.cleaned_data.get('newPassword')
             user = form.save(commit=False)
-            user.password = newPassword
+            newPassword = form.cleaned_data.get('newPassword')
+            if (newPassword != ''):
+                user.set_password(newPassword)
             user.save()
-            return redirect(reverse('show-account'))
+            return redirect(reverse('update-account'))
         
         else:
             print('Form is invalid!')
