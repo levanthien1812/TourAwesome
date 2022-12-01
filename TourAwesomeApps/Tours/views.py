@@ -29,14 +29,14 @@ def homeView(request):
             'locations': tourLocations,
         }
         
-        return render(request, 'home.html', context)
+        return render(request, 'Tours/home.html', context)
 
     else:
         location = request.GET['location']
         # print(location)
         locationTours = getToursByLocation(location)
         # print(locationTours)
-        return render(request, 'Tours/search.html', {'tours': locationTours})
+        return render(request, 'Tours/search.html', {'tours': locationTours, 'location': location})
         
     
 
@@ -77,12 +77,18 @@ def getHotTours():
             
     return hotTours
 def getTourLocations():
-    tourLcts = TourLocation.objects.filter(numTours__gte=1)[:10] or None
+    tourLcts = TourLocation.objects.filter(numTours__gte=1).order_by('numTours')[:10] or None
     return tourLcts
 
 def getToursByLocation(location):
     tours = Tour.objects.filter(location__icontains = location) or None
-    return tours
+    locationTours = []
+    for tour in tours:
+        image = TourImage.objects.filter(tour=tour).first()
+        vehicles = TourVehicle.objects.filter(tour=tour)
+        locationTours.append(
+            {'tour': tour, 'image': image, 'vehicles': vehicles})
+    return locationTours
 
 def deleteTourImage(tour):
     TourImage.objects.filter(tour=tour).delete()
@@ -159,8 +165,8 @@ def createTour(request):
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
-def getTour(request):
-    return 
+def getTour(request, pk):
+    return render(request, 'Tours/detail.html')
 
 @login_required
 @allowed_user(['admin'])

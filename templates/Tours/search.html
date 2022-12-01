@@ -1,0 +1,58 @@
+{% extends "main-2.html" %}
+
+{% block toursContent %}
+
+    <h1 class="search-tours-title">Tour du lịch {{location}}</h1>
+
+    <div class="search-tours tours-section">
+        <h2>Các tour {{location}} hot</h2>
+        <div class="section-content image-slider">
+            {% for tour in tours %}
+                {% include 'Components/tour-card.html' with Tour=tour%}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="more-tours tours-section">
+        <div class="tours">
+            <div class="title">
+                <p>Các tour {{location}}</p>
+            </div>
+            {% for tour in tours %}
+                {% include 'Components/tour-card-hori.html' with Tour=tour%}
+            {% endfor %}
+        </div>
+        <div class="blogs">
+            <div class="title">
+                <p>Blog</p>
+            </div>
+            <div class="blog-simple">
+                <div class="img">
+                    <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
+                </div>
+                <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
+            </div>
+            <div class="blog-simple">
+                <div class="img">
+                    <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
+                </div>
+                <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
+            </div>
+            <div class="blog-simple">
+                <div class="img">
+                    <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
+                </div>
+                <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
+            </div>
+            {% for blog in blogs %}
+                <div class="blog-simple">
+                    <div class="img">
+                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
+                    </div>
+                    <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock toursContent %}

@@ -23,11 +23,21 @@
     height: 50px;
 }
 
-.manage .menu .account-info img {
-    width: 60px;
+.manage .menu .account-info .img {
+    aspect-ratio: 1/1;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50%;
     grid-row: span 2;
-    padding: 0 10px;
+    overflow: hidden;
+}
+
+.manage .menu .account-info .img img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
 }
 
 .manage .menu hr {

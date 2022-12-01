@@ -11,7 +11,9 @@
 <div class="manage">
     <div class="menu">
         <div class="account-info">
-            <img src="{{ MEDIA_URL }}{{request.user.image}}" alt="User's avatar">
+            <div class="img">
+                <img src="{{ MEDIA_URL }}{{request.user.image}}" alt="User's avatar">
+            </div>
             <p class="username">{{request.user.name}}</p>
             <p class="phoneNum">{{request.user.phoneNum}}</p>
         </div>

@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/slider.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+{% endblock head %}
+
+{% block content %}
+<body>
+
+    {% comment %} SEARCH BOX {% endcomment %}
+    {% include 'Components/search-box.html' with locations=locations %}
+
+    {% block toursContent %}
+    
+    {% endblock toursContent %}
+
+</body>
+{% endblock content %}

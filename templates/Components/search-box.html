@@ -1,0 +1,40 @@
+{% load static %}
+
+<div class="header">
+    <div class="img-group__list">
+        <img src="https://is.vnecdn.net/v237/84/89/47/4478984/assets/images/cover__a.jpg" alt=""
+            class="img-fluid aos-init lazyLoaded aos-animate" data-aos="zoom-out" data-aos-duration="1000"
+            data-was-processed="true">
+    </div>
+
+    <form action="{% url 'home' %}" class="search-tour-box">
+        <div class="box-title">Du lịch 5 châu giá rẻ cùng TourAwesome</div>
+        <div class="box-search-tour">
+            <label for="search-tour-type">Nhập địa điểm bạn muốn đến</label>
+            <div class="search-tour-input">
+                <input type="text" placeholder="Quốc gia, thành phố, địa điểm du lịch" class="search-tour-type"
+                    name="location" autocomplete="off" spellcheck="false">
+                <div class="search-tour-recommend">
+                    <div class="header">
+                        <h5 class="item-title-autocomplete">ĐỀ XUẤT</h5>
+                    </div>
+                    {% comment %} RECOMMENDATION {% endcomment %}
+                    <div class="location-items">
+                        {% for lct in locations %}
+                            <div class="location-item">
+                                <img class='img' src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTxY7FoL8iAmlBPANx-Or7KF3AJi-gtpZ35YPVolNSohIlvJByvxTz6ouPYWiI1JIGa" alt="">
+                                <p class="name">{{lct.location}}</p>
+                                <p class="quantity">{{lct.numTours}} tour</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="search-tour-btn">
+                <button type="submit" class="btn-search-tour"> Tìm kiếm</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'js/openSearchRecom.js' %}"></script>
