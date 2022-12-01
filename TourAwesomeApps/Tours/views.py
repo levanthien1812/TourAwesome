@@ -1,3 +1,5 @@
+import random
+import string
 from django.http import HttpResponse, Http404
 from django.urls import reverse
 from datetime import datetime, timedelta
@@ -47,17 +49,26 @@ def showForeignTours(request):
         return render(request, 'Tours/foreign-tours.html', {'tours': foreignTours})
 
 def getDomesticTour(isDomestic):
+    domesticTours = []
     tours = Tour.objects.filter(isDomestic = isDomestic) or None
-    return tours
+    if tours != None:
+        for tour in tours:
+            image = TourImage.objects.filter(tour=tour).first()
+            vehicles = TourVehicle.objects.filter(tour=tour)
+            domesticTours.append({'tour': tour, 'image': image, 'vehicles': vehicles})
+            
+    return domesticTours
 
 def getHotTours():
     hotTours = []
-    tours = Tour.objects.all() or None
+    tours = Tour.objects.all()[:8] or None
     if tours != None:
         for tour in tours:
+            image = TourImage.objects.filter(tour=tour).first()
+            vehicles = TourVehicle.objects.filter(tour=tour)
             if tour.pub_date.date() > datetime.now().date() - timedelta(days=10):
                 tour.isHot = True
-                hotTours.append(tour)
+                hotTours.append({'tour': tour, 'image': image, 'vehicles': vehicles})
             else:
                 tour.isHot = False
             tour.save()
@@ -107,9 +118,17 @@ def createTour(request):
     vehicles_choices = TourVehicle.vehicles_choices
 
     if request.method == 'POST':
+        print(request.POST)
         form = CreateTourForm(request.POST, request.FILES)
         if form.is_valid():
             tour = form.save(commit=False)
+            
+            # generate random ID    
+            first_part = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
+            second_part = ''.join(random.choice(string.digits) for _ in range(5))
+            id = first_part + second_part
+            tour.id = id
+            
             tour.isDomestic = form.cleaned_data['isDomestic']
             tour.pub_date = datetime.now()
             tour.save()

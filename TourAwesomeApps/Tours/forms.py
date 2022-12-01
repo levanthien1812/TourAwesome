@@ -5,8 +5,6 @@ from .models import Tour
 
 
 class CreateTourForm(ModelForm):
-    id = forms.CharField(label='Nhập ID của tour',
-                         max_length=10)
     name = forms.CharField(label='Nhập tiêu đề tour',
                            max_length=200)
     location = forms.CharField(
@@ -35,15 +33,15 @@ class CreateTourForm(ModelForm):
             raise forms.ValidationError('Ngày khởi hành phải sau ngày hiện tại!')
         return startDate
     
-    def clean_old_price(self):
-        old_price = self.cleaned_data.get(old_price)
-        price = self.cleaned_data.get(price)
-        if (old_price < price):
+    def clean_price(self):
+        old_price = self.cleaned_data.get('old_price')
+        price = self.cleaned_data.get('price')
+        if old_price < price:
             raise forms.ValidationError('Gía khuyến mãi phải nhỏ hơn giá gốc!')
-        return old_price
+        return price
 
     class Meta:
         model = Tour
-        fields = ['id', 'name', 'location', 'old_price', 'price', 'startDate', 'specialNote',
+        fields = ['name', 'location', 'old_price', 'price', 'startDate', 'specialNote',
                   'description', 'highlight', 'isDomestic', 'timeline', 'duration_days', 'duration_nights']
         # fields = '__all__'
