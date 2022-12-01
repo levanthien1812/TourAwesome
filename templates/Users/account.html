@@ -7,6 +7,7 @@
     <form action="{% url 'update-account' %}" method="POST" class="update-user">
         {% csrf_token %}
         <div class="section personal-info">
+            <p class="title">Thông tin người dùng</p>
             <div class="avt">
                 <div class="img">
                     <img src="{{MEDIA_URL}}{{request.user.image}}" alt="">
@@ -30,6 +31,7 @@
             </div>
         </div>
         <div class="section email-phoneNum">
+            <p class="title">Email và Số điện thoại</p>
             <div class="form-control">
                 <label for="email">Email</label>
                 {{form.email}}
@@ -40,6 +42,7 @@
             </div>
         </div>
         <div class="section password">
+            <p class="title">Mật khẩu</p>
             <div class="form-control">
                 <label for="password">Mật khẩu hiện tại</label>
                 {{form.password}}
@@ -51,8 +54,9 @@
         </div>
 
         {{form.errors}}
-
-        <button type="submit" class="update-btn">Cập nhật</button>
+        <div class="submit">
+            <button type="submit" class="update-btn">Cập nhật</button>
+        </div>
     </form>
 
 {% endblock manage %}

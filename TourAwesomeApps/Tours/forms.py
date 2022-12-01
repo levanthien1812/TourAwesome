@@ -9,6 +9,8 @@ class CreateTourForm(ModelForm):
                            max_length=200)
     location = forms.CharField(
         label='Nhập địa điểm tour', max_length=30)
+    detailLocation = forms.CharField(
+        label='Nhập địa điểm cụ thể của tour', max_length=50)
     price = forms.FloatField(
         label='Nhập giá tiền của tour', min_value=0)
     old_price = forms.FloatField(
@@ -42,6 +44,6 @@ class CreateTourForm(ModelForm):
 
     class Meta:
         model = Tour
-        fields = ['name', 'location', 'old_price', 'price', 'startDate', 'specialNote',
+        fields = ['name', 'location', 'detailLocation', 'old_price', 'price', 'startDate', 'specialNote',
                   'description', 'highlight', 'isDomestic', 'timeline', 'duration_days', 'duration_nights']
         # fields = '__all__'

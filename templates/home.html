@@ -3,14 +3,10 @@
 {% load static %}
 
 {% block head %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <script src="{% static 'js/slider.js' %}"></script>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-      />
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<script src="{% static 'js/slider.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 {% endblock head %}
 
 {% block content %}
@@ -26,129 +22,24 @@
         <form action="{% url 'home' %}" class="search-tour-box">
             <div class="box-title">Du lịch 5 châu giá rẻ cùng TourAwesome</div>
             <div class="box-search-tour">
-                <label for="search-tour-input">Nhập địa điểm bạn muốn đến</label>
-                <input
-                    type="text" placeholder="Quốc gia, thành phố, địa điểm du lịch" class="search-tour-input" 
-                    name="location" autocomplete="off" spellcheck="false">
-
-                    {% comment %} <div class="tt-menu"
-                        style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
-                        <div class="tt-dataset tt-dataset-locations"></div>
-                        <div class="tt-dataset tt-dataset-tours"></div>
-                        <div class="tt-dataset tt-dataset-popularLocation">
-                            <h5 class="item-title-autocomplete"><span class="glyphicon glyphicon-map-marker"></span> ĐỊA
-                                ĐIỂM HOT</h5>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-sapa-27-12-2018-1-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Sapa</h4> <span
-                                            class="vcolor-primary"><b>27</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-thai-lan-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Thái Lan</h4> <span
-                                            class="vcolor-primary"><b>8</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-da-lat-27122018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Đà Lạt</h4> <span
-                                            class="vcolor-primary"><b>40</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-phu-quoc-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Phú Quốc</h4> <span
-                                            class="vcolor-primary"><b>27</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-singapore-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Singapore</h4> <span
-                                            class="vcolor-primary"><b>9</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-da-nang-27122018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Đà Nẵng</h4> <span
-                                            class="vcolor-primary"><b>48</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-vung-tau-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Vũng Tàu</h4> <span
-                                            class="vcolor-primary"><b>11</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-nhat-ban-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Nhật Bản trọn gói</h4> <span
-                                            class="vcolor-primary"><b>6</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-trung-quoc-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Trung Quốc</h4> <span
-                                            class="vcolor-primary"><b>2</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-ha-noi-27122018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Hà Nội</h4> <span
-                                            class="vcolor-primary"><b>96</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-campuchia-27-12-2018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Campuchia</h4> <span
-                                            class="vcolor-primary"><b>3</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="list-tour-top tt-suggestion tt-selectable">
-                                <li> <img
-                                        src="https://www.vietnambooking.com/wp-content/uploads/2018/12/du-lich-mien-bac-27122018-150x150.jpg">
-                                    <div class="box-info">
-                                        <h4 class="media-heading">Tour du lịch Miền Bắc</h4> <span
-                                            class="vcolor-primary"><b>88</b> tours</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="row"></div>
+                <label for="search-tour-type">Nhập địa điểm bạn muốn đến</label>
+                <div class="search-tour-input">
+                    <input type="text" placeholder="Quốc gia, thành phố, địa điểm du lịch" class="search-tour-type"
+                        name="location" autocomplete="off" spellcheck="false">
+                    <div class="search-tour-show">
+                        <div class="header">
+                            <h5 class="item-title-autocomplete">ĐỀ XUẤT</h5>
                         </div>
-                    </div></span> {% endcomment %}
+                        {% comment %} recommmend {% endcomment %}
+                        <div class="recom-items">
+                            {% for lct in locations %}
+                                <div class="location">
+                                    
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
                 <div class="search-tour-btn">
                     <button type="submit" class="btn-search-tour"> Tìm kiếm</button>
                 </div>
@@ -161,7 +52,7 @@
         {% include 'tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC TOUR HOT NHẤT NĂM 2022" content="Các tour tìm kiếm và được đặt nhiều nhất nhất trong năm 2022, bạn có thể đặt trước từ bây giờ để có giá tốt nhất"%}
         <div class="section-content image-slider">
             {% for hotTour in hotTours %}
-                {% include 'tour-card.html' with Tour=hotTour%}
+            {% include 'tour-card.html' with Tour=hotTour%}
             {% endfor %}
         </div>
         <div class="see-more">
@@ -171,15 +62,15 @@
 
     {% comment %} TOUR TRONG NƯỚC {% endcomment %}
     <div class="domestic-tours tours-section">
-            {% include 'tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC TOUR TRONG NƯỚC NĂM 2022" content="Các tour du lịch Việt Nam năm 2022"%}
-            <div class="section-content image-slider">
-                {% for domesticTour in domesticTours %}
-                    {% include 'tour-card.html' with Tour=domesticTour%}
-                {% endfor %}
-            </div>
-            <div class="see-more">
-                <button class="see-more-btn"><a href="">Xem thêm</a></button>
-            </div>
+        {% include 'tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC TOUR TRONG NƯỚC NĂM 2022" content="Các tour du lịch Việt Nam năm 2022"%}
+        <div class="section-content image-slider">
+            {% for domesticTour in domesticTours %}
+            {% include 'tour-card.html' with Tour=domesticTour%}
+            {% endfor %}
+        </div>
+        <div class="see-more">
+            <button class="see-more-btn"><a href="">Xem thêm</a></button>
+        </div>
     </div>
 
     {% comment %} Tour nước ngoài {% endcomment %}
@@ -187,7 +78,7 @@
         {% include 'tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="TOUR NƯỚC NGOÀI NĂM 2022" content="Trải Nghiệm Thế Giới, Khám Phá Bản Thân"%}
         <div class="section-content image-slider">
             {% for foreignTour in foreignTours %}
-                {% include 'tour-card.html' with Tour=foreignTour%}
+            {% include 'tour-card.html' with Tour=foreignTour%}
             {% endfor %}
         </div>
         <div class="see-more">
@@ -206,7 +97,9 @@
                         alt="blog-image" />
                 </div>
                 <h3 class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</h3>
-                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!</h3>
+                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
+                    chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
+                </h3>
             </div>
             <div class="blog-card">
                 <div class="blog-image">
@@ -214,7 +107,9 @@
                         alt="blog-image" />
                 </div>
                 <h3 class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</h3>
-                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!</h3>
+                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
+                    chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
+                </h3>
             </div>
             <div class="blog-card">
                 <div class="blog-image">
@@ -222,7 +117,9 @@
                         alt="blog-image" />
                 </div>
                 <h3 class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</h3>
-                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!</h3>
+                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
+                    chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
+                </h3>
             </div>
             <div class="blog-card">
                 <div class="blog-image">
@@ -230,7 +127,9 @@
                         alt="blog-image" />
                 </div>
                 <h3 class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</h3>
-                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!</h3>
+                <h3 class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
+                    chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
+                </h3>
             </div>
         </div>
         <div class="see-more">

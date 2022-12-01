@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
-from .models import Tour, TourImage, TourVehicle
+from .models import Tour, TourImage, TourVehicle, TourLocation
 from TourAwesomeApps.Blogs.models import Blog
 from TourAwesomeApps.Tours.forms import CreateTourForm
 from TourAwesome.decorators import allowed_user, unauthenticated_user
@@ -19,12 +19,14 @@ def homeView(request):
         domesticTours = getDomesticTour(True)
         foreignTours = getDomesticTour(False)
         blogs = getBlogs(request)
+        tourLocations = getTourLocations()
         
         context = {
             'hotTours': hotTours,
             'domesticTours': domesticTours,
             'foreignTours': foreignTours,
             'blogs': blogs,
+            'locations': tourLocations,
         }
         
         return render(request, 'home.html', context)
@@ -74,6 +76,9 @@ def getHotTours():
             tour.save()
             
     return hotTours
+def getTourLocations():
+    tourLcts = TourLocation.objects.filter(numTours__gt=1).get()[:10] or None
+    return tourLcts
 
 def getToursByLocation(location):
     tours = Tour.objects.filter(location__icontains = location) or None
@@ -111,6 +116,19 @@ def createTourVehicle(request, tour):
                 vehicle=vehicle[0]
             )
             
+def updateLocationModel(tour):
+    lct = tour.location
+    location = TourLocation.objects.filter(location=lct) or None
+    
+    if location != None:
+        location.numTours += 1
+        location.save()
+    else:
+        TourLocation.objects.create(
+            location=lct,
+            numTours=1
+        )
+            
 @login_required
 @allowed_user(['admin'])
 def createTour(request):
@@ -135,6 +153,7 @@ def createTour(request):
             
             createTourImage(request, tour)
             createTourVehicle(request, tour)
+            updateLocationModel(tour)
             
             return redirect(reverse('home'))
         

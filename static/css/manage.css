@@ -12,6 +12,7 @@
     background-color: white;
     border-radius: 8px;
     padding: 16px;
+    height: fit-content;
 }
 
 .manage .menu .account-info {
@@ -57,10 +58,16 @@
 
 .content .personal-info {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 2fr 5fr;
+    grid-template-rows: 60px repeat(3, 1fr);
     align-items: center;
-    column-gap: 16px;
+    column-gap: 48px;
+}
+
+.content .personal-info .title {
+    grid-column: span 2;
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .content .personal-info .avt {
@@ -128,6 +135,18 @@
 .content .password {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 60px 1fr;
+}
+
+.content .email-phoneNum .title,
+.content .password .title {
+    grid-column: span 2;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.content .submit {
+    text-align: end;
 }
 
 .content .update-btn {

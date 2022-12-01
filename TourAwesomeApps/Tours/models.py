@@ -14,6 +14,7 @@ class Tour (models.Model):
     id = models.CharField(primary_key=True, max_length=10)
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=30)
+    detailLocation = models.CharField(max_length=50, null= True)
     price = models.FloatField()
     startDate = models.DateField()
     specialNote = models.CharField(max_length=50, null=True)
@@ -56,3 +57,7 @@ class TourVehicle (models.Model):
         max_length=6,
         choices=vehicles_choices,
     )
+
+class TourLocation (models.Model):
+    location = models.CharField(max_length=20)
+    numTours = models.PositiveIntegerField(default=0, null=True)
