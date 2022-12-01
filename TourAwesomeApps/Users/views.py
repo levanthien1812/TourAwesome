@@ -90,7 +90,8 @@ def update(request):
     
     if (request.method == 'POST'):
         form = UpdateForm(request.POST, request.FILES, instance=user)
-        # print(request.POST)
+        print(request.POST)
+        # print(form.changed_data)
         
         if form.is_valid():
             user = form.save(commit=False)

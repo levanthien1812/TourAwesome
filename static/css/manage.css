@@ -119,6 +119,11 @@
     outline: 2px solid var(--color-main);
 }
 
+.content #id_sex {
+    display: flex;
+    gap: 20px;
+}
+
 .content .email-phoneNum,
 .content .password {
     display: grid;

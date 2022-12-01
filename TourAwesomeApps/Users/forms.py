@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from .models import sex_choices
 
 User = get_user_model()
 
@@ -37,7 +38,7 @@ class UpdateForm(forms.ModelForm):
         'id': 'image'
     }), required=False)
     birthday = forms.DateField(widget=forms.SelectDateWidget, required=False)
-    sex = forms.ChoiceField(widget=forms.RadioSelect, required=False)
+    sex = forms.ChoiceField(required=False, choices=sex_choices, widget=forms.RadioSelect)
     password = forms.CharField(widget=forms.PasswordInput, min_length=8, required=False)
     newPassword = forms.CharField(widget=forms.PasswordInput, required=False)
 
@@ -54,15 +55,19 @@ class UpdateForm(forms.ModelForm):
     def clean_password(self):
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get('password')
-        user = User.objects.filter(email__iexact=email, password__iexact=password)
-        if user.exists():
-            raise forms.ValidationError("Mật khẩu cũ không đúng")
+        if password != '':
+            user = User.objects.get(email__iexact=email)
+            if not user.check_password(password):
+                raise forms.ValidationError("Mật khẩu cũ không đúng")
+        else: 
+            user = User.objects.get(email__iexact=email)
+            password = user.password
         return password
 
     def clean_newPassword(self):
         password = self.cleaned_data.get('password')
-        newPassword = self.cleaned_data.get('newPassword')
-        if (newPassword == password):
+        newPassword = self.cleaned_data.get('newPassword') or ''
+        if (newPassword == password and newPassword != ''):
             raise forms.ValidationError("Mật khẩu mới trùng với mật khẩu cũ!")
         return newPassword
     

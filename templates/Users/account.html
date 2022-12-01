@@ -26,9 +26,7 @@
             </div>
             <div class="form-control">
                 <label for="birthday">Giới tính</label>
-                {% for value, text in sex_choices %}
-                    <input type="radio" name="sex" value="{{value}}" id="{{value}}">{{text}}
-                {% endfor %}
+                {{ form.sex }}
             </div>
         </div>
         <div class="section email-phoneNum">
