@@ -77,7 +77,7 @@ def getHotTours():
             
     return hotTours
 def getTourLocations():
-    tourLcts = TourLocation.objects.filter(numTours__gt=1).get()[:10] or None
+    tourLcts = TourLocation.objects.filter(numTours__gte=1)[:10] or None
     return tourLcts
 
 def getToursByLocation(location):

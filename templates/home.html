@@ -26,15 +26,17 @@
                 <div class="search-tour-input">
                     <input type="text" placeholder="Quốc gia, thành phố, địa điểm du lịch" class="search-tour-type"
                         name="location" autocomplete="off" spellcheck="false">
-                    <div class="search-tour-show">
+                    <div class="search-tour-recommend">
                         <div class="header">
                             <h5 class="item-title-autocomplete">ĐỀ XUẤT</h5>
                         </div>
                         {% comment %} recommmend {% endcomment %}
-                        <div class="recom-items">
+                        <div class="location-items">
                             {% for lct in locations %}
-                                <div class="location">
-                                    
+                                <div class="location-item">
+                                    <img class='img' src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTxY7FoL8iAmlBPANx-Or7KF3AJi-gtpZ35YPVolNSohIlvJByvxTz6ouPYWiI1JIGa" alt="">
+                                    <p class="name">{{lct.location}}</p>
+                                    <p class="quantity">{{lct.numTours}} tour</p>
                                 </div>
                             {% endfor %}
                         </div>
@@ -141,28 +143,17 @@
     {% comment %} hot places to go {% endcomment %}
 
     <div class="tours-section">
-        <div class="section-header">
-            <div class="header-subtitle"><b>Hãy đặt tour sớm nhất</b></div>
-            <h2 class="header-title">CÁC ĐỊA ĐIỂM DU LỊCH PHỔ BIẾN</h2>
-            <div class="penci-separator penci-separator- penci-separator-center"><span
-                    class="penci-sep_holder penci-sep_holder_l"><span class="penci-sep_line"></span></span><span
-                    class="penci-sep_holder penci-sep_holder_r"><span class="penci-sep_line"></span></span></div>
-            <div class="header-content entry-content">
-                <div class="more-information">
-                    <p>Bao La Thế Giới Bốn Bể Là Nhà</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% include 'tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC ĐỊA ĐIỂM DU LỊCH PHỔ BIẾN" content="Bao La Thế Giới Bốn Bể Là Nhà" %}
     {% comment %} dịch vụ du lịch {% endcomment %}
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+    <script src="{% static 'js/openSearchRecom.js' %}"></script>
 
-
-    {% comment %} <script>
-        $(document).ready(function () {
+    <script>
+        {% comment %} $(document).ready(function () {
             $('.section-content').slick({
                 slidesToShow: 3,
                 slidesToScroll: 2,
@@ -171,8 +162,8 @@
                 autoplay: true,
                 autoplaySpeed: 1500,
             })
-        });
-    </script> {% endcomment %}
+        }); {% endcomment %}
+    </script>
 
 </body>
 {% endblock content %}

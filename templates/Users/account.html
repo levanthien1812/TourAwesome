@@ -4,7 +4,7 @@
 
 {% block manage %}
 
-    <form action="{% url 'update-account' %}" method="POST" class="update-user">
+    <form action="{% url 'update-account' %}" method="POST" class="update-user" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="section personal-info">
             <p class="title">Thông tin người dùng</p>

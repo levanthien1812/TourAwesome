@@ -67,7 +67,7 @@ class UpdateForm(forms.ModelForm):
     def clean_newPassword(self):
         password = self.cleaned_data.get('password')
         newPassword = self.cleaned_data.get('newPassword') or ''
-        if (newPassword == password and newPassword != ''):
+        if newPassword == password and newPassword != '':
             raise forms.ValidationError("Mật khẩu mới trùng với mật khẩu cũ!")
         return newPassword
     
