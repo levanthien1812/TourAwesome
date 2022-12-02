@@ -1,0 +1,19 @@
+.day {
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.day .title {
+    color: rgb(195, 0, 0);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.day .content > li {
+    margin-bottom: 10px;
+}
+
+.day .content > li > p {
+    margin-bottom: 5px;
+}

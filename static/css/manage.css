@@ -1,11 +1,11 @@
 
 .manage {
-    width: 70%;
+    padding: 3rem 15%;
     margin: auto;
-    padding: 3rem 0;
     display: grid;
     grid-template-columns: 1fr 3fr;
     column-gap: 24px;
+    background-color: rgb(237, 237, 237);
 }
 
 .manage .menu {

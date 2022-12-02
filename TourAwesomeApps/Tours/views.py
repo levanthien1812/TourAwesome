@@ -173,7 +173,8 @@ def getTour(request, pk):
     
     images = TourImage.objects.filter(tour=tour)
     vehicles = TourVehicle.objects.filter(tour=tour)
-    timeline_file = open('media/{0}'.format(tour.timeline), 'r')
+    timeline_file = open(
+        'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
     timeline = timeline_file.read()
     print(timeline)
     

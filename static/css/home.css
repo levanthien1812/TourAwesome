@@ -3,9 +3,9 @@
 
 /* HOME PAGE STYLES */
 .tours-section {
-  margin-top: 50px;
   background-color: white;
   padding: 48px 15% 32px 15%;
+  margin-bottom: 50px;
 }
 
 .section-header {

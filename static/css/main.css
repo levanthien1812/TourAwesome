@@ -189,7 +189,7 @@ a:focus {
 }
 
 .main {
-    background-color: rgb(232, 232, 232);
+    background-color: rgb(255, 255, 255);
 }
 
 .header {
@@ -199,7 +199,7 @@ a:focus {
 }
 
 .header .img-group__list {
-  height: 500px;
+  height: 420px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -210,7 +210,7 @@ a:focus {
 .search-tour-box {
   background: rgb(255, 255, 255);
   display: block;
-  padding: 40px;
+  padding: 30px;
   width: 80%;
   position: relative;
   top: -75px;

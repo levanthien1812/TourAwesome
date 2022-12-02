@@ -65,7 +65,23 @@
         </div>
     </div>
     <div class="tour-sidebar">
-        <div class="tour-booking"></div>
+        <form class="tour-booking" method="POST" action="{% url 'book-tour' tour.id %}">
+            <div class="prices">
+                <p class="old-price">{{tour.old_price}} <sup>đ</sup></p>
+                <p></p>
+                <p class="price"><span>{{tour.price}}<sup>đ</sup></span> /người</p>
+                <p class="price-differentiate"><img src="{% static 'images/discount.png' %}" alt="">-{{tour.price_differentiate}}<sup>đ</sup></p>
+            </div>
+            <div class="booking-info">
+                <label for="startDate">Ngày khởi hành</label>
+                <input type="date" name="startDate" id="startDate">
+                <label for="quantity">Số lượng khách</label>
+                <input type="number" name="quantity" id="quantity" value="1">
+            </div>
+            <div class="book-btn">
+                <button>Đặt tour</button>
+            </div>
+        </form>
         <div class="tour-counselor"></div>
     </div>
 </div>
