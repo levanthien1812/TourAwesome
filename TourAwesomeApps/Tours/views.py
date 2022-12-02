@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.core.files import File
 
 from .models import Tour, TourImage, TourVehicle, TourLocation
 from TourAwesomeApps.Blogs.models import Blog
@@ -166,7 +167,23 @@ def createTour(request):
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
 def getTour(request, pk):
-    return render(request, 'Tours/detail.html')
+    tour = Tour.objects.get(id=pk) or None
+    if (Tour == None):
+        return Http404('Không tìm thấy tour này!')
+    
+    images = TourImage.objects.filter(tour=tour)
+    vehicles = TourVehicle.objects.filter(tour=tour)
+    timeline_file = open('media/{0}'.format(tour.timeline), 'r')
+    timeline = timeline_file.read()
+    print(timeline)
+    
+    context = {
+        'tour': tour,
+        'images': images,
+        'vehicles': vehicles,
+        'timeline': timeline
+    }
+    return render(request, 'Tours/detail.html', context)
 
 @login_required
 @allowed_user(['admin'])

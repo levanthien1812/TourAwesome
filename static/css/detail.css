@@ -1,0 +1,138 @@
+.detail-section {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+}
+
+.tour-detail .tour-images {
+    width: 90%;
+}
+
+.tour-detail .tour-images .images {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tour-detail .tour-images .images img:not(.show) {
+    width: 100%;
+    display: none;
+}
+
+.tour-detail .tour-images .images img.show {
+    width: 100%;
+    display: inline-block;
+}
+
+.carousel {
+    width: 90%;
+    height: 500px;
+    margin: 0px auto;
+    position: relative;
+}
+
+.control {
+    padding: 0.4rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(17, 17, 17, 0.271);
+    flex-shrink: 0;
+    position: absolute;
+    color: #aaa;
+    z-index: 5;
+}
+.control:hover svg {
+    stroke: #f59f00;
+}
+.prev-btn {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+.next-btn {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.dots {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    gap: 10px;
+}
+.dot {
+    width: 1.5rem;
+    height: 4px;
+    background-color: rgb(192, 192, 192);
+    border-radius: 2px;
+}
+.dot.fill {
+    background-color: #f59f00;
+}
+
+.tour-detail .detail-item {
+    margin-bottom: 30px;
+}
+
+.tour-detail .detail-item .title {
+    font-size: 24px;
+    color: var(--color-main);
+    margin-bottom: 20px;
+}
+
+.tour-detail .tour-info .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 10px;
+    align-items: center;
+}
+
+.tour-detail .tour-info .content p:first-child {
+    display: inline-block;
+    width: 120px;
+}
+
+.tour-detail .tour-info .content p:first-child svg {
+    margin-right: 12px;
+}
+
+.tour-detail .tour-info .content p:last-child {
+    display: inline-block;
+    padding: 4px 20px;
+    background-color: #ffb01e;
+}
+
+.tour-detail .tour-info svg{
+    width: 18px;
+    fill: rgb(65, 65, 65);
+}
+
+.tour-detail .tour-info .tour-id p:last-child{
+    color: red;
+    font-weight: bold;
+}
+
+.tour-detail .tour-services svg {
+    width: 20px;
+    fill: #007bf5;
+    margin-right: 16px;
+}
+
+.tour-detail .tour-services .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 15px;
+    align-items: center;
+}
