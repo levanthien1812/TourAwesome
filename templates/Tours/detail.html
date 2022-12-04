@@ -65,7 +65,8 @@
         </div>
     </div>
     <div class="tour-sidebar">
-        <form class="tour-booking" method="POST" action="{% url 'book-tour' tour.id %}">
+        <form class="tour-booking" method="GET" action="{% url 'show-booking' tour.id %}">
+            {% csrf_token %}
             <div class="prices">
                 <p class="old-price">{{tour.old_price}} <sup>đ</sup></p>
                 <p></p>
@@ -82,7 +83,14 @@
                 <button>Đặt tour</button>
             </div>
         </form>
-        <div class="tour-counselor"></div>
+        <div class="tour-counselor">
+            <div class="title">
+                Tổng đài tư vấn
+            </div>
+            <div class="content">
+                <p>Qúy khách có bất kì thắc mắc nào xin liên hệ <strong>0123456777</strong> để được hỗ trợ và giải đáp nhanh nhất</p>
+            </div>
+        </div>
     </div>
 </div>
 

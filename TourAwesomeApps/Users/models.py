@@ -24,7 +24,7 @@ class Booking(models.Model):
     userID = models.ForeignKey('Users.MyUser', on_delete=models.CASCADE)
     tourID = models.ForeignKey(
         'Tours.Tour', on_delete=models.CASCADE)
-    startDate = models.DateField()
+    startDate = models.DateField(null=True, blank=True)
     bookingDate = models.DateField(auto_now_add=True)
     quantity = models.PositiveIntegerField()
 

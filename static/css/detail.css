@@ -124,11 +124,17 @@
     display: inline-block;
     padding: 4px 20px;
     background-color: #ffc04a;
+    border-radius: 4px;
 }
 
 .tour-detail .tour-info svg{
     width: 18px;
     fill: rgb(65, 65, 65);
+}
+
+.tour-detail .tour-info .tour-id p:first-child {
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .tour-detail .tour-info .tour-id p:last-child{
@@ -155,7 +161,7 @@
 }
 
 .tour-sidebar .tour-booking {
-    background-color: #ffaa00;
+    background-color: #011e41;
     padding: 24px 0;
     margin-top: 120px;
 }
@@ -163,9 +169,9 @@
 .tour-booking .prices {
     display: grid;
     grid-template-columns: 5fr 4fr;
-    background-color: #00468c;
+    background-color: #f59f00;
     padding: 20px;
-    color: #ffaa00;
+    color: #011e41;
     align-items: center;
 }
 
@@ -190,10 +196,11 @@
 .tour-booking .booking-info {
     text-align: center;
     margin-top: 20px;
-    color: #00468c;
+    color: #011e41;
 }
 
 .tour-booking .booking-info label{
+    color: #f59f00;
     font-size: 18px;
     display: block;
     margin-bottom: 6px;
@@ -207,7 +214,7 @@
     margin-bottom: 12px;
     text-align: center;
     color: inherit;
-    outline: 2px solid #00468c;
+    outline: 2px solid #f59f00;
 }
 
 .tour-booking .book-btn {
@@ -230,5 +237,28 @@
     position: relative;
     bottom: 3px;
     right: 3px;
-    box-shadow: 2px 2px 0 #00468c;
+    box-shadow: 2px 2px 0 #f59f00;
+}
+
+.tour-counselor {
+    margin-top: 20px;
+}
+
+.tour-counselor .title {
+    background-color: var(--color-main);
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+}
+
+.tour-counselor .content {
+    padding: 12px;
+    line-height: 2;
+    background-color: white;
+}
+
+.tour-counselor .content strong {
+    font-size: 20px;
+    color: var(--color-main);
 }

@@ -134,9 +134,8 @@
   padding-bottom: 64px;
 }
 
-.search-tours-title, .tours-section h2{
- text-align: center;
- margin: 30px;
+.search-tours-title{
+  text-align: center;
 }
 .more-tours{
   display: grid;

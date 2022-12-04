@@ -189,13 +189,14 @@ a:focus {
 }
 
 .main {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(225, 225, 225);
 }
 
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
 
 .header .img-group__list {
@@ -211,7 +212,7 @@ a:focus {
   background: rgb(255, 255, 255);
   display: block;
   padding: 30px;
-  width: 80%;
+  width: 70%;
   position: relative;
   top: -75px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.447);
@@ -273,9 +274,11 @@ a:focus {
 .search-tour-box .header {
   font-size: 20px;
   letter-spacing: 3px;
+  margin-bottom: 5px;
 }
 
 .search-tour-recommend .location-items {
+  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 60px;
