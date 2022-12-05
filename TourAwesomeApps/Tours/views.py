@@ -5,13 +5,13 @@ from django.urls import reverse
 from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.core.files import File
 from django.contrib.auth import get_user_model
 
 from .models import Tour, TourImage, TourVehicle, TourLocation
 from TourAwesomeApps.Users.models import Booking
 from TourAwesomeApps.Blogs.models import Blog
 from TourAwesomeApps.Tours.forms import CreateTourForm
+from TourAwesomeApps.Users.forms import BookingDetailForm
 from TourAwesome.decorators import allowed_user, unauthenticated_user
 from TourAwesomeApps.Blogs.views import getBlogs
 
@@ -181,11 +181,14 @@ def getTour(request, pk):
     timeline = timeline_file.read()
     print(timeline)
     
+    bookingDetailForm = BookingDetailForm()
+    
     context = {
         'tour': tour,
         'images': images,
         'vehicles': vehicles,
-        'timeline': timeline
+        'timeline': timeline,
+        'bookingDetailForm': bookingDetailForm
     }
     return render(request, 'Tours/detail.html', context)
 
@@ -227,21 +230,29 @@ def deleteTour(request, pk):
     
 @login_required
 def bookTour(request, pk):
-    tour = Tour.objects.get(id=pk) or None
-    user = User.objects.get(id=request.user.id)
-    if tour == None:
-        return Http404('Không tìm thấy tour này!')
+    bookingDetailForm = BookingDetailForm()
     
-    bookingObj = {
-        'tourID': tour,
-        'userID': user,
-        'startDate': request.POST.get('startDate'),
-        'quantity': request.POST.get('quantity'),
-        'bookingDate': datetime.now().date()
-    }
-    
-    booking = Booking.objects.create(**bookingObj) or None
-    if booking:
-        return redirect(reverse('home'))
-    else:
-        return Http404('Something went wrong')
+    if request.method == 'POST':
+        tour = Tour.objects.get(id=pk) or None
+        user = User.objects.get(id=request.user.id)
+        if tour == None:
+            return Http404('Không tìm thấy tour này!')
+        
+        bookingObj = {
+            'tourID': tour,
+            'userID': user,
+            'startDate': request.POST.get('startDate'),
+            'quantity': request.POST.get('quantity'),
+            'bookingDate': datetime.now().date()
+        }
+        
+        booking = Booking.objects.create(**bookingObj) or None
+        
+        bookingDetailForm = BookingDetailForm(request.POST).save(commit=False)
+        bookingDetailForm.BookingID = booking.id
+        bookingDetailForm.save()
+        
+        if booking:
+            return redirect(reverse('home'))
+        else:
+            return Http404('Something went wrong')

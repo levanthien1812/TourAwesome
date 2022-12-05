@@ -1,1 +1,87 @@
-{% extends "main.html" %}
+{% load static %}
+
+<form class="booking-detail" method="POST" action="{% url 'book-tour' tour.id %}">
+    <div class="content">
+        <p class="title">Thông tin liên hệ</p>
+        <div class="info">
+            <div class="form-control">
+                <label for="name">Họ và tên</label>
+                {{form.name}}
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                {{form.email}}
+            </div>
+            <div class="form-control">
+                <label for="phoneNum">Số điện thoại</label>
+                {{form.phoneNum}}
+            </div>
+            <div class="form-control">
+                <label for="address">Địa chỉ</label>
+                {{form.address}}
+            </div>
+            <div class="payments form-control">
+                <label for="payment">Phương thức thanh toán</label>
+                <div class="payment">{{form.payment}}</div>
+            </div>
+        </div>
+
+        {% comment %}
+        <div class="payments">
+            <label for="payment">Phương thức thanh toán</label>
+            <div class="payment">{{form.payment}}</div>
+            <div class="payment-detail">
+                <div class="atoffice-detail">
+                    <div class="agency">
+                        <p class="city">TP.Hồ Chí Minh</p>
+                        <ul class="branches">
+                            <li>
+                                Địa chỉ: 164 Lê Thánh Tôn, Bến Thành, Quận 1 (Đối diện cửa bắc
+                                chợ Bến Thành)
+                            </li>
+                            <li>
+                                Địa chỉ: 54 Phạm Hồng Thái, Bến Thành, Quận 1 (Đối diện khách
+                                sạn New World)
+                            </li>
+                            <li>
+                                Địa chỉ: 190-192 Trần Quý, Phường 6, Quận 11 (Ngay ngã tư Tạ
+                                Uyên - Trần Quý)
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="agency">
+                        <p class="city">Hà Nội</p>
+                        <ul class="branches">
+                            <li>Địa chỉ: Địa chỉ: 30 Phan Chu Trinh, Quận Hoàn Kiếm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bytransfer-detail"></div>
+            </div>
+        </div>
+        {% endcomment %}
+    </div>
+    <div class="tour-booking">
+        <div class="title">{{tour.name}}</div>
+        <div class="prices">
+            <p class="old-price">{{tour.old_price}} <sup>đ</sup></p>
+            <p></p>
+            <p class="price">
+                <span>{{tour.price}}<sup>đ</sup></span> /người
+            </p>
+            <p class="price-differentiate">
+                <img src="{% static 'images/discount.png' %}" alt="" />-{{tour.price_differentiate}}<sup>đ</sup>
+            </p>
+        </div>
+        <div class="booking-info">
+            <label for="startDate">Ngày khởi hành</label>
+            <input type="date" name="startDate" id="startDate" />
+            <label for="quantity">Số lượng khách</label>
+            <input type="number" name="quantity" id="quantity" value="1" />
+        </div>
+    </div>
+    <div class="submit">
+        <button type="submit">Hoàn tất đặt tour</button>
+    </div>
+</form>
+<div class="cover"></div>

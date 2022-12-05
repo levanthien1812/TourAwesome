@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import sex_choices
+from .models import sex_choices, payment_choices, Booking
 
 User = get_user_model()
 
@@ -87,3 +87,15 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Người dùng không tồn tại!')
 
         return email
+    
+class BookingDetailForm (forms.ModelForm):
+    name = forms.CharField(max_length=30, widget=forms.TextInput)
+    email = forms.EmailField()
+    phoneNum = forms.CharField(max_length=11)
+    address = forms.CharField(max_length=150)
+    payment = forms.ChoiceField(choices=payment_choices, widget=forms.RadioSelect)
+    
+    class Meta:
+        model = Booking
+        fields = ['name', 'email', 'phoneNum', 'address', 'payment']
+        

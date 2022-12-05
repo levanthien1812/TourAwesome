@@ -190,6 +190,7 @@ a:focus {
 
 .main {
     background-color: rgb(225, 225, 225);
+    position: relative;
 }
 
 .header {
