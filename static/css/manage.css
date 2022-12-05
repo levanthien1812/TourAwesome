@@ -59,14 +59,15 @@
     color: white;
 }
 
-.content .section {
+.update-user .section,
+.user-bookings {
     margin-bottom: 24px;
     padding: 32px;
     background-color: white;
     border-radius: 12px;
 }
 
-.content .personal-info {
+.update-user .personal-info {
     display: grid;
     grid-template-columns: 2fr 5fr;
     grid-template-rows: 60px repeat(3, 1fr);
@@ -74,13 +75,13 @@
     column-gap: 48px;
 }
 
-.content .personal-info .title {
+.update-user .personal-info .title {
     grid-column: span 2;
     font-size: 30px;
     margin-bottom: 30px;
 }
 
-.content .personal-info .avt {
+.update-user .personal-info .avt {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -90,7 +91,7 @@
     overflow: hidden;
 }
 
-.content .personal-info .avt .img {
+.update-user .personal-info .avt .img {
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
@@ -101,13 +102,13 @@
     border: 2px solid rgb(202, 202, 202);
 }
 
-.content .personal-info .avt .img img{
+.update-user .personal-info .avt .img img{
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
 }
 
-.content .personal-info .avt .image-label {
+.update-user .personal-info .avt .image-label {
     border: 2px solid #aaa;
     padding: 6px 24px;
     border-radius: 30px;
@@ -115,66 +116,100 @@
     cursor: pointer;
 }
 
-.content .personal-info .avt .image-label:hover {
+.update-user .personal-info .avt .image-label:hover {
     background-color: rgb(190, 190, 190);
 }
 
-.content .personal-info .avt .image-label input {
+.update-user .personal-info .avt .image-label input {
     display: none;
 }
 
-.content .form-control label{
+.update-user .form-control label{
     display: block;
     margin-bottom: 8px;
 }
 
-.content input,
-.content select {
-    border: 2px solid #aaa;
+.update-user input,
+.update-user select {
+    border: none;
+    outline: 2px solid #aaa;
     padding: 12px 24px;
     border-radius: 30px;
     font-size: inherit;
 }
 
-.content select {
+.update-user select {
     padding: 4px 24px;
     margin: 0 4px;
 }
 
-.content input:focus,
-.content select:focus {
-    border: 1px solid #aaa;
+.update-user input:focus,
+.update-user select:focus {
     outline: 2px solid var(--color-main);
 }
 
-.content #id_sex {
+.update-user #id_sex {
     display: flex;
     gap: 20px;
 }
 
-.content .email-phoneNum,
-.content .password {
+.update-user .email-phoneNum,
+.update-user .password {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 60px 1fr;
 }
 
-.content .email-phoneNum .title,
-.content .password .title {
+.update-user .email-phoneNum .title,
+.update-user .password .title {
     grid-column: span 2;
     font-size: 30px;
     margin-bottom: 30px;
 }
 
-.content .submit {
+.update-user .submit {
     text-align: end;
 }
 
-.content .update-btn {
+.update-user .update-btn {
     background-color: var(--color-main);
     padding: 12px 32px;
     border-radius: 10px;
     color: white;
     font-size: inherit;
     font-family: inherit;
+}
+
+.user-bookings .title {
+    font-size: 30px;
+    padding-bottom: 16px;
+}
+
+.user-bookings .booking-item {
+    padding: 24px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px ;
+    margin-bottom: 16px;
+    border: 2px solid orange;
+}
+
+.user-bookings .booking-item:nth-child(odd) {
+    background: #FFEFBA; 
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ffe694);
+    background: linear-gradient(to right, #FFFFFF, #ffe694); 
+    border-left: 10px solid orange;
+}
+
+.user-bookings .booking-item:nth-child(even) {
+    background: #FFEFBA; 
+    background: -webkit-linear-gradient(to left, #FFFFFF, #ffe694);
+    background: linear-gradient(to left, #FFFFFF, #FFEFBA); 
+    border-right: 10px solid orange;
+}
+
+.user-bookings .booking-item .tour-name {
+    grid-column: span 3;
+    font-size: 20px;
 }

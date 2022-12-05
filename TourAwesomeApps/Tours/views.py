@@ -18,12 +18,13 @@ from TourAwesomeApps.Blogs.views import getBlogs
 User = get_user_model()
 
 def homeView(request):
+    tourLocations = getTourLocations()
+    blogs = getBlogs(request)
+    
     if not ('location' in request.GET):
         hotTours = getHotTours()
         domesticTours = getDomesticTour(True)
         foreignTours = getDomesticTour(False)
-        blogs = getBlogs(request)
-        tourLocations = getTourLocations()
         
         context = {
             'hotTours': hotTours,
@@ -40,10 +41,15 @@ def homeView(request):
         # print(location)
         locationTours = getToursByLocation(location)
         # print(locationTours)
-        return render(request, 'Tours/search.html', {'tours': locationTours, 'location': location})
+        context = {
+            'tours': locationTours,
+            'location': location,
+            'blogs': blogs,
+            'locations': tourLocations,
+        }
+        return render(request, 'Tours/search.html', context)
         
     
-
 def showDomesticTours(request):
     domesticTours = getDomesticTour(True)
     if (domesticTours != None):
@@ -246,6 +252,7 @@ def bookTour(request, pk):
             'userID': user,
             'startDate': request.POST.get('startDate'),
             'quantity': request.POST.get('quantity'),
+            'price': request.POST.get('price'),
             'bookingDate': datetime.now().date()
         }
         

@@ -76,7 +76,7 @@
         </div>
         <div class="booking-info">
             <label for="startDate">Ngày khởi hành</label>
-            <input type="date" name="startDate" id="startDate" />
+            <input type="date" name="startDate" id="startDate"/>
             <label for="quantity">Số lượng khách</label>
             <input type="number" name="quantity" id="quantity" value="1" />
         </div>
@@ -92,12 +92,5 @@
 <div class="cover"></div>
 
 <script>
-    const priceEle = document.querySelector('.prices .price span')
-    const quantityEle = document.querySelector('.booking-info #quantity')
-    const totalPriceEle = document.querySelector('.total-price #total-price')
-
-    let totalPrice = parseFloat(quantityEle.value) * parseFloat(priceEle.textContent) 
-
-    totalPriceEle.value = totalPrice
-
+    
 </script>

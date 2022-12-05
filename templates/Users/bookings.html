@@ -4,6 +4,24 @@
 
 {% block manage %}
 
-    
+    <div class="user-bookings">
+        <p class="title">Các tour đã đặt</p>
+        {% for booking in bookings %}
+            <div class="booking-item">
+                <p class="tour-name">
+                    {{booking.tourID.name}}
+                </p>
+                <p class="tour-id">
+                    Mã tour: {{booking.tourID.id}}
+                </p>
+                <p class="booking-date">
+                    Ngày đặt: {{booking.bookingDate}}
+                </p>
+                <p class="price">
+                    Tổng tiền đặt tour: {{booking.price}}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock manage %}

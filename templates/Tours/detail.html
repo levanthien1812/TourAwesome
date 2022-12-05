@@ -158,6 +158,16 @@
   bookTourBtn.addEventListener("click", () => {
     detailBookingPopup.classList.add("show")
     cover.classList.add("show")
+
+    const priceEle = detailBookingPopup.querySelector('.prices .price span')
+    const quantityEle = detailBookingPopup.querySelector('#quantity')
+    const totalPriceEle = detailBookingPopup.querySelector('#total-price')
+
+    totalPriceEle.value = parseFloat(quantityEle.value) * parseFloat(priceEle.textContent) 
+
+    quantityEle.addEventListener('input', () => {
+        totalPriceEle.value = parseFloat(quantityEle.value) * parseFloat(priceEle.textContent) 
+    })
   });
 
   cover.addEventListener("click", () => {

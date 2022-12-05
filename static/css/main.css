@@ -1,3 +1,5 @@
+@import url(create-tour.css);
+
 :root {
     --color-main: rgb(0, 150, 150);
 }
@@ -68,7 +70,7 @@ a:focus {
     display: grid;
     grid-template-columns: 2fr 8fr 3fr;
     align-items: center;
-    background-color: #ffffffbb;
+    background-color: #ffffffe9;
     color: rgb(0, 0, 0);
     padding: 0 6%;
     height: 70px;
@@ -284,6 +286,7 @@ a:focus {
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 60px;
   gap: 10px;
+  min-width: 0;
 }
 
 .search-tour-recommend .location-item {
@@ -295,6 +298,7 @@ a:focus {
   column-gap: 15px;
   border-radius: 4px;
   padding: 4px;
+  cursor: pointer;
 }
 
 .search-tour-recommend .location-items:hover {

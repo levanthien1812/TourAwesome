@@ -31,6 +31,7 @@ class Booking(models.Model):
     startDate = models.DateField(null=True, blank=True)
     bookingDate = models.DateField(auto_now_add=True)
     quantity = models.PositiveIntegerField()
+    price = models.BigIntegerField(null=True, default=0)
 
     def __str__(self):
         return self.userID + self.tourID

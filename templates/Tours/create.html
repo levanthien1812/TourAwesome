@@ -2,24 +2,82 @@
 
 {% block content %}
 
-<form method='POST'  action='' enctype='multipart/form-data'>
+<form method='POST'  action='' enctype='multipart/form-data' class="create-tour-form">
+    <h1 class="title">Tạo tour</h1>
     {% csrf_token %}
-    {{form.as_p}}
-    <div>
-        <label for="">Chọn phương tiện:</label>
-        {% for value, text in vehicles %}
-        <input type="checkbox" name="{{value}}" id="{{value}}" value="{{value}}">
-        <label for="{{value}}">{{text}}</label>
-        {% endfor %}
+    <div class="form-control">
+        <label for="name">Nhập tiêu đề tour:</label>
+        {{form.name}}
     </div>
-    <div>
+    <div class="form-control">
+        <label for="location">Nhập địa điểm tour</label>
+        {{form.location}}
+    </div>
+    <div class="form-control">
+        <label for="detailLocation">Nhập địa điểm cụ thể của tour</label>
+        {{form.detailLocation}}
+    </div>
+    <div class="form-control startDate">
+        <label for="startDate">Chọn ngày khởi hành</label>
+        <div class="select-date">
+            {{form.startDate}}
+        </div>
+    </div>
+    <div class="form-control">
+        <label for="">Nhập giá tiền gốc của tour</label>
+        {{form.old_price}}
+    </div>
+    <div class="form-control">
+        <label for="price">Nhập giá tiền hiện tại (khuyến mãi) của tour</label>
+        {{form.price}}
+    </div>
+    <div class="form-control">
+        <label for="specialNote">Điểm đặc biệt của tour</label>
+        {{form.specialNote}}
+    </div>
+    <div class="form-control">
+        <label for="description">Nhập mô tả về tour</label>
+        {{form.description}}
+    </div>
+    <div class="form-control">
+        <label for="highlight">Nhập những điểm nổi bật của tour</label>
+        {{form.highlight}}
+    </div>
+    <div class="form-control">
+        <label for="highlight">Nhập những điểm nổi bật của tour</label>
+        {{form.highlight}}
+    </div>
+    <div class="form-control">
+        <label for="timeline">Chọn file HTML thể hiện lịch trình của tour</label>
+        {{form.timeline}}
+    </div>
+    <div class="form-control">
+        <label for="duration_days">Chọn số ngày của tour</label>
+        {{form.duration_days}}
+    </div>
+    <div class="form-control">
+        <label for="duration_nights">Chọn số đêm của tour</label>
+        {{form.duration_nights}}
+    </div>
+    <div class="form-control">
+        <label for="">Chọn phương tiện:</label>
+        <div class="">
+            {% for value, text in vehicles %}
+                <input type="checkbox" name="{{value}}" id="{{value}}" value="{{value}}">
+                <label for="{{value}}">{{text}}</label>
+            {% endfor %}
+        </div>
+        
+    </div>
+    <div class="form-control">
         <label for="images">Upload các ảnh tour</label>
         <input type="file" required multiple name='images' id="images">
     </div>
+
     {% if 'update' not in request.path %}
-    <button type='submit'>Tạo Tour</button>
+    <button type='submit' class="submit-btn">Tạo Tour</button>
     {% else %}
-    <button type='submit'>Cập nhật tour</button>
+    <button type='submit' class="submit-btn">Cập nhật tour</button>
     {% endif %}
     
     {{form.errors}}

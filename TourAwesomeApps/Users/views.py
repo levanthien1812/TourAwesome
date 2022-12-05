@@ -7,7 +7,7 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 
 from TourAwesomeApps.Users.forms import SignupForm, LoginForm, UpdateForm
-from .models import sex_choices
+from .models import sex_choices, Booking
 from TourAwesome.decorators import unauthenticated_user, allowed_user
 
 User = get_user_model()
@@ -107,5 +107,9 @@ def update(request):
     return render(request, 'Users/account.html', {'form': form, 'sex_choices': sex_choices})
 
 def showBookings(request):
-    
-    return render(request, 'Users/bookings.html')
+    userID = request.user.id
+    bookings = Booking.objects.filter(userID=userID) or None
+    if bookings is None:
+        return print('You have no bookings to display!')
+        
+    return render(request, 'Users/bookings.html', {'bookings': bookings})
