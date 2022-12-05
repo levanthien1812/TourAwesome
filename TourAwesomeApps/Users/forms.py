@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import sex_choices, payment_choices, Booking
+from .models import sex_choices, payment_choices, Booking, BookingDetail
 
 User = get_user_model()
 
@@ -96,6 +96,6 @@ class BookingDetailForm (forms.ModelForm):
     payment = forms.ChoiceField(choices=payment_choices, widget=forms.RadioSelect)
     
     class Meta:
-        model = Booking
+        model = BookingDetail
         fields = ['name', 'email', 'phoneNum', 'address', 'payment']
         

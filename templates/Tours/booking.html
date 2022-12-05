@@ -1,6 +1,7 @@
 {% load static %}
 
 <form class="booking-detail" method="POST" action="{% url 'book-tour' tour.id %}">
+    {% csrf_token %}
     <div class="content">
         <p class="title">Thông tin liên hệ</p>
         <div class="info">
@@ -79,9 +80,24 @@
             <label for="quantity">Số lượng khách</label>
             <input type="number" name="quantity" id="quantity" value="1" />
         </div>
+        <div class="total-price">
+            <label for="total-price">Tổng tiền</label>
+            <input type="number" name="price" id="total-price" value=""  readonly/>
+        </div>
     </div>
     <div class="submit">
         <button type="submit">Hoàn tất đặt tour</button>
     </div>
 </form>
 <div class="cover"></div>
+
+<script>
+    const priceEle = document.querySelector('.prices .price span')
+    const quantityEle = document.querySelector('.booking-info #quantity')
+    const totalPriceEle = document.querySelector('.total-price #total-price')
+
+    let totalPrice = parseFloat(quantityEle.value) * parseFloat(priceEle.textContent) 
+
+    totalPriceEle.value = totalPrice
+
+</script>

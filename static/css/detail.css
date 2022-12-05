@@ -322,6 +322,30 @@
     padding: 0px 32px 16px;
 }
 
+.booking-detail .tour-booking .total-price {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-detail .tour-booking .total-price label {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+}
+
+.booking-detail .tour-booking .total-price input {
+    background-color: red;
+    padding: 8px 24px;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+
 .booking-detail .payments input {
     margin-bottom: 8px;
 }

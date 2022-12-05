@@ -179,9 +179,12 @@ def getTour(request, pk):
     timeline_file = open(
         'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
     timeline = timeline_file.read()
-    print(timeline)
     
-    bookingDetailForm = BookingDetailForm()
+    bookingDetailForm = BookingDetailForm(initial={
+        'name': request.user.name, 
+        'email': request.user.email,
+        'phoneNum': request.user.phoneNum,
+    })
     
     context = {
         'tour': tour,
@@ -248,9 +251,11 @@ def bookTour(request, pk):
         
         booking = Booking.objects.create(**bookingObj) or None
         
-        bookingDetailForm = BookingDetailForm(request.POST).save(commit=False)
-        bookingDetailForm.BookingID = booking.id
-        bookingDetailForm.save()
+        bookingDetailForm = BookingDetailForm(request.POST)
+        bookingDetail = bookingDetailForm.save(commit=False)
+        if bookingDetail.bookingID_id == None:
+            bookingDetail.bookingID_id = booking.id
+        bookingDetail.save()
         
         if booking:
             return redirect(reverse('home'))
