@@ -273,17 +273,22 @@
     bottom: 0;
     right: 0;
     margin: auto;
-    display: none;
-    z-index: 15;
+    z-index: -1;
     padding: 36px;
     align-items: center;
     column-gap: 32px;
     grid-template-columns: 360px auto;
     grid-template-rows: auto 40px;
+    display: grid;
+    transform: rotate3d(1, -1, 0, 45deg);
+    opacity: 0;
+    transition: all .6s ease;
 }
 
 .booking-detail.show {
-    display: grid;
+    transform: rotate3d(1, 1, 1, 0deg);
+    opacity: 1;
+    z-index: 15;
 }
 .booking-detail .content .title {
     font-size: 24px;
@@ -364,22 +369,4 @@
     font-weight: 600;
     letter-spacing: 2px;
     color: white;
-}
-
-.cover {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.573);
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    display: none;
-    z-index: 13;
-}
-
-.cover.show {
-    display: block;
 }

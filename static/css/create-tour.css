@@ -24,7 +24,9 @@
     display: block;
 }
 
-.create-tour-form input, select, textarea {
+.create-tour-form input,
+.create-tour-form select,
+.create-tour-form textarea {
     background-color: white;
     border: none;
     outline: 2px solid #aaa;

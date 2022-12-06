@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 from .models import Tour, TourImage, TourVehicle, TourLocation
 from TourAwesomeApps.Users.models import Booking
@@ -171,6 +172,7 @@ def createTour(request):
             createTourVehicle(request, tour)
             updateLocationModel(tour)
             
+            messages.success(request, 'Tạo tour thành công!')
             return redirect(reverse('home'))
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
@@ -222,6 +224,7 @@ def updateTour(request, pk):
             createTourImage(request, tour)
             createTourVehicle(request, tour)
             
+            messages.success(request, 'Cập nhật tour thành công')
             return redirect(reverse('home'))
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
@@ -234,6 +237,8 @@ def deleteTour(request, pk):
         return Http404('Không tìm thấy tour này!')
     
     Tour.objects.filter(id=pk).delete()
+    
+    messages.success(request, 'Xóa tour thành công')
     return redirect(reverse('home'))
     
     
@@ -265,6 +270,7 @@ def bookTour(request, pk):
         bookingDetail.save()
         
         if booking:
+            messages.success(request, 'Chúc mừng bạn đặt tour thành công!')
             return redirect(reverse('home'))
         else:
             return Http404('Something went wrong')

@@ -21,7 +21,7 @@ button {
     font-family: inherit;
 }
 
-input {
+input, select {
     font-family: inherit;
 }
 
@@ -334,4 +334,31 @@ a:focus {
 
 .search-tour-box .btn-search-tour:hover {
   box-shadow: 0 0 10px var(--color-main);
+}
+
+.messages {
+  position: fixed;
+  width: 500px;
+  height: 70px;
+  background-color: rgba(130, 255, 222, 0.837);
+  top: -100px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 15;
+  padding: 36px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  animation-name: messages_appear;
+  animation-duration: 4s;
+}
+
+@keyframes messages_appear {
+  0% { top: -100px;}
+  20% { top: 20px;}
+  80% { top: 20px;}
+  100% { top: -100px;}
 }

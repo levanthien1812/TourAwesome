@@ -112,7 +112,13 @@
                 <div class="name">
                     <a href="">{{request.user.name}}</a>
                     <ul class="sub-menu">
-                        <li><a href="{% url 'show-bookings' %}">Các tour đã đặt</a></li>
+                        {% if request.user.is_superuser == False %}
+                            <li><a href="{% url 'show-bookings' %}">Các tour đã đặt</a></li>
+                        {% else %}
+                            <li><a href="{% url 'manage-users' %}">Quản lý người dùng</a></li>
+                            <li><a href="{% url 'manage-tours' %}">Quản lý các tour</a></li>
+                            <li><a href="{% url 'manage-bookings' %}">Quản lý đặt tour</a></li>
+                        {% endif %}
                         <li><a href="{% url 'update-account' %}">Tài khoản</a></li>
                         <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
                     </ul>
@@ -128,6 +134,7 @@
     </nav>
 
     <div class="main">
+        {% include 'Components/flash_message.html' %}
         {% block content %} 
         
         {% endblock content %}

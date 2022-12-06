@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from .filter import UserFilter
 
 from TourAwesomeApps.Users.forms import SignupForm, LoginForm, UpdateForm
 from .models import sex_choices, Booking
@@ -26,6 +27,7 @@ def signup(request):
             password = form.cleaned_data.get('password')
             passwordConfirm = form.cleaned_data.get('passwordConfirm')
             
+            # Auto generate username
             lastUser = User.objects.filter(username__startswith='user').last() or None
             if (lastUser != None):
                 username = 'user{0}'.format(int(lastUser.username.replace('user', '')) + 1)
@@ -71,6 +73,7 @@ def _login(request):
             if user != None:
                 #request.user = user
                 login(request, user)
+                messages.success(request, 'Chào mừng bạn trở lại')
                 return redirect(reverse('home'))
             
         else:
@@ -99,6 +102,8 @@ def update(request):
             if (newPassword != ''):
                 user.set_password(newPassword)
             user.save()
+            
+            messages.success(request, 'Cập nhật thông tin thành công')
             return redirect(reverse('update-account'))
         
         else:
@@ -106,10 +111,42 @@ def update(request):
         
     return render(request, 'Users/account.html', {'form': form, 'sex_choices': sex_choices})
 
+@login_required
 def showBookings(request):
     userID = request.user.id
     bookings = Booking.objects.filter(userID=userID) or None
     if bookings is None:
-        return print('You have no bookings to display!')
+        print('You have no bookings to display!')
         
     return render(request, 'Users/bookings.html', {'bookings': bookings})
+
+@login_required
+@allowed_user(['admin'])
+def manageUser(request):
+    users = User.objects.all() or None
+    
+    staffs_count = User.objects.filter(is_staff=True).count
+    users_count = User.objects.filter(is_staff=False, is_superuser=False).count
+    
+    userFilter = UserFilter(request.GET, queryset=users)
+    users = userFilter.qs
+    
+    context = {
+        'users': users,
+        'staffs_count': staffs_count,
+        'users_count': users_count,
+        'userFilter': userFilter,
+    }
+    return render(request, 'Users/manage-user.html', context)
+
+
+@login_required
+@allowed_user(['admin'])
+def deleteUser(request, pk):
+    user = User.objects.filter(id=pk) or None
+    if (user == None):
+        raise Http404('User not found!')
+    user.delete()
+    
+    messages.success(request, 'Xóa người dùng thành công')
+    return redirect(reverse('manage-users'))

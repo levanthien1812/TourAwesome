@@ -1,0 +1,96 @@
+{% extends "Users/manage.html" %}
+
+{% load static %}
+
+{% block manage %}
+
+<div class="manage-users">
+    <p class="title">Quản lý người dùng</p>
+    <div class="count">
+        <p>Số lượng nhân viên: {{staffs_count}}</p>
+        <p>Số lượng người dùng: {{users_count}}</p>
+    </div>
+    <form class="filter" method="GET">
+        <p>Bộ lọc</p>
+        {{userFilter.form}}
+        <button type="submit" class="search-btn">Tìm kiếm</button>
+    </form>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Ngày sinh</th>
+                    <th>Vai trò</th>
+                    <th>Giới tính</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phoneNum}}</td>
+                    <td>{{user.birthday}}</td>
+                    {% if user.is_staff == True%}
+                        <td>Nhân viên</td>
+                    {% else %}
+                        <td>Người dùng</td>
+                    {% endif %}
+                    <td>{{user.sex}}</td>
+                    <td>
+                        <button type="submit" class="delete-btn">Xóa</button>
+                        <form action="{% url 'delete-user' user.id %}" method="POST" class="confirm-delete-modal">
+                            {% csrf_token %}
+                            <div class="title">
+                                <p>Cảnh báo</p>
+                            </div>
+                            <div class="message">
+                                <p>Bạn có chắc chắn muốn xóa người dùng này không? Theo tác này không thể hoàn tác</p>
+                            </div>
+                            <div class="buttons">
+                                <button class="cancel-btn">Hủy</button>
+                                <button type="submit">Chắc chắn</button>
+                            </div>
+                        </form>
+                        {% include 'Components/cover.html' %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const confirmDeleteModal = document.querySelector('.confirm-delete-modal')
+    let deleteBtns = document.querySelectorAll('.delete-btn')
+    const cover = document.querySelector(".cover")
+
+    deleteBtns = Array.from(deleteBtns)
+
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener("click", () => {
+            confirmDeleteModal.classList.add("show")
+            cover.classList.add("show")
+        });
+    })
+
+    cover.addEventListener("click", () => {
+        confirmDeleteModal.classList.remove("show")
+        cover.classList.remove("show")
+    });
+
+    const cancelBtn = confirmDeleteModal.querySelector('.cancel-btn')
+    cancelBtn.onclick = cover.click()
+
+</script>
+
+{% endblock manage %}
