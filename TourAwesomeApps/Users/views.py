@@ -16,16 +16,16 @@ User = get_user_model()
 
 @unauthenticated_user
 def signup(request):
-    form = SignupForm()
+    signupForm = SignupForm()
     
     if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data.get('name')
-            email = form.cleaned_data.get('email')
-            phoneNum = form.cleaned_data.get('phoneNum')
-            password = form.cleaned_data.get('password')
-            passwordConfirm = form.cleaned_data.get('passwordConfirm')
+        signupForm = SignupForm(request.POST)
+        if signupForm.is_valid():
+            name = signupForm.cleaned_data.get('name')
+            email = signupForm.cleaned_data.get('email')
+            phoneNum = signupForm.cleaned_data.get('phoneNum')
+            password = signupForm.cleaned_data.get('password')
+            passwordConfirm = signupForm.cleaned_data.get('passwordConfirm')
             
             # Auto generate username
             lastUser = User.objects.filter(username__startswith='user').last() or None
@@ -54,17 +54,18 @@ def signup(request):
                 raise Http404('Something went wrong')
         else:
             print('Form is invalid')
-            
-    return render(request, 'Users/signup.html', {'form': form})
+    
+    loginForm = LoginForm()
+    return render(request, 'Users/signinup.html', {'signupForm': signupForm, 'loginForm': loginForm})
 
 @unauthenticated_user
 def _login(request):
-    form = LoginForm()
+    loginForm = LoginForm()
     if (request.method == 'POST'):
-        form = LoginForm(request.POST)
-        if (form.is_valid()):
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
+        loginForm = LoginForm(request.POST)
+        if (loginForm.is_valid()):
+            email = loginForm.cleaned_data.get('email')
+            password = loginForm.cleaned_data.get('password')
             
             username = User.objects.filter(email=email).get().username
 
@@ -79,7 +80,8 @@ def _login(request):
         else:
             print('Form is invalid')
 
-    return render(request, 'Users/login.html', {'form': form})
+    signupForm = SignupForm()
+    return render(request, 'Users/signinup.html', {'loginForm': loginForm, 'signupForm': signupForm})
 
 @login_required
 def _logout(request):

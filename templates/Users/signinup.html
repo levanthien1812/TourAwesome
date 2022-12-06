@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập | Đăng ký</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+    <div class="signinup">
+        <form action="{% url 'signup' %}" class="signup-form" method="POST">
+            {% csrf_token %}
+            <div class="logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
+            <p class="title">Đăng ký</p>
+            <div class="info">
+                <div class="form-control">
+                    <label for="name">Họ và tên</label>
+                    {{signupForm.name}}
+                </div>
+                <div class="form-control">
+                    <label for="email">Email</label>
+                    {{signupForm.email}}
+                </div>
+                <div class="form-control">
+                    <label for="phoneNum">Số điện thoại</label>
+                    {{signupForm.phoneNum}}
+                </div>
+                <div class="form-control">
+                    <label for="address">Mật khẩu</label>
+                    {{signupForm.password}}
+                </div>
+                <div class="form-control">
+                    <label for="address">Nhập lại mật khẩu</label>
+                    {{signupForm.passwordConfirm}}
+                </div>
+            </div>
+            <button type="submit">Đăng ký</button>
+        </form>
+
+        <form action="{% url 'login' %}" class="login-form" method="POST">
+            {% csrf_token %}
+            <p class="title">Đăng nhập</p>
+            <div class="info">
+                <div class="form-control">
+                    <label for="email">Email</label>
+                    {{loginForm.email}}
+                </div>
+                <div class="form-control">
+                    <label for="address">Mật khẩu</label>
+                    {{loginForm.password}}
+                </div>
+            </div>
+            <button type="submit">Đăng nhập</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
