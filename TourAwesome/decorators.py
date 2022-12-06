@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 
 def unauthenticated_user(view_func):
@@ -22,6 +22,6 @@ def allowed_user(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
             else:
-                return HttpResponse('You are not allow to perform this action!') 
+                return render(request, 'Components/not-allow.html')
         return wrapper_func
     return decorator

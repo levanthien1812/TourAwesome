@@ -9,7 +9,7 @@ urlpatterns = [
     path('account', views.update, name='update-account'),
     path('bookings', views.showBookings, name='show-bookings'),
     path('manage-users', views.manageUser, name='manage-users'),
-    path('manage-tours', views.manageUser, name='manage-tours'),
+    path('manage-tours', views.manageTour, name='manage-tours'),
     path('manage-bookings', views.manageUser, name='manage-bookings'),
     path('<int:pk>/delete', views.deleteUser, name='delete-user')
 ]

@@ -65,7 +65,8 @@
 
 .update-user .section,
 .user-bookings,
-.manage-users {
+.manage-users,
+.manage-tours {
     margin-bottom: 24px;
     padding: 32px;
     background-color: white;
@@ -186,7 +187,8 @@
 }
 
 .user-bookings .title,
-.manage-users .title {
+.manage-users .title, 
+.manage-tours .title{
     font-size: 30px;
     padding-bottom: 16px;
 }
@@ -220,7 +222,8 @@
     font-size: 20px;
 }
 
-.manage-users .filter {
+.manage-users .filter,
+.manage-tours .filter {
     background-color: rgb(205, 205, 205);
     padding: 8px 16px;
     border-radius: 8px;
@@ -228,44 +231,86 @@
 }
 
 .manage-users .filter input,
-.manage-users .filter select {
+.manage-users .filter select,
+.manage-tours .filter input,
+.manage-tours .filter select {
     margin-right: 20px;
     margin-bottom: 10px;
 }
 
-.manage-users .filter p {
+.manage-users .filter p,
+.manage-tours .filter p {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-.manage-users .table {
+.manage-users .table,
+.manage-tours .table {
     margin-top: 10px;
     width: 100%;
     overflow-x: scroll;
 }
 
-.manage-users .table table {
+.manage-users .table table,
+.manage-tours .table table {
     border-spacing: 8px;
 }
 
 .manage-users table td,
-.manage-users table th {
+.manage-users table th,
+.manage-tours table td,
+.manage-tours table th {
+    text-align: center;
+    max-width: 350px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     padding: 2px 4px;
     white-space: nowrap;
 }
 
-.manage-users .search-btn {
+.manage-users .search-btn,
+.manage-tours .search-btn {
     padding: 6px 12px;
     background-color: var(--color-main);
     color: white;
     border-radius: 3px;
 }
 
-.manage-users .delete-btn {
+.manage-users .delete-btn,
+.manage-tours .delete-btn {
     padding: 4px 8px;
     background-color: rgb(212, 0, 0);
     color: white;
     border-radius: 3px;
+    font-size: inherit;
+}
+
+.manage-tours .detail-btn,
+.manage-tours .update-btn {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: rgb(0, 110, 255);
+    color: white;
+    border-radius: 3px;
+}
+
+.manage-tours .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.manage-tours .title .create-btn {
+    display: inline-block;
+    font-size: 16px;
+    padding: 6px 12px;
+    font-weight: 600;
+    background-color: rgb(255, 98, 14);
+    border-radius: 6px;
+    color: white;
+}
+.manage-tours .title .create-btn:hover {
+    background-color: rgb(229, 80, 0);
 }
 
 .confirm-delete-modal {

@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="not-allow-page">
+        <div class="img">
+            <img src="{% static 'images/oops.png' %}" alt="">
+        </div>
+        <div class="message">
+            <p>Bạn không có quyền thực hiện hành động này!</p>
+        </div>
+        <div class="return-home">
+            <a href="{% url 'home' %}" class="return-btn">Trở lại trang chủ</a>
+        </div>
+    </div>
+{% endblock content %}

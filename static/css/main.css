@@ -366,6 +366,14 @@ a:focus {
 .error-page {
   padding: 50px 20%;
 }
+.not-allow-page {
+  display: flex;
+  margin: 80px auto;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .error-page .fourofour {
   display: flex;
@@ -386,13 +394,18 @@ a:focus {
 .error-page .fourofour img {
   width: 250px;
 }
+.not-allow-page .img img {
+  width: 400px;
+}
 
-.error-page .message {
+.error-page .message,
+.not-allow-page .message {
   font-size: 30px;
   margin: 20px 0;
 }
 
-.error-page .return-btn {
+.error-page .return-btn,
+.not-allow-page .return-btn {
   display: inline-block;
   padding: 12px 36px;
   border-radius: 10px;

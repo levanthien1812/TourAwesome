@@ -3,8 +3,12 @@
 {% block content %}
 
 <form method='POST'  action='' enctype='multipart/form-data' class="create-tour-form">
-    <h1 class="title">Tạo tour</h1>
     {% csrf_token %}
+    {% if 'update' not in request.path %}
+        <h1 class="title">Tạo tour</h1>
+    {% else %}
+        <h1 class="title">Cập nhật tour</h1>
+    {% endif %}
     <div class="form-control">
         <label for="name">Nhập tiêu đề tour:</label>
         {{form.name}}
@@ -67,7 +71,6 @@
                 <label for="{{value}}">{{text}}</label>
             {% endfor %}
         </div>
-        
     </div>
     <div class="form-control">
         <label for="images">Upload các ảnh tour</label>

@@ -5,11 +5,12 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
-from .filter import UserFilter
 
 from TourAwesomeApps.Users.forms import SignupForm, LoginForm, UpdateForm
 from .models import sex_choices, Booking
+from TourAwesomeApps.Tours.models import Tour
 from TourAwesome.decorators import unauthenticated_user, allowed_user
+from .filter import UserFilter, TourFilter
 
 User = get_user_model()
 
@@ -51,7 +52,6 @@ def signup(request):
             except:
                 user = None
                 request.session['register_error'] = 1
-                raise Http404('Something went wrong')
         else:
             print('Form is invalid')
     
@@ -67,15 +67,19 @@ def _login(request):
             email = loginForm.cleaned_data.get('email')
             password = loginForm.cleaned_data.get('password')
             
-            username = User.objects.filter(email=email).get().username
-
-            user = authenticate(request, username=username, password=password)
-
-            if user != None:
+            try:
+                _user = User.objects.filter(email=email).get()
+                username = _user.username
+                
+                user = authenticate(request, username=username, password=password)
                 #request.user = user
                 login(request, user)
                 messages.success(request, 'Chào mừng bạn trở lại')
                 return redirect(reverse('home'))
+            except:
+                user = None
+                messages.success(
+                    request, 'Tên đăng nhập hoặc mật khẩu không đúng! Vui lòng thử lại.')
             
         else:
             print('Form is invalid')
@@ -154,3 +158,18 @@ def deleteUser(request, pk):
     except:
         user = None
         return render(request, 'Components/404page.html')
+    
+
+@login_required
+@allowed_user(['admin'])
+def manageTour(request):
+    tours = Tour.objects.all() or None
+    
+    tourFilter = TourFilter(request.GET, queryset=tours)
+    tours = tourFilter.qs
+
+    context = {
+        'tours': tours,
+        'tourFilter': tourFilter
+    }
+    return render(request, 'Users/manage-tour.html', context)

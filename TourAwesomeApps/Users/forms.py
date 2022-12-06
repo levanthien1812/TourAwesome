@@ -79,14 +79,14 @@ class LoginForm(forms.Form):
     email = forms.EmailField(max_length=50)
     password = forms.CharField(widget=forms.PasswordInput, min_length=8)
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
 
-        user = User.objects.filter(email__iexact=email)
-        if not user.exists():
-            raise forms.ValidationError('Người dùng không tồn tại!')
+    #     user = User.objects.filter(email__iexact=email)
+    #     if not user.exists():
+    #         raise forms.ValidationError('Người dùng không tồn tại!')
 
-        return email
+    #     return email
     
 class BookingDetailForm (forms.ModelForm):
     name = forms.CharField(max_length=30, widget=forms.TextInput)

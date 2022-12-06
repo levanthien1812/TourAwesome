@@ -1,3 +1,4 @@
+{% load static %}
 <div class="tour-card image-item">
     <div class="tour-image">
         <img src="{{MEDIA_URL}}{{Tour.image.image}}"
@@ -35,5 +36,8 @@
     </div>
     <div class="tour-detail-btn">
         <a href='{% url 'get-tour' Tour.tour.id %}'>Chi tiết tour</a>
+    </div>
+    <div class="hot-img">
+        <img src="{% static 'images/promotional.png' %}" alt="">
     </div>
 </div>

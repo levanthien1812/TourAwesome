@@ -1,0 +1,98 @@
+{% extends "Users/manage.html" %}
+
+{% load static %}
+
+{% block manage %}
+
+<div class="manage-tours">
+    <div class="title">
+        <p>Quản lý các tour</p>
+        <a href="{% url 'create-tour' %}" class="create-btn">Tạo tour mới</a>
+    </div>
+    <div class="count">
+        <p>Số lượng tour: {{tours.count}}</p>
+    </div>
+    <form class="filter" method="GET">
+        <p>Bộ lọc</p>
+        {{tourFilter.form}}
+        <button type="submit" class="search-btn">Tìm kiếm</button>
+    </form>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã tour</th>
+                    <th>Tiêu đề tour</th>
+                    <th>Địa chỉ</th>
+                    <th>Gía</th>
+                    <th>Số ngày</th>
+                    <th>Trong nước</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tour in tours %}
+                <tr>
+                    <td>{{tour.id}}</td>
+                    <td>{{tour.name}}</td>
+                    <td>{{tour.location}}</td>
+                    <td>{{tour.price}}</td>
+                    <td>{{tour.duration}}</td>
+                    <td>
+                        {% if tour.isDomestic == True %}
+                            <input type="checkbox" checked>
+                        {% else %}
+                            <input type="checkbox">
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'get-tour' tour.id %}" class="detail-btn">Xem chi tiết</a>
+                        <a href="{% url 'update-tour' tour.id %}" class="update-btn">Cập nhật</a>
+                        <button class="delete-btn">Xóa</button>
+                        <form action="{% url 'delete-tour' tour.id %}" method="POST" class="confirm-delete-modal">
+                            {% csrf_token %}
+                            <div class="title">
+                                <p>Cảnh báo</p>
+                            </div>
+                            <div class="message">
+                                <p>Bạn có chắc chắn muốn xóa tour này không? Theo tác này không thể hoàn tác.</p>
+                            </div>
+                            <div class="buttons">
+                                <button class="cancel-btn">Hủy</button>
+                                <button type="submit">Chắc chắn</button>
+                            </div>
+                        </form>
+                        {% include 'Components/cover.html' %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const confirmDeleteModal = document.querySelector('.confirm-delete-modal')
+    let deleteBtns = document.querySelectorAll('.delete-btn')
+    const cover = document.querySelector(".cover")
+
+    deleteBtns = Array.from(deleteBtns)
+
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener("click", () => {
+            confirmDeleteModal.classList.add("show")
+            cover.classList.add("show")
+        });
+    })
+
+    cover.addEventListener("click", () => {
+        confirmDeleteModal.classList.remove("show")
+        cover.classList.remove("show")
+    });
+
+    const cancelBtn = confirmDeleteModal.querySelector('.cancel-btn')
+    cancelBtn.onclick = cover.click()
+
+</script>
+
+{% endblock manage %}
