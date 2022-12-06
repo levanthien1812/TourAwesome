@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+
+{% load static %}
+
+{% block content %}
+    <div class="error-page">
+        <div class="fourofour">
+            <p>404</p>
+            <img src="{% static 'images/sad.png' %}" alt="">
+        </div>
+        <div class="message">
+            <p>Xin lỗi! Chúng tôi không tìm thấy trang mà bạn yêu cầu.</p>
+        </div>
+        <div class="return-home">
+            <a href="{% url 'home' %}" class="return-btn">Trở lại trang chủ</a>
+        </div>
+    </div>
+{% endblock content %}

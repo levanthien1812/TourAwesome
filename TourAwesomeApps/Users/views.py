@@ -143,10 +143,12 @@ def manageUser(request):
 @login_required
 @allowed_user(['admin'])
 def deleteUser(request, pk):
-    user = User.objects.filter(id=pk) or None
-    if (user == None):
-        raise Http404('User not found!')
-    user.delete()
-    
-    messages.success(request, 'Xóa người dùng thành công')
-    return redirect(reverse('manage-users'))
+    try:
+        user = User.objects.filter(id=pk)
+        user.delete()
+        
+        messages.success(request, 'Xóa người dùng thành công')
+        return redirect(reverse('manage-users'))
+    except:
+        user = None
+        return render(request, 'Components/404page.html')

@@ -362,3 +362,41 @@ a:focus {
   80% { top: 20px;}
   100% { top: -100px;}
 }
+
+.error-page {
+  padding: 50px 20%;
+}
+
+.error-page .fourofour {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.error-page .fourofour p {
+  font-size: 250px;
+  font-weight: 800;
+  background: -webkit-linear-gradient(rgb(232, 196, 52), rgb(226, 124, 56));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* line-height: 0px; */
+}
+
+.error-page .fourofour img {
+  width: 250px;
+}
+
+.error-page .message {
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.error-page .return-btn {
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 10px;
+  background-color: var(--color-main);
+  font-size: 18px;
+  color: white;
+}

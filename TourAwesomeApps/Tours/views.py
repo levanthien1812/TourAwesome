@@ -178,99 +178,104 @@ def createTour(request):
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
 def getTour(request, pk):
-    tour = Tour.objects.get(id=pk) or None
-    if (Tour == None):
-        return Http404('Không tìm thấy tour này!')
-    
-    images = TourImage.objects.filter(tour=tour)
-    vehicles = TourVehicle.objects.filter(tour=tour)
-    timeline_file = open(
-        'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
-    timeline = timeline_file.read()
-    
-    bookingDetailForm = BookingDetailForm(initial={
-        'name': request.user.name, 
-        'email': request.user.email,
-        'phoneNum': request.user.phoneNum,
-    })
-    
-    context = {
-        'tour': tour,
-        'images': images,
-        'vehicles': vehicles,
-        'timeline': timeline,
-        'bookingDetailForm': bookingDetailForm
-    }
-    return render(request, 'Tours/detail.html', context)
+    try:
+        tour = Tour.objects.get(id=pk)
+        
+        images = TourImage.objects.filter(tour=tour)
+        vehicles = TourVehicle.objects.filter(tour=tour)
+        timeline_file = open(
+            'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
+        timeline = timeline_file.read()
+        
+        bookingDetailForm = BookingDetailForm(initial={
+            'name': request.user.name, 
+            'email': request.user.email,
+            'phoneNum': request.user.phoneNum,
+        })
+        
+        context = {
+            'tour': tour,
+            'images': images,
+            'vehicles': vehicles,
+            'timeline': timeline,
+            'bookingDetailForm': bookingDetailForm
+        }
+        return render(request, 'Tours/detail.html', context)
+    except:
+        tour = None
+        return render(request, 'Components/404page.html')
 
 @login_required
 @allowed_user(['admin'])
 def updateTour(request, pk):
-    tour = Tour.objects.get(id=pk) or None
-    if tour == None:
-        return Http404('Không tìm thấy tour này!')
-    
-    form = CreateTourForm(instance=tour)
-    vehicles_choices = TourVehicle.vehicles_choices
-
-    if request.method == 'POST':
-        form = CreateTourForm(request.POST, request.FILES, instance=tour)
-        if form.is_valid():
-            updateTour = form.save(commit=False)
-            updateTour.isDomestic = form.cleaned_data['isDomestic']
-            updateTour.pub_date = datetime.now()
-            updateTour.save()
-            
-            createTourImage(request, tour)
-            createTourVehicle(request, tour)
-            
-            messages.success(request, 'Cập nhật tour thành công')
-            return redirect(reverse('home'))
+    try:
+        tour = Tour.objects.get(id=pk)
         
-    return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
+        form = CreateTourForm(instance=tour)
+        vehicles_choices = TourVehicle.vehicles_choices
+
+        if request.method == 'POST':
+            form = CreateTourForm(request.POST, request.FILES, instance=tour)
+            if form.is_valid():
+                updateTour = form.save(commit=False)
+                updateTour.isDomestic = form.cleaned_data['isDomestic']
+                updateTour.pub_date = datetime.now()
+                updateTour.save()
+                
+                createTourImage(request, tour)
+                createTourVehicle(request, tour)
+                
+                messages.success(request, 'Cập nhật tour thành công')
+                return redirect(reverse('home'))
+            
+        return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
+    except:
+        tour = None
+        return render(request, 'Components/404page.html')
 
 @login_required
 @allowed_user(['admin'])
 def deleteTour(request, pk):
-    tour = Tour.objects.get(id=pk) or None
-    if tour == None:
-        return Http404('Không tìm thấy tour này!')
-    
-    Tour.objects.filter(id=pk).delete()
-    
-    messages.success(request, 'Xóa tour thành công')
-    return redirect(reverse('home'))
-    
+    try:
+        Tour.objects.filter(id=pk).delete()
+        
+        messages.success(request, 'Xóa tour thành công')
+        return redirect(reverse('home'))
+    except:
+        tour = None
+        return render(request, 'Components/404page.html')
     
 @login_required
 def bookTour(request, pk):
     bookingDetailForm = BookingDetailForm()
     
     if request.method == 'POST':
-        tour = Tour.objects.get(id=pk) or None
-        user = User.objects.get(id=request.user.id)
-        if tour == None:
-            return Http404('Không tìm thấy tour này!')
-        
-        bookingObj = {
-            'tourID': tour,
-            'userID': user,
-            'startDate': request.POST.get('startDate'),
-            'quantity': request.POST.get('quantity'),
-            'price': request.POST.get('price'),
-            'bookingDate': datetime.now().date()
-        }
-        
-        booking = Booking.objects.create(**bookingObj) or None
-        
-        bookingDetailForm = BookingDetailForm(request.POST)
-        bookingDetail = bookingDetailForm.save(commit=False)
-        if bookingDetail.bookingID_id == None:
-            bookingDetail.bookingID_id = booking.id
-        bookingDetail.save()
-        
-        if booking:
-            messages.success(request, 'Chúc mừng bạn đặt tour thành công!')
-            return redirect(reverse('home'))
-        else:
-            return Http404('Something went wrong')
+        try:
+            tour = Tour.objects.get(id=pk)
+            user = User.objects.get(id=request.user.id)
+            
+            bookingObj = {
+                'tourID': tour,
+                'userID': user,
+                'startDate': request.POST.get('startDate'),
+                'quantity': request.POST.get('quantity'),
+                'price': request.POST.get('price'),
+                'bookingDate': datetime.now().date()
+            }
+            
+            booking = Booking.objects.create(**bookingObj) or None
+            
+            bookingDetailForm = BookingDetailForm(request.POST)
+            bookingDetail = bookingDetailForm.save(commit=False)
+            if bookingDetail.bookingID_id == None:
+                bookingDetail.bookingID_id = booking.id
+            bookingDetail.save()
+            
+            if booking:
+                messages.success(request, 'Chúc mừng bạn đặt tour thành công!')
+                return redirect(reverse('home'))
+            else:
+                return Http404('Something went wrong')
+        except:
+            tour = None
+            return render(request, 'Components/404page.html')
