@@ -1,0 +1,27 @@
+{% extends "main-2.html" %} 
+
+{% load static %} 
+
+{% block toursContent %}
+
+<div class="tours-section blogs-section">
+    {% include 'Components/tour-section-header.html' with title="Blogs du lịch nổi bật"%}
+    <div class="section-content">
+        {% for blog in blogs %}
+            {% include 'Components/blog-card.html' with blog=blog %}
+        {% endfor %}    
+    </div>
+</div>
+
+<div class="more-blogs tours-section">
+    <div class="title">
+        <h2>Tổng hợp blog du lịch</h2>
+    </div>
+    <div class="content">
+        {% for blog in blogs %}
+            {% include 'Components/blog-card-hori.html' with blog=blog %}
+        {% endfor %} 
+    </div>
+</div>
+
+{% endblock toursContent %}

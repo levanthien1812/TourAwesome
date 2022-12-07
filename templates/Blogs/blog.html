@@ -1,0 +1,36 @@
+{% extends "main-2.html" %} 
+
+{% load static %} 
+
+{% block toursContent %}
+
+<div class="tours-section blog-section">
+  <div class="blog-detail">
+    <h1 class="blog-title">{{blog.title}}</h1>
+    <p class="blog-description">{{blog.description}}</p>
+    <div class="blog-content">
+        {% autoescape off %} {{content |safe}} {% endautoescape %}
+    </div>
+  </div>
+  <div class="blog-sidebar">
+    <div class="blog-concern">
+        <div class="title">Có thể bạn quan tâm</div>
+        <div class="content">
+            {% for tour in tours %}
+                {% include 'Components/tour-card-simple.html' with  tour=tour %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="blog-counselor">
+      <div class="title">Tổng đài tư vấn</div>
+      <div class="content">
+        <p>
+          Qúy khách có bất kì thắc mắc nào xin liên hệ
+          <strong>0123456777</strong> để được hỗ trợ và giải đáp nhanh nhất
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock toursContent %}

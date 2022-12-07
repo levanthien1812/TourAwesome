@@ -153,7 +153,6 @@ def createTour(request):
     vehicles_choices = TourVehicle.vehicles_choices
 
     if request.method == 'POST':
-        print(request.POST)
         form = CreateTourForm(request.POST, request.FILES)
         if form.is_valid():
             tour = form.save(commit=False)

@@ -1,11 +1,16 @@
 
 @import url(tour-card.css);
+@import url(blog-card.css);
+@import url(blog.css);
 
 /* HOME PAGE STYLES */
 .tours-section {
   background-color: white;
   padding: 48px 15% 32px 15%;
   margin-bottom: 50px;
+  background-image: url(../../static/images/section-background.png);
+  background-size: cover;
+  background-position: center;
 }
 
 .section-header {
@@ -50,65 +55,6 @@
   gap: 30px;
 }
 
-.blog-card-main {
-  grid-row: span 3;
-}
-
-.blog-content {
-  display: grid;
-  grid-template-columns: 45% 55%;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.blog-card-main .blog-image img {
-  width: 100%;
-  height: 300px;
-}
-
-.blog-card-main .blog-title {
-  color: var(--color-main);
-  font-weight: 400;
-  font-size: 18px;
-  margin-top: 15px;
-}
-
-.blog-card-main .blog-description {
-  color: #333;
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 10px;
-}
-
-.blog-card {
-  height: 150px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 3fr;
-  gap: 10px;
-}
-
-.blog-card .blog-image {
-  grid-row: span 2;
-}
-
-.blog-card .blog-image img {
-  width: 100%;
-}
-
-.blog-card .blog-title {
-  color: var(--color-main);
-  font-weight: 400;
-  font-size: 17px;
-}
-
-.blog-card .blog-description {
-  color: #333;
-  font-size: 13px;
-  font-weight: 400;
-  text-overflow: ellipsis;
-}
-
 .see-more {
   text-align: end;
 }
@@ -119,6 +65,13 @@
   background-color: #bebebe;
   font-size: 17px;
   transition: all .6s ease;
+}
+
+.blogs-content {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .see-more-btn:hover{
@@ -156,19 +109,9 @@
   border-bottom: 3px solid  rgb(37, 113, 255);
 }
 
-.blog-simple {
-  margin-bottom: 16px;
-}
-
-.blog-simple .img{
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.blog-simple .img img {
-  width: 100%;
+.more-blogs .content{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 50px;
+  row-gap: 20px;
 }

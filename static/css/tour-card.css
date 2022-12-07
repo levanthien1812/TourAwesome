@@ -2,6 +2,7 @@
 .tour-card {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.195);
     position: relative;
+    background-color: white;
 }
 
 .tour-card .tour-image {
@@ -288,4 +289,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tour-card-simple {
+    display: grid;
+    height: 100px;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 50px 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tour-card-simple .tour-image {
+    grid-row: span 2;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.tour-card-simple .tour-image img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
+.tour-card-simple .tour-name {
+    font-size: 15px;
+}
+
+.tour-card-simple .tour-price {
+    font-size: 24px;
+    color: rgb(38, 106, 224);
 }

@@ -1,6 +1,10 @@
 <div class="section-header">
-    <div class="header-subtitle"><b>{{subtitle}}</b></div>
+    {% if subtitle %}
+        <div class="header-subtitle"><b>{{subtitle}}</b></div>
+    {% endif %}
     <h2 class="header-title">{{title}}</h2>
     <hr>
+    {% if content %}
     <p class="header-description">{{content}}</p>
+    {% endif %}
 </div>

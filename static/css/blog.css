@@ -1,0 +1,50 @@
+@import url(timeline.css);
+
+.blog-section {
+    display: grid;
+    grid-template-columns: 6fr 3fr;
+    gap: 24px;
+}
+
+.blog-detail > * {
+    margin-bottom: 20px;
+}
+
+.blog-detail .blog-title {
+    color: var(--color-main);
+}
+
+.blog-sidebar {
+    background-color: rgb(236, 236, 236);
+    padding: 10px;
+    padding-top: 120px;
+}
+
+.blog-sidebar .blog-concern .content {
+    padding: 10px;
+    background-color: white;
+}
+
+.blog-counselor {
+    margin-top: 20px;
+}
+
+.blog-counselor .title,
+.blog-concern .title {
+    background-color: var(--color-main);
+    padding: 12px;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+}
+
+.blog-counselor .content {
+    padding: 12px;
+    line-height: 2;
+    background-color: white;
+}
+
+.blog-counselor .content strong {
+    font-size: 20px;
+    color: var(--color-main);
+}

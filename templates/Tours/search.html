@@ -2,10 +2,8 @@
 
 {% block toursContent %}
 
-    <h1 class="search-tours-title">Tour du lịch {{location}}</h1>
-
     <div class="search-tours tours-section">
-        <h2>Các tour {{location}} hot</h2>
+        {% include 'Components/tour-section-header.html' with title="Các tour "|add:location|add:" nổi bật"%}
         <div class="section-content image-slider">
             {% for tour in tours %}
                 {% include 'Components/tour-card.html' with Tour=tour%}

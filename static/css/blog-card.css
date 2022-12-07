@@ -1,0 +1,110 @@
+.blog-card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.195);
+    position: relative;
+    background-color: white;
+}
+
+.blog-card .blog-image {
+    height: 230px;
+    position: relative;
+}
+
+.blog-card .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-card .blog-content {
+    padding: 20px;
+}
+
+.blog-card .blog-content .title {
+    padding: 8px 0;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.blog-card .blog-content .description {
+
+}
+
+.blog-card .see-detail {
+    text-align: end;
+    padding: 20px;
+}
+
+.blog-card .see-detail a {
+    color: var(--color-main);
+    font-size: 17px;
+    display: block;
+}
+
+.blog-card-main {
+  grid-row: span 3;
+}
+
+.blog-card-main .blog-image img {
+  width: 100%;
+  height: 300px;
+}
+
+.blog-card-main .blog-title {
+  color: var(--color-main);
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.blog-card-main .blog-description {
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.blog-card-hori {
+  height: 150px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 3fr;
+  gap: 10px;
+}
+
+.blog-card-hori .blog-image {
+  grid-row: span 2;
+}
+
+.blog-card-hori .blog-image img {
+  width: 100%;
+}
+
+.blog-card-hori .blog-title {
+  color: var(--color-main);
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.blog-card-hori .blog-description {
+  color: #333;
+  font-size: 13px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+}
+
+.blog-simple {
+  margin-bottom: 16px;
+}
+
+.blog-simple .img{
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.blog-simple .img img {
+  width: 100%;
+}
