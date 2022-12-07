@@ -12,7 +12,14 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    {% include 'Components/flash_message.html'%}
+    {% if signupForm.errors %}
+        {% for field, errors in signupForm.errors.items %}
+            {% include 'Components/flash_message.html' with messages=errors%}
+        {% endfor %}
+    {% else %}
+        {% include 'Components/flash_message.html'%}
+    {% endif %}
+    
     <div class="signinup">
         <form action="{% url 'signup' %}" class="signup-form" method="POST">
             {% csrf_token %}

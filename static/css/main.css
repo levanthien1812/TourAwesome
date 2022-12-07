@@ -1,4 +1,5 @@
 @import url(create-tour.css);
+@import url(header.css);
 
 :root {
     --color-main: rgb(0, 150, 150);
@@ -148,7 +149,7 @@ a:focus {
 
 .nav-main .log,
 .nav-main .account {
-    height: 1;
+    height: 100%;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -172,6 +173,17 @@ a:focus {
     border-radius: 50%;
 }
 
+.nav-main .account .admin-badge {
+  padding: 4px 8px;
+  background-color: rgb(255, 153, 0);
+  border-radius: 5px;
+  margin-left: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
 .signup-btn {
     padding: 8px 16px;
     background-color: #ff6a00;
@@ -190,150 +202,9 @@ a:focus {
     color: #ff6a00;
 }
 
-.main {
+.main-content {
     background-color: rgb(225, 225, 225);
     position: relative;
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-}
-
-.header .img-group__list {
-  height: 420px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.search-tour-box {
-  background: rgb(255, 255, 255);
-  display: block;
-  padding: 30px;
-  width: 70%;
-  position: relative;
-  top: -75px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.447);
-}
-
-.search-tour-box .box-title {
-  font-size: 20px;
-  color: #1dacfe;
-  text-align: left;
-  margin-bottom: 15px;
-}
-
-.box-search-tour {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  gap: 20px;
-}
-
-.box-search-tour label {
-  font-size: 18px;
-  color: #000000;
-  font-weight: bold;
-}
-
-.box-search-tour .search-tour-input {
-  width: 80%;
-  text-align: center;
-  position: relative;
-}
-
-.box-search-tour .search-tour-type {
-  text-align: center;
-  border: none;
-  margin: 0 auto;
-  padding: 16px 48px;
-  font-size: 16px;
-  width: 100%;
-  color: #434343;
-  outline: 2px solid var(--color-main);
-}
-
-.box-search-tour .search-tour-recommend {
-  width: 100%;
-  position: absolute;
-  bottom: -116px;
-  left: 0;
-  background-color: #ffe5b2;
-  padding: 16px;
-  z-index: 5;
-  display: none;
-}
-
-.box-search-tour .search-tour-recommend.show {
-  display: block;
-}
-
-.search-tour-box .header {
-  font-size: 20px;
-  letter-spacing: 3px;
-  margin-bottom: 5px;
-}
-
-.search-tour-recommend .location-items {
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  grid-template-rows: 60px;
-  gap: 10px;
-  min-width: 0;
-}
-
-.search-tour-recommend .location-item {
-  display: grid;
-  grid-template-columns: 2fr 5fr;
-  grid-template-rows: repeat(2, 1fr);
-  justify-items: flex-start;
-  align-items: center;
-  column-gap: 15px;
-  border-radius: 4px;
-  padding: 4px;
-  cursor: pointer;
-}
-
-.search-tour-recommend .location-items:hover {
-  background-color: #fff8ea;
-}
-
-.search-tour-recommend .location-item img {
-  grid-row: span 2;
-  width: 100%;
-  height: 100%;
-  border-radius: 3px;
-  border: 2px solid #aaa;
-}
-
-.box-search-tour .search-tour-type::placeholder {
-  font-size: 16px;
-  color: #a9a9a9;
-}
-
-.search-tour-box .btn-search-tour {
-  width: 180px;
-  box-shadow: none;
-  color: #fff;
-  line-height: 40px;
-  position: relative;
-  background: var(--color-main);
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  border-radius: 5px;
-}
-
-.search-tour-box .btn-search-tour:hover {
-  box-shadow: 0 0 10px var(--color-main);
 }
 
 .messages {

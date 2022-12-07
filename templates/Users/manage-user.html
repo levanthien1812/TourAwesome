@@ -46,50 +46,55 @@
                     {% endif %}
                     <td>{{user.sex}}</td>
                     <td>
-                        <button type="submit" class="delete-btn">Xóa</button>
+                        <button class="delete-btn">Xóa</button>
                         <form action="{% url 'delete-user' user.id %}" method="POST" class="confirm-delete-modal">
                             {% csrf_token %}
                             <div class="title">
                                 <p>Cảnh báo</p>
                             </div>
                             <div class="message">
-                                <p>Bạn có chắc chắn muốn xóa người dùng này không? Theo tác này không thể hoàn tác</p>
+                                <p>Bạn có chắc chắn muốn xóa người dùng <strong>{{user.name}}</strong> không? Theo tác này không thể hoàn tác</p>
                             </div>
                             <div class="buttons">
-                                <button class="cancel-btn">Hủy</button>
+                                <button type="text" class="cancel-btn">Hủy</button>
                                 <button type="submit">Chắc chắn</button>
                             </div>
                         </form>
-                        {% include 'Components/cover.html' %}
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% include 'Components/cover.html' %}
     </div>
 </div>
 
 <script>
-    const confirmDeleteModal = document.querySelector('.confirm-delete-modal')
     let deleteBtns = document.querySelectorAll('.delete-btn')
     const cover = document.querySelector(".cover")
 
     deleteBtns = Array.from(deleteBtns)
 
+    let confirmDeleteModal
+
     deleteBtns.forEach(deleteBtn => {
-        deleteBtn.addEventListener("click", () => {
+        deleteBtn.addEventListener("click", e => {
+            confirmDeleteModal = deleteBtn.nextElementSibling
             confirmDeleteModal.classList.add("show")
             cover.classList.add("show")
+
+            const cancelBtn = confirmDeleteModal.querySelector('.cancel-btn')
+            cancelBtn.addEventListener('click', e => {
+                e.preventDefault()
+                cover.click()
+            })
+
+            cover.addEventListener("click", () => {
+                confirmDeleteModal.classList.remove("show")
+                cover.classList.remove("show")
+            });
         });
     })
-
-    cover.addEventListener("click", () => {
-        confirmDeleteModal.classList.remove("show")
-        cover.classList.remove("show")
-    });
-
-    const cancelBtn = confirmDeleteModal.querySelector('.cancel-btn')
-    cancelBtn.onclick = cover.click()
 
 </script>
 

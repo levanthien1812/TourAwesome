@@ -25,10 +25,10 @@
             <div class="contacts">
                 <ul>
                     <li>
-                        <p>SĐT: 0123456543</p>
+                        <p>SĐT: 0396201812</p>
                     </li>
                     <li>
-                        <p>Email: tourawesome@gmail.com</p>
+                        <p>Email: tourawesome123@gmail.com</p>
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -110,6 +110,9 @@
                 </div>
                 <div class="name">
                     <a href="">{{request.user.name}}</a>
+                    {% if request.user.is_superuser %}
+                        <span class="admin-badge">Admin</span>
+                    {% endif %}
                     <ul class="sub-menu">
                         {% if request.user.is_superuser == False %}
                             <li><a href="{% url 'show-bookings' %}">Các tour đã đặt</a></li>
@@ -132,7 +135,7 @@
         </div>
     </nav>
 
-    <div class="main">
+    <div class="main-content">
         {% include 'Components/flash_message.html' %}
         {% block content %} 
         

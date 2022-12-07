@@ -1,10 +1,35 @@
 {% load static %}
 
 <div class="header">
-    <div class="img-group__list">
-        <img src="https://is.vnecdn.net/v237/84/89/47/4478984/assets/images/cover__a.jpg" alt=""
-            class="img-fluid aos-init lazyLoaded aos-animate" data-aos="zoom-out" data-aos-duration="1000"
-            data-was-processed="true">
+    <div class='slide'>
+        <div class='controlls'>
+            <button data-btn-prev>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+
+            </button>
+            <button data-btn-next>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+
+            </button>
+        </div>
+        <div class='main'>
+            <div class='item'>
+            <img data-slide-img src='https://static-images.vnncdn.net/files/publish/2022/10/7/chi-4953-483.jpg'>
+            </div>
+            <div class='item'>
+            <img data-slide-img src='https://brillianthotel.vn/upload/hinhthem/giamdocbanahillsbatmikehoachtaobaocuakhudulichhangdauvietnam1545223987-5298.jpg'>
+            </div>
+            <div class='item'>
+            <img data-slide-img src='https://media.mia.vn/uploads/blog-du-lich/cam-nang-du-lich-nha-trang-chi-tiet-hon-ca-huong-dan-vien-1625419958.jpg'>
+            </div>
+            <div class='item'>
+            <img data-slide-img src='https://cdn3.ivivu.com/2022/07/h%E1%BB%93-g%C6%B0%C6%A1m-du-l%E1%BB%8Bch-H%C3%A0-N%E1%BB%99i-ivivu.jpg'>
+            </div>
+        </div>
     </div>
 
     <form action="{% url 'home' %}" class="search-tour-box" method="GET">
@@ -37,4 +62,5 @@
     </form>
 </div>
 
+<script src="{% static 'js/header-carousel.js' %}"></script>
 <script src="{% static 'js/openSearchRecom.js' %}"></script>

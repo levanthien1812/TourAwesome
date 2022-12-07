@@ -151,6 +151,7 @@ def manageUser(request):
 def deleteUser(request, pk):
     try:
         user = User.objects.filter(id=pk)
+        print(pk)
         user.delete()
         
         messages.success(request, 'Xóa người dùng thành công')
