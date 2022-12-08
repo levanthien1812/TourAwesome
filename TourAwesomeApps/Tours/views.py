@@ -136,17 +136,19 @@ def createTourVehicle(request, tour):
             )
             
 def updateLocationModel(tour):
-    lct = tour.location
-    location = TourLocation.objects.filter(location=lct) or None
-    
-    if location != None:
-        location.numTours += 1
-        location.save()
-    else:
-        TourLocation.objects.create(
-            location=lct,
-            numTours=1
-        )
+    lcts = tour.location
+    lctArr = lcts.split(' - ')
+    print(lctArr)
+    for lct in lctArr:
+        try:
+            location = TourLocation.objects.filter(location=lct).get()
+            numTours = location.numTours + 1
+            TourLocation.objects.filter(location=lct).update(numTours=numTours)
+        except:
+            TourLocation.objects.create(
+                location=lct,
+                numTours=1
+            )
             
 @login_required
 @allowed_user(['admin'])
@@ -174,7 +176,7 @@ def createTour(request):
             updateLocationModel(tour)
             
             messages.success(request, 'Tạo tour thành công!')
-            return redirect(reverse('home'))
+            return redirect(reverse('manage-tours'))
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
@@ -237,14 +239,25 @@ def updateTour(request, pk):
 @login_required
 @allowed_user(['admin'])
 def deleteTour(request, pk):
-    try:
-        Tour.objects.filter(id=pk).delete()
+    # try:
+    tour = Tour.objects.filter(id=pk).get()
+    lcts = tour.location.split(' - ')
+    for lct in lcts:
+        tourLct = TourLocation.objects.filter(location=lct).get()
         
-        messages.success(request, 'Xóa tour thành công')
-        return redirect(reverse('home'))
-    except:
-        tour = None
-        return render(request, 'Components/404page.html')
+        if tourLct.numTours > 1:
+            numTours = tourLct.numTours - 1
+            TourLocation.objects.filter(location=lct).update(numTours=numTours)
+        else:
+            TourLocation.objects.filter(location=lct).delete()
+            
+    Tour.objects.filter(id=pk).delete()
+        
+    messages.success(request, 'Xóa tour thành công')
+    return redirect(reverse('manage-tours'))
+    # except:
+    #     tour = None
+    #     return render(request, 'Components/404page.html')
     
 @login_required
 def bookTour(request, pk):

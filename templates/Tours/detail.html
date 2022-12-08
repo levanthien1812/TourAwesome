@@ -167,6 +167,7 @@
 
     quantityEle.addEventListener('input', () => {
       totalPriceEle.value = parseFloat(quantityEle.value) * parseFloat(priceEle.textContent)
+      totalPriceEle.value = totalPriceEle.value + 'đ'
     })
   });
 

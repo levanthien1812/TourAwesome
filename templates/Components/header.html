@@ -48,8 +48,8 @@
                         {% for lct in locations %}
                             <div class="location-item">
                                 <img class='img' src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTxY7FoL8iAmlBPANx-Or7KF3AJi-gtpZ35YPVolNSohIlvJByvxTz6ouPYWiI1JIGa" alt="">
-                                <p class="name">{{lct.location}}</p>
-                                <p class="quantity">{{lct.numTours}} tour</p>
+                                <div class="name"><p>{{lct.location}}</p></div>
+                                <div class="quantity"><p>{{lct.numTours}} tour</p></div>
                             </div>
                         {% endfor %}
                     </div>

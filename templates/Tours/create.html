@@ -2,6 +2,12 @@
 
 {% block content %}
 
+{% if form.errors %}
+    {% for field, errors in form.errors.items %}
+        {% include 'Components/flash_message.html' with messages=errors%}
+    {% endfor %}
+{% endif %}
+
 <form method='POST'  action='' enctype='multipart/form-data' class="create-tour-form">
     {% csrf_token %}
     {% if 'update' not in request.path %}
@@ -47,6 +53,10 @@
         <label for="highlight">Nhập những điểm nổi bật của tour</label>
         {{form.highlight}}
     </div>
+    <div class="form-control isDomestic">
+        <label for="highlight">Tour trong nước?</label>
+        {{form.isDomestic}}
+    </div>
     <div class="form-control">
         <label for="timeline">Chọn file HTML thể hiện lịch trình của tour</label>
         {{form.timeline}}
@@ -61,7 +71,7 @@
     </div>
     <div class="form-control">
         <label for="">Chọn phương tiện:</label>
-        <div class="">
+        <div class="vehicles-options">
             {% for value, text in vehicles %}
                 <input type="checkbox" name="{{value}}" id="{{value}}" value="{{value}}">
                 <label for="{{value}}">{{text}}</label>
@@ -78,8 +88,6 @@
     {% else %}
     <button type='submit' class="submit-btn">Cập nhật tour</button>
     {% endif %}
-    
-    {{form.errors}}
     
 </form>
 

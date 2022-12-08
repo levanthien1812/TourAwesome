@@ -15,7 +15,7 @@ class Tour (models.Model):
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=50)
     detailLocation = models.CharField(max_length=80, null= True)
-    price = models.FloatField()
+    price = models.BigIntegerField()
     startDate = models.DateField()
     specialNote = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=1000)
@@ -26,7 +26,7 @@ class Tour (models.Model):
     duration_nights = models.PositiveIntegerField()
     pub_date = models.DateTimeField(default = datetime.now())
     isHot = models.BooleanField(default=True)
-    old_price = models.FloatField(null=True)
+    old_price = models.BigIntegerField(null=True)
 
     @property
     def duration(self):
@@ -59,5 +59,5 @@ class TourVehicle (models.Model):
     )
 
 class TourLocation (models.Model):
-    location = models.CharField(max_length=20)
+    location = models.CharField(max_length=50)
     numTours = models.PositiveIntegerField(default=0, null=True)
