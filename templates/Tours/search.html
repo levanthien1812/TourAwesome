@@ -2,6 +2,7 @@
 
 {% block toursContent %}
 
+{% if tours %}
     <div class="search-tours tours-section">
         {% include 'Components/tour-section-header.html' with title="Các tour "|add:location|add:" nổi bật"%}
         <div class="section-content image-slider">
@@ -52,5 +53,11 @@
             {% endfor %}
         </div>
     </div>
+
+{% else %}
+    <div class="search-tours tours-section">
+        {% include 'Components/tour-section-header.html' with title="Không có tour để hiển thị"%}
+    </div>
+{% endif %}
 
 {% endblock toursContent %}

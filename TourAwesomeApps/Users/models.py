@@ -24,6 +24,11 @@ class MyUser(AbstractUser):
     sex = models.CharField(max_length=6, choices=sex_choices, null=True)
 
 
+status_choices = [
+    ('PENDING', 'Đang đợi duyệt'),
+    ('ACCEPTED', 'Đã duyệt')
+]
+
 class Booking(models.Model):
     userID = models.ForeignKey('Users.MyUser', on_delete=models.CASCADE)
     tourID = models.ForeignKey(
@@ -32,6 +37,7 @@ class Booking(models.Model):
     bookingDate = models.DateField(auto_now_add=True)
     quantity = models.PositiveIntegerField()
     price = models.BigIntegerField(null=True, default=0)
+    status = models.CharField(max_length=10, choices=status_choices, default='PENDING', null= True)
 
     def __str__(self):
         return self.userID + self.tourID

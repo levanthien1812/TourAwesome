@@ -1,0 +1,73 @@
+{% extends "Users/manage.html" %}
+
+{% load static %}
+
+{% block manage %}
+
+<div class="manage-bookings manage-section">
+    <p class="title">Quản lý đặt tour</p>
+    <div class="count">
+        <p>Số lượng đặt tour: {{bookings.count}}</p>
+    </div>
+    <form class="filter" method="GET">
+        <p>Bộ lọc</p>
+        {{bookingFilter.form}}
+        <button type="submit" class="search-btn">Tìm kiếm</button>
+    </form>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Mã tour</th>
+                    <th>ID người dùng</th>
+                    <th>Ngày đặt tour</th>
+                    <th>Số người</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{booking.id}}</td>
+                    <td><a href="{% url 'get-tour' booking.tourID.id %}"></a>{{booking.tourID}}</td>
+                    <td>{{booking.userID.id}}</td>
+                    <td>{{booking.bookingDate}}</td>
+                    <td>{{booking.quantity}}</td>
+                    <td>{{booking.price}}</td>
+                    {% if booking.status == 'PENDING' %}
+                        <td>
+                            <button class="delete-btn pending">DUYỆT</button>
+                            <form action="{% url 'accept-booking' booking.id %}" method="POST" class="confirm-delete-modal">
+                                {% csrf_token %}
+                                <div class="title">
+                                    <p>Cảnh báo</p>
+                                </div>
+                                <div class="message">
+                                    <p>Duyệt đặt tour cho mã <strong>{{booking.name}}</strong>?</p>
+                                </div>
+                                <div class="buttons">
+                                    <button type="text" class="cancel-btn">Hủy</button>
+                                    <button type="submit">Chắc chắn</button>
+                                </div>
+                            </form>
+                        </td>
+                    {% else %}
+                        <td><button class="accepted">ĐÃ DUYỆT</button></td>
+                    {% endif %}
+                    
+                    <td>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include 'Components/cover.html' %}
+    </div>
+</div>
+
+<script src="{% static 'js/confirm-delete.js' %}"></script>
+
+{% endblock manage %}

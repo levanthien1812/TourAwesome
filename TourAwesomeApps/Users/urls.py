@@ -11,8 +11,9 @@ urlpatterns = [
     path('bookings', views.showBookings, name='show-bookings'),
     path('manage-users', views.manageUser, name='manage-users'),
     path('manage-tours', views.manageTour, name='manage-tours'),
-    path('manage-bookings', views.manageUser, name='manage-bookings'),
+    path('manage-bookings', views.manageBookings, name='manage-bookings'),
     path('<int:pk>/delete', views.deleteUser, name='delete-user'),
+    path('bookings/<int:pk>/accept', views.acceptBooking, name='accept-booking'),
     
     # FOR RESET PASSWORD WHEN FORGET
     # path('reset_password', auth_views.PasswordResetView.as_view(), name='reset_password'),

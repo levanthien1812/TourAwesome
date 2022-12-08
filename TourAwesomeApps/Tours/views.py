@@ -14,13 +14,12 @@ from TourAwesomeApps.Blogs.models import Blog
 from TourAwesomeApps.Tours.forms import CreateTourForm
 from TourAwesomeApps.Users.forms import BookingDetailForm
 from TourAwesome.decorators import allowed_user, unauthenticated_user
-from TourAwesomeApps.Blogs.views import getBlogs
 
 User = get_user_model()
 
 def homeView(request):
     tourLocations = getTourLocations()
-    blogs = getBlogs(request)
+    blogs = Blog.objects.all()[:6]
     
     if not ('location' in request.GET):
         hotTours = getHotTours()
@@ -92,13 +91,16 @@ def getTourLocations():
     return tourLcts
 
 def getToursByLocation(location):
-    tours = Tour.objects.filter(location__icontains = location) or None
-    locationTours = []
-    for tour in tours:
-        image = TourImage.objects.filter(tour=tour).first()
-        vehicles = TourVehicle.objects.filter(tour=tour)
-        locationTours.append(
-            {'tour': tour, 'image': image, 'vehicles': vehicles})
+    try:
+        tours = Tour.objects.filter(location__icontains = location) or None
+        locationTours = []
+        for tour in tours:
+            image = TourImage.objects.filter(tour=tour).first()
+            vehicles = TourVehicle.objects.filter(tour=tour)
+            locationTours.append(
+                {'tour': tour, 'image': image, 'vehicles': vehicles})
+    except:
+        locationTours = None
     return locationTours
 
 def deleteTourImage(tour):
@@ -271,7 +273,7 @@ def bookTour(request, pk):
             bookingDetail.save()
             
             if booking:
-                messages.success(request, 'Chúc mừng bạn đặt tour thành công!')
+                messages.success(request, 'Bạn đã đặt tour thành công! Đơn đặt tour của bạn sẽ được duyệt sớm nhất có thể!')
                 return redirect(reverse('home'))
             else:
                 return Http404('Something went wrong')

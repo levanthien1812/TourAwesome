@@ -13,8 +13,8 @@ def tour_timeline_path(instance, filename):
 class Tour (models.Model):
     id = models.CharField(primary_key=True, max_length=10)
     name = models.CharField(max_length=200)
-    location = models.CharField(max_length=30)
-    detailLocation = models.CharField(max_length=50, null= True)
+    location = models.CharField(max_length=50)
+    detailLocation = models.CharField(max_length=80, null= True)
     price = models.FloatField()
     startDate = models.DateField()
     specialNote = models.CharField(max_length=50, null=True)

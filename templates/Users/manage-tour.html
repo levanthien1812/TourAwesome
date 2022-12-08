@@ -4,7 +4,7 @@
 
 {% block manage %}
 
-<div class="manage-tours">
+<div class="manage-tours manage-section">
     <div class="title">
         <p>Quản lý các tour</p>
         <a href="{% url 'create-tour' %}" class="create-btn">Tạo tour mới</a>
@@ -55,7 +55,7 @@
                                 <p>Cảnh báo</p>
                             </div>
                             <div class="message">
-                                <p>Bạn có chắc chắn muốn xóa tour này không? Theo tác này không thể hoàn tác.</p>
+                                <p>Bạn có chắc chắn muốn xóa tour <strong>{{tour.id}}</strong> không? Theo tác này không thể hoàn tác.</p>
                             </div>
                             <div class="buttons">
                                 <button class="cancel-btn">Hủy</button>
@@ -71,28 +71,6 @@
     </div>
 </div>
 
-<script>
-    const confirmDeleteModal = document.querySelector('.confirm-delete-modal')
-    let deleteBtns = document.querySelectorAll('.delete-btn')
-    const cover = document.querySelector(".cover")
-
-    deleteBtns = Array.from(deleteBtns)
-
-    deleteBtns.forEach(deleteBtn => {
-        deleteBtn.addEventListener("click", () => {
-            confirmDeleteModal.classList.add("show")
-            cover.classList.add("show")
-        });
-    })
-
-    cover.addEventListener("click", () => {
-        confirmDeleteModal.classList.remove("show")
-        cover.classList.remove("show")
-    });
-
-    const cancelBtn = confirmDeleteModal.querySelector('.cancel-btn')
-    cancelBtn.onclick = cover.click()
-
-</script>
+<script src="{% static 'js/confirm-delete.js' %}"></script>
 
 {% endblock manage %}

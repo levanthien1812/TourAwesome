@@ -46,49 +46,12 @@
     {% include 'Components/tour-section-header.html' with subtitle="Blogs" title="TỔNG HỢP BLOGS DU LỊCH 2022" content="Xem tất cả blogs"%}
 
     <div class="blogs-content">
-        <div class="blog-card-hori-main">
-            <div class="blog-image">
-                <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
-                    alt="blog-image" />
-            </div>
-            <div class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</div>
-            <div class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
-                chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
-            </div>
-        </div>
-        <div class="blog-card-hori">
-            <div class="blog-image">
-                <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
-                    alt="blog-image" />
-            </div>
-            <div class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</div>
-            <div class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
-                chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
-            </div>
-        </div>
-        <div class="blog-card-hori">
-            <div class="blog-image">
-                <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
-                    alt="blog-image" />
-            </div>
-            <div class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</div>
-            <div class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
-                chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
-            </div>
-        </div>
-        <div class="blog-card-hori">
-            <div class="blog-image">
-                <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000"
-                    alt="blog-image" />
-            </div>
-            <div class="blog-title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</div>
-            <div class="blog-description">Bạn đã thật sự khám phá trọn vẹn vẻ đẹp của vùng đất Tây Nguyên chưa? Nếu
-                chưa thì cùng Vietnam Booking khai phá vùng đất này cùng với tour du lịch Tây Nguyên Tết 2023 nhé!
-            </div>
-        </div>
+        {% for blog in blogs %}
+            {% include 'Components/blog-card-hori.html' with blog=blog %}
+        {% endfor %} 
     </div>
     <div class="see-more">
-        <button class="see-more-btn"><a href="">Xem thêm</a></button>
+        <button class="see-more-btn"><a href="{% url 'get-blogs' %}">Xem thêm</a></button>
     </div>
 </div>
 

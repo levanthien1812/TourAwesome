@@ -10,7 +10,7 @@ from TourAwesomeApps.Users.forms import SignupForm, LoginForm, UpdateForm
 from .models import sex_choices, Booking
 from TourAwesomeApps.Tours.models import Tour
 from TourAwesome.decorators import unauthenticated_user, allowed_user
-from .filter import UserFilter, TourFilter
+from .filter import UserFilter, TourFilter, BookingFilter
 
 User = get_user_model()
 
@@ -174,3 +174,32 @@ def manageTour(request):
         'tourFilter': tourFilter
     }
     return render(request, 'Users/manage-tour.html', context)
+
+@login_required
+@allowed_user(['admin'])
+def manageBookings(request):
+    bookings = Booking.objects.all() or None
+    
+    bookingFilter = BookingFilter(request.GET, queryset=bookings)
+    bookings = bookingFilter.qs
+
+    context = {
+        'bookings': bookings,
+        'bookingFilter': bookingFilter
+    }
+    return render(request, 'Users/manage-bookings.html', context)
+
+
+@login_required
+@allowed_user(['admin'])
+def acceptBooking(request, pk):
+    try:
+        booking = Booking.objects.filter(id=pk)
+        
+        booking.update(status='ACCEPTED')
+        
+        messages.success(request, 'Cập nhật trạng thái đặt tour thành công!')
+        return redirect(reverse('manage-bookings'))
+    except:
+        booking = None
+        return render(request, 'Components/404page.html')
