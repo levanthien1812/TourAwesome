@@ -260,6 +260,7 @@ def deleteTour(request, pk):
     #     return render(request, 'Components/404page.html')
     
 @login_required
+@allowed_user(['customer'])
 def bookTour(request, pk):
     bookingDetailForm = BookingDetailForm()
     
