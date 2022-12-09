@@ -43,6 +43,7 @@ class Tour (models.Model):
 class TourImage (models.Model):
     tour = models.ForeignKey('Tour', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=tour_image_path)
+
     
 class TourVehicle (models.Model):
     vehicles_choices = [

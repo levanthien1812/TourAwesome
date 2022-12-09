@@ -13,3 +13,6 @@ class Blog(models.Model):
     content = models.FileField(upload_to=blog_content_path)
     relatedLocation = models.CharField(max_length=50, null=True)
     # likes = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.title
