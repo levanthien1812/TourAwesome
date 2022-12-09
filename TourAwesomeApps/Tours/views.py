@@ -293,3 +293,7 @@ def bookTour(request, pk):
         except:
             tour = None
             return render(request, 'Components/404page.html')
+
+
+def introduce(request):
+    return render(request, 'Tours/introduce.html')
