@@ -50,9 +50,29 @@
 }
 
 .section-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 30px;
+  overflow-y: auto;
+  overflow-x: scroll;
+  padding: 50px 10px;
+}
+
+.section-content::-webkit-scrollbar-track
+{
+	background-color: #eaeaea;
+}
+
+.section-content::-webkit-scrollbar
+{
+	width: 4px;
+  height: 6px;
+	background-color: #ebebeb;
+}
+
+.section-content::-webkit-scrollbar-thumb
+{
+	background-color: #bcbcbc;
+  border-radius: 10px;
 }
 
 .see-more {

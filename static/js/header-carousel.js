@@ -20,7 +20,7 @@ function getInterval() {
             count++
         }
         MoveSlide(count)
-    }, 2500)
+    }, 4000)
 }
 
 

@@ -4,13 +4,14 @@ const searchRecommend = document.querySelector('.search-tour-recommend')
 let locationItems = document.querySelectorAll('.location-item')
 
 searchInput.addEventListener('focus', () => {
+    offsetBottom = searchInput.getBoundingClientRect().bottom
+    searchRecommend.top = offsetBottom
     searchRecommend.classList.add('show')
 
     locationItems = Array.from(locationItems)
     locationItems.forEach(lctItem => {
-        lctName = lctItem.querySelector('.name')
         lctItem.addEventListener('click', () => {
-            console.log('Hello')
+            lctName = lctItem.querySelector('.name')
             searchInput.value = lctName.textContent
             setTimeout(() => searchBtn.form.submit(), 300) 
             

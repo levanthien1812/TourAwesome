@@ -56,7 +56,7 @@
 
 {% else %}
     <div class="search-tours tours-section">
-        {% include 'Components/tour-section-header.html' with title="Không có tour để hiển thị"%}
+        {% include 'Components/tour-section-header.html' with title="Không có tour "|add:location|add:" để hiển thị"%}
     </div>
 {% endif %}
 

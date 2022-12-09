@@ -65,13 +65,13 @@
     <div class="tour-booking">
         <div class="title">{{tour.name}}</div>
         <div class="prices">
-            <p class="old-price">{{tour.old_price}} <sup>đ</sup></p>
+            <p class="old-price">{{tour.old_price}} <sup>VNĐ</sup></p>
             <p></p>
             <p class="price">
-                <span>{{tour.price}}<sup>đ</sup></span> /người
+                <span>{{tour.price}}<sup>VNĐ</sup></span> /người
             </p>
             <p class="price-differentiate">
-                <img src="{% static 'images/discount.png' %}" alt="" />-{{tour.price_differentiate}}<sup>đ</sup>
+                <img src="{% static 'images/discount.png' %}" alt="" />-{{tour.price_differentiate}}<sup>VNĐ</sup>
             </p>
         </div>
         <div class="booking-info">
@@ -90,7 +90,3 @@
     </div>
 </form>
 {% include 'Components/cover.html' %}
-
-<script>
-    
-</script>

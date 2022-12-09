@@ -1,5 +1,6 @@
 /* TOUR CARD VERTICAL STYLES */
 .tour-card {
+    min-width: 30%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.195);
     position: relative;
     background-color: white;
@@ -90,7 +91,8 @@
 
 .tour-card .tour-info .tour-prices .price {
     color: red;
-    font-size: 23px;
+    font-size: 24px;
+    font-weight: 600;
     grid-row: 2;
     grid-column: 1;
 }

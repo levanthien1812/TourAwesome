@@ -36,6 +36,7 @@
   height:100%;
   border:none;
   background:transparent;
+  z-index: 10;
 }
 .controlls button:hover {
   background: linear-gradient(90.74deg, rgba(96, 96, 96, 0.59) 8.42%, rgba(217, 217, 217, 0) 99.09%);
@@ -104,7 +105,6 @@
 .box-search-tour .search-tour-recommend {
   width: 100%;
   position: absolute;
-  bottom: -116px;
   left: 0;
   background-color: #ffe5b2;
   padding: 16px;
@@ -120,6 +120,7 @@
   font-size: 20px;
   letter-spacing: 3px;
   margin-bottom: 5px;
+  background-color: transparent;
 }
 
 .search-tour-recommend .location-items {
@@ -143,7 +144,7 @@
   cursor: pointer;
 }
 
-.search-tour-recommend .location-items:hover {
+.search-tour-recommend .location-item:hover {
   background-color: #fff8ea;
 }
 
@@ -153,6 +154,14 @@
   height: 100%;
   border-radius: 3px;
   border: 2px solid #aaa;
+}
+
+.search-tour-recommend .location-item .name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
 }
 
 .box-search-tour .search-tour-type::placeholder {

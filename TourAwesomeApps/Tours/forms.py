@@ -6,7 +6,9 @@ from .models import Tour
 
 class CreateTourForm(ModelForm):
     name = forms.CharField(label='Nhập tiêu đề tour', max_length=200)
-    location = forms.CharField(max_length=50)
+    location = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+        'placeholder': 'Địa điểm 1 - Địa điểm 2 - Địa điểm 3 ...'
+    }))
     detailLocation = forms.CharField(max_length=80)
     price = forms.FloatField(min_value=0)
     old_price = forms.FloatField(min_value=0)
