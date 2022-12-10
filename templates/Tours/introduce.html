@@ -1,0 +1,295 @@
+{% extends "main.html" %}
+
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/introduce.css' %}">
+{% endblock head %}
+
+{% block content %}
+<body>
+    <div  style="background-color: white">
+        <div class="img-introduce">
+            <img class="center" src="https://is.vnecdn.net/v215/80/98/38/4389880/assets/images/cover__a.jpg" alt="photo">
+        </div>
+    
+        <div class="blogs-section divcontent">
+            <div style="background-color: white">
+                <div>
+                    {% include 'Components/tour-section-header.html' with title="Về chúng tôi"%}
+                </div>
+                <div class="intro-title">
+                    <h1>Thông tin chung</h1>  
+                </div>
+                <div class="content">
+                    <p style="text-align: justify;">
+                        T&ecirc;n doanh nghiệp: <strong>C&ocirc;ng ty Cổ phần TourAwesome</strong>
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        T&ecirc;n Tiếng Anh: <strong>TourAwesome Corporation </strong>
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        T&ecirc;n viết tắt: <strong>TourAwesome Corp</strong>
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        Được Sở Kế Hoạch v&agrave; Đầu Tư Th&agrave;nh phố Hồ Ch&iacute; Minh cấp Giấy ph&eacute;p kinh doanh số <strong>0399999999 v&agrave;o ng&agrave;y 20 th&aacute;ng 11 năm 2022.</strong>
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <strong>✔</strong> Giấy Ph&eacute;p Lữ h&agrave;nh quốc tế &amp; nội địa:<b>&nbsp;</b>Số GP/No.: 79-917/2018/TCDL-GP LHQT
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Số GP: 79-0016/2018/SDL-GP LHNĐ
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <strong>✔ Chứng nhận Đại l&yacute; v&eacute; m&aacute;y bay</strong> chuy&ecirc;n nghiệp của<strong> IATA</strong> - Hiệp hội Vận tải H&agrave;ng kh&ocirc;ng Quốc tế
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <strong>✔ Chứng nhận Đại l&yacute; ch&iacute;nh thức </strong>của nhiều h&atilde;ng h&agrave;ng kh&ocirc;ng nội địa v&agrave; quốc tế: Vietnam Airlines, Vietjet Air, Jetstar Pacific...
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <strong>✔ Đối t&aacute;c </strong>của c&aacute;c chuỗi kh&aacute;ch sạn h&agrave;ng đầu trong v&agrave; ngo&agrave;i nước như: Vinpearl, Mường Thanh, Intercontinental,...
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        Trải qua&nbsp;13&nbsp;năm h&igrave;nh th&agrave;nh v&agrave; ph&aacute;t triển, C&ocirc;ng ty Cổ phần TourAwesome hiện nay l&agrave; địa chỉ cung cấp đầy đủ c&aacute;c dịch vụ chất lượng, từ&nbsp;<strong><a href="{% url 'home' %}" target="_blank">đặt v&eacute; m&aacute;y bay gi&aacute; rẻ</a>, <a href="{% url 'home' %}" target="_blank">tour du lịch</a>, <a href="{% url 'home' %}" target="_blank">đặt ph&ograve;ng kh&aacute;ch sạn</a></strong>&nbsp;đến<strong>&nbsp;<a href="{% url 'home' %}" target="_blank">l&agrave;m visa trọn g&oacute;i</a>,</strong> gi&uacute;p qu&yacute; kh&aacute;ch h&agrave;ng c&oacute; được h&agrave;nh tr&igrave;nh như &yacute; muốn.
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <strong>C&ocirc;ng ty Cổ phần TourAwesome</strong> đặt trụ sở ch&iacute;nh tại TPHCM v&agrave; chi nh&aacute;nh&nbsp;ở hai th&agrave;nh phố lớn l&agrave; H&agrave; Nội v&agrave; Đ&agrave; Nẵng. Đặc biệt, ch&uacute;ng t&ocirc;i đ&atilde; &aacute;p dụng c&ocirc;ng nghệ mới trong giao dịch online qua hệ thống website: <a href="{% url 'home' %}"><strong>TourAwesome.com</strong></a> v&agrave; Tổng đ&agrave;i tư vấn 24/7: <span style="color:#FF0000;"><strong>1900 100 800</strong></span>
+                    </p>   
+                </div>
+
+                <div class="intro-title">
+                    <h1>Lĩnh vực kinh doanh</h1>  
+                </div>
+                <div class="content">
+                    <p style="text-align: justify;">
+                        <strong><span style="font-size: 23px;">TourAwesome đang cung cấp 4 lĩnh vực dịch vụ sau:</span></strong>
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <span style="color:#0000FF;"><u><strong>1/ V&eacute; m&aacute;y bay:</strong></u></span>&nbsp;L&agrave; thế mạnh đặc th&ugrave; của ch&uacute;ng t&ocirc;i, với ph&ograve;ng b&aacute;n v&eacute; trực tiếp tr&ecirc;n cả ba miền Bắc &ndash; Trung &ndash; Nam c&ugrave;ng đội ngũ tư vấn chuy&ecirc;n nghiệp, giao v&eacute; tận nh&agrave; qu&yacute; kh&aacute;ch. Mong muốn h&agrave;ng đầu của Vietnam Booking l&agrave; đem đến cho kh&aacute;ch h&agrave;ng những tấm v&eacute; m&aacute;y bay gi&aacute; tốt, h&agrave;nh tr&igrave;nh bay thuận tiện nhất.
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        Vietnam Booking l&agrave; một trong số &iacute;t những c&ocirc;ng ty trở th&agrave;nh <strong>đại l&yacute; ch&iacute;nh thức</strong> của c&aacute;c h&atilde;ng h&agrave;ng kh&ocirc;ng nội địa như:&nbsp;Vietnam Airlines, Vietjet Air, Jetstar Pacific. Hơn nữa, ch&uacute;ng t&ocirc;i c&ograve;n đạt được danh hiệu đại l&yacute; chuy&ecirc;n nghiệp theo ti&ecirc;u chuẩn của IATA (Hiệp hội Vận tải H&agrave;ng kh&ocirc;ng Quốc tế) trong lĩnh vực cung cấp v&eacute; m&aacute;y bay của c&aacute;c h&atilde;ng h&agrave;ng kh&ocirc;ng quốc tế như Singapore Airlines, Korean Air, EVA Air, Qatar Airlines, Thai Airways, American Airlines, Air France, Qantas, China Southern Airlines, China Airlines, United Airlines, Emirates<em>&hellip;</em>&nbsp;
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <span style="color:#0000FF;"><u><strong>2/ </strong><strong>Ph&ograve;ng kh&aacute;ch sạn:</strong></u></span>&nbsp;Với mạng lưới đối t&aacute;c rộng lớn: <strong>2000</strong> kh&aacute;ch sạn tại Việt Nam v&agrave; hơn <strong>30.000</strong> kh&aacute;ch sạn quốc tế, ch&uacute;ng t&ocirc;i nỗ lực mang đến cho qu&yacute; kh&aacute;ch một nơi lưu tr&uacute; an to&agrave;n, thuận tiện v&agrave; gi&aacute; tốt nhất cho chuyến đi của m&igrave;nh.
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        Qu&yacute; kh&aacute;ch c&oacute; thể tham khảo h&igrave;nh ảnh thực tế, so s&aacute;nh ch&iacute;nh s&aacute;ch gi&aacute; ph&ograve;ng v&agrave; quy định của nhiều kh&aacute;ch sạn tr&ecirc;n hệ thống vietnambooking.com v&ocirc; c&ugrave;ng tiện lợi.
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <span style="color:#0000FF;"><u><strong>3/ Tổ chức tour du lịch</strong>:</u></span>&nbsp;C&ocirc;ng ty Cổ phần&nbsp;Việt Nam Booking chuy&ecirc;n cung cấp c&aacute;c <strong>tour du lịch đa dạng</strong> loại h&igrave;nh như du lịch nghỉ dưỡng, du lịch kh&aacute;m ph&aacute; &ndash; trải nghiệm với lịch tr&igrave;nh mới lạ hấp dẫn, dịch vụ đi k&egrave;m đạt chuẩn chất lượng v&agrave; đặc biệt gi&aacute; cả v&ocirc; c&ugrave;ng tiết kiệm.
+                    </p>
+                    
+                    <p>
+                        Ngo&agrave;i ra, ch&uacute;ng t&ocirc;i c&oacute; thế mạnh tổ chức tour thiết kế ri&ecirc;ng &ndash; M.I.C.E, team building &amp; gala dinner cho c&aacute;c cơ quan đo&agrave;n thể, doanh nghiệp, đơn vị h&agrave;nh ch&iacute;nh sự nghiệp, l&agrave; cơ hội để gắn kết tập thể, n&acirc;ng cao tinh thần lao động v&agrave; cống hiến.
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <span style="color:#0000FF;"><u><strong>4/ Tư vấn &amp; hỗ trợ Visa</strong>:</u></span>&nbsp;Ch&uacute;ng t&ocirc;i lu&ocirc;n sẵn s&agrave;ng tư vấn, hướng dẫn qu&yacute; kh&aacute;ch c&oacute; nhu cầu <strong>xin visa trọn g&oacute;i</strong>. Vietnam Booking c&oacute; bề d&agrave;y kinh nghiệm v&agrave; uy t&iacute;n trong lĩnh vực visa du lịch, visa thăm th&acirc;n nh&acirc;n v&agrave; visa c&ocirc;ng t&aacute;c cho người Việt Nam nhập cảnh v&agrave;o c&aacute;c nước ph&aacute;t triển của Ch&acirc;u &Aacute;, ch&acirc;u &Acirc;u, &Uacute;c, Mỹ&hellip; Với tỉ lệ đậu l&ecirc;n đến 98%, thậm ch&iacute; đối với c&aacute;c hồ sơ kh&oacute;, trường hợp xin visa khẩn.
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <meta charset="utf-8" />
+                    </p>     
+                </div>
+
+                <div class="intro-title">
+                    <h1>LỊCH SỬ, QUÁ TRÌNH HÌNH THÀNH VÀ PHÁT TRIỂN</h1>  
+                </div>
+                <div class="content">
+                    <p class="p-content"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor,
+                    voluptatem, a at voluptatum doloribus eligendi harum quidem earum commodi nisi perferendis cumque 
+                    odit enim ex labore veniam! Ad, iusto. </p> 
+                    <p class="p-content"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor,
+                    voluptatem, a at voluptatum doloribus eligendi harum quidem earum commodi nisi perferendis cumque 
+                    odit enim ex labore veniam! Ad, iusto. </p>
+                    <p class="p-content"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor,
+                        voluptatem, a at voluptatum doloribus eligendi harum quidem earum commodi nisi perferendis cumque 
+                        odit enim ex labore veniam! Ad, iusto. </p>       
+                </div>
+
+                <div class="intro-title">
+                    <h1>MỤC TIÊU VÀ SỨ MỆNH</h1>  
+                </div>
+                <div class="content" >
+                    <p style="text-align: justify;">
+                        Lấy niềm tin của kh&aacute;ch h&agrave;ng l&agrave; phương ch&acirc;m v&agrave; thước đo chất lượng dịch vụ, Vietnam Booking lu&ocirc;n mong muốn thương hiệu của m&igrave;nh được gắn với uy t&iacute;n v&agrave; chất lượng. Ng&agrave;y nay, khi thị trường lu&ocirc;n li&ecirc;n tục thay đổi, ch&uacute;ng t&ocirc;i c&agrave;ng x&aacute;c định r&otilde; r&agrave;ng mục ti&ecirc;u v&agrave; sứ mệnh của m&igrave;nh hơn:
+                    </p>
+                    
+                    <p style="text-align: justify;">
+                        <em><u>Đối với kh&aacute;ch h&agrave;ng v&agrave; đối t&aacute;c:</u></em>
+                    </p>
+                    
+                    <ul>
+                        <li style="text-align: justify;">
+                            X&acirc;y dựng uy t&iacute;n v&agrave; thực hiện đ&uacute;ng mọi cam kết trước, trong v&agrave; sau khi tiến h&agrave;nh giao dịch giữa c&aacute;c b&ecirc;n.
+                        </li>
+                        <li style="text-align: justify;">
+                            Chuy&ecirc;n cung cấp, tư vấn dịch vụ chất lượng nhất cho kh&aacute;ch h&agrave;ng với mức gi&aacute; tốt nhất v&agrave; ph&ugrave; hợp nhất.
+                        </li>
+                        <li style="text-align: justify;">
+                            Thực hiện nghiệp vụ tư vấn b&aacute;n h&agrave;ng một c&aacute;ch nhanh ch&oacute;ng, hiệu quả nhất
+                        </li>
+                    </ul>
+                    
+                    <p style="text-align: justify;">
+                        <em><u>Đối với x&atilde; hội:</u></em>
+                    </p>
+                    
+                    <ul>
+                        <li style="text-align: justify;">
+                            X&acirc;y dựng văn h&oacute;a doanh nghiệp hiệu quả điển h&igrave;nh tại Việt Nam.
+                        </li>
+                        <li style="text-align: justify;">
+                            Đ&oacute;ng g&oacute;p t&iacute;ch cực v&agrave;o c&aacute;c hoạt động hướng về cộng đồng, v&igrave; lợi &iacute;ch chung của x&atilde; hội.
+                        </li>
+                    </ul>
+                          
+                </div>
+            </div>
+
+            <div class="intro-title">
+                <h1>TẦM NHÌN, CHIẾN LƯỢC PHÁT TRIỂN</h1>  
+            </div>
+            <div class="content">
+                <p style="text-align: justify;">
+                    Tập thể <strong>C&ocirc;ng ty Cổ phần&nbsp;TourAwesome</strong> lu&ocirc;n mong muốn đem đến cho kh&aacute;ch h&agrave;ng th&ocirc;ng tin dịch vụ mới, chất lượng v&agrave; trở th&agrave;nh &ldquo;người bạn đồng h&agrave;nh&rdquo; tr&ecirc;n mọi h&agrave;nh tr&igrave;nh. Ch&iacute;nh v&igrave; thế, ch&uacute;ng t&ocirc;i đặt mục ti&ecirc;u ho&agrave;n thiện v&agrave; ph&aacute;t triển thương hiệu theo hướng:
+                </p>
+                
+                <ul>
+                    <li style="text-align: justify;">
+                        Mở rộng hệ thống văn ph&ograve;ng tới c&aacute;c th&agrave;nh phố như: Huế, Hải Ph&ograve;ng, Nha Trang,&hellip;
+                    </li>
+                    <li style="text-align: justify;">
+                        Lu&ocirc;n cải thiện c&ocirc;ng nghệ trong thời đại 4.0 để đem đến trải nghiệm dịch vụ tốt nhất cho kh&aacute;ch h&agrave;ng.
+                    </li>
+                    <li style="text-align: justify;">
+                        N&acirc;ng cao nghiệp vụ của đội ngũ nh&acirc;n vi&ecirc;n
+                    </li>
+                    <li style="text-align: justify;">
+                        Đơn giản h&oacute;a quy tr&igrave;nh đặt dịch vụ nhằm gi&uacute;p kh&aacute;ch h&agrave;ng tiết kiệm tối đa thời gian.
+                    </li>
+                    <li style="text-align: justify;">
+                        Trở th&agrave;nh đại l&yacute; uy t&iacute;n ch&iacute;nh thức của tất cả c&aacute;c h&atilde;ng h&agrave;ng kh&ocirc;ng tr&ecirc;n thế giới.
+                    </li>
+                    <li style="text-align: justify;">
+                        Bắt tay hợp t&aacute;c với nhiều đối t&aacute;c - &nbsp;đơn vị cung cấp dịch vụ li&ecirc;n quan v&agrave; đem lại lợi &iacute;ch cao nhất cho kh&aacute;ch h&agrave;ng.
+                    </li>
+                </ul>     
+            </div>
+            
+            <div class="intro-title">
+                <h1>HÌNH ẢNH KHÁCH HÀNG CỦA TourAwesome</h1>  
+            </div>
+            <div class="content">
+                <p style="text-align: center;">
+                    <img alt="Công ty du lịch uy tín tphcm Vietnambooking" src="https://www.vietnambooking.com/wp-content/uploads/2018/09/gioi-thieu-vietnam-booking-28-09-2018-16.jpg" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Diễn vi&ecirc;n Trần Nhượng tại văn ph&ograve;ng TourAwesome H&agrave; Nội.</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="cong ty du lich vietnam booking" class="alignnone size-full wp-image-352757" height="465" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-7.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Kh&aacute;ch h&agrave;ng vui chơi với Tour Team Building của&nbsp;TourAwesome</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="cong ty du lich vietnam booking " class="alignnone size-full wp-image-352755" height="428" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-5.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Tour đo&agrave;n&nbsp;do TourAwesome tổ chức</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="cong ty lu hanh viet nam booking" class="alignnone size-full wp-image-352758" height="437" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-6.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Tour đo&agrave;n&nbsp;C&ocirc;ng ty&nbsp;do TourAwesome tổ chức</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="gioi thieu vietnam booking" class="alignnone size-full wp-image-352746" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-3.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Kh&aacute;ch h&agrave;ng k&yacute; nhận thưởng tại văn ph&ograve;ng TourAwesome th&agrave;nh phố&nbsp;Hồ Ch&iacute; Minh</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="gioi thieu vietnam booking" class="alignnone size-full wp-image-352745" height="434" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/gioi-thieu-vietnam-booking.png" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Kh&aacute;ch h&agrave;ng h&aacute;i lộc đầu năm tại TourAwesome.</em>
+                </p>
+                
+                <div class="intro-title">
+                    <h1  style="text-align: justify; margin-left: 30px;">
+                        <strong>H&Igrave;NH ẢNH MỘT SỐ VĂN PH&Ograve;NG CỦA TourAwesome</strong>
+                    </h1>
+                </div>
+                <p style="text-align: center;">
+                    <img alt="cong ty co phan vietnam booking" class="alignnone size-full wp-image-352597" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-1.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Đội ngũ nh&acirc;n vi&ecirc;n tại văn ph&ograve;ng 192 Trần Qu&yacute;, P.6, Quận 11, TP. HCM</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="cong ty co phan vietnam booking" class="alignnone size-full wp-image-352685" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-2-1.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>C&aacute;c tư vấn vi&ecirc;n chuy&ecirc;n nghiệp tại văn ph&ograve;ng 54 Phạm Hồng Th&aacute;i, P. Bến Th&agrave;nh, Quận 1, TP.HCM</em>
+                </p>
+                
+                <p style="text-align: center;">
+                    <img alt="gioi thieu vietnam booking" class="alignnone size-full wp-image-352749" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-4.jpg" width="620" />
+                </p>
+                
+                <p style="text-align: center;">
+                    <em>Văn ph&ograve;ng 190&nbsp;Trần Qu&yacute;, P.6, Quận 11, TP.HCM</em>
+                </p>
+                
+                <p style="text-align: justify;">
+                    <strong><em>(đang cập nhật)</em></strong>     
+            </div>
+
+
+        </div>
+        
+        
+        <div class="more-blogs tours-section">
+            <div class="title" style="margin-bottom: 50px">
+                <h2 class="center">Cảm ơn quý khách đã ghé thăm trang web của chúng tôi!</h2>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
