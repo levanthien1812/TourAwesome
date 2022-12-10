@@ -1,5 +1,6 @@
 /* TOUR CARD VERTICAL STYLES */
 .tour-card {
+    width: 30%;
     min-width: 30%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.195);
     position: relative;

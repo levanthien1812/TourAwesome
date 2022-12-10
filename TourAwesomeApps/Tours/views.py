@@ -18,18 +18,16 @@ from TourAwesome.decorators import allowed_user, unauthenticated_user
 User = get_user_model()
 
 def homeView(request):
+    updateHotTours()
+    
+    tours = toursWithImages(Tour.objects.all()[:20])
     tourLocations = getTourLocations()
     blogs = Blog.objects.all()[:6]
     
+    
     if not ('location' in request.GET):
-        hotTours = getHotTours()
-        domesticTours = getDomesticTour(True)
-        foreignTours = getDomesticTour(False)
-        
         context = {
-            'hotTours': hotTours,
-            'domesticTours': domesticTours,
-            'foreignTours': foreignTours,
+            'tours': tours,
             'blogs': blogs,
             'locations': tourLocations,
         }
@@ -49,6 +47,15 @@ def homeView(request):
         }
         return render(request, 'Tours/search.html', context)
         
+def toursWithImages(tours):
+    toursWithImages = []
+    if tours != None:
+        for tour in tours:
+            image = TourImage.objects.filter(tour=tour).first()
+            vehicles = TourVehicle.objects.filter(tour=tour)
+            toursWithImages.append(
+                {'tour': tour, 'image': image, 'vehicles': vehicles})
+    return toursWithImages
     
 def showDomesticTours(request):
     domesticTours = getDomesticTour(True)
@@ -60,32 +67,16 @@ def showForeignTours(request):
     if (foreignTours != None):
         return render(request, 'Tours/foreign-tours.html', {'tours': foreignTours})
 
-def getDomesticTour(isDomestic):
-    domesticTours = []
-    tours = Tour.objects.filter(isDomestic = isDomestic) or None
+def updateHotTours():
+    tours = Tour.objects.all()
     if tours != None:
         for tour in tours:
-            image = TourImage.objects.filter(tour=tour).first()
-            vehicles = TourVehicle.objects.filter(tour=tour)
-            domesticTours.append({'tour': tour, 'image': image, 'vehicles': vehicles})
-            
-    return domesticTours
-
-def getHotTours():
-    hotTours = []
-    tours = Tour.objects.all()[:8] or None
-    if tours != None:
-        for tour in tours:
-            image = TourImage.objects.filter(tour=tour).first()
-            vehicles = TourVehicle.objects.filter(tour=tour)
             if tour.pub_date.date() > datetime.now().date() - timedelta(days=10):
                 tour.isHot = True
-                hotTours.append({'tour': tour, 'image': image, 'vehicles': vehicles})
             else:
                 tour.isHot = False
             tour.save()
             
-    return hotTours
 def getTourLocations():
     tourLcts = TourLocation.objects.filter(numTours__gte=1).order_by('numTours')[:10] or None
     return tourLcts

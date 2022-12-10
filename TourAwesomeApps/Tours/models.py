@@ -9,6 +9,9 @@ def tour_image_path(instance, filename):
 def tour_timeline_path(instance, filename):
     return 'tours/{0}/{1}'.format(instance.id, filename)
 
+def location_image_path(instance, filename):
+    return 'locations/{0}'.format(instance.id, filename)
+
 
 class Tour (models.Model):
     id = models.CharField(primary_key=True, max_length=10)
@@ -24,7 +27,7 @@ class Tour (models.Model):
     isDomestic = models.BooleanField(default=True)
     duration_days = models.PositiveIntegerField()
     duration_nights = models.PositiveIntegerField()
-    pub_date = models.DateTimeField(default = datetime.now())
+    pub_date = models.DateTimeField(auto_now_add=True)
     isHot = models.BooleanField(default=True)
     old_price = models.BigIntegerField(null=True)
 
@@ -60,4 +63,5 @@ class TourVehicle (models.Model):
 
 class TourLocation (models.Model):
     location = models.CharField(max_length=50)
+    image = models.ImageField(upload_to=location_image_path, null=True)
     numTours = models.PositiveIntegerField(default=0, null=True)

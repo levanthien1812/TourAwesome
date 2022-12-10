@@ -6,8 +6,10 @@
 <div class="hot-tours tours-section">
     {% include 'Components/tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC TOUR HOT NHẤT NĂM 2022" content="Các tour tìm kiếm và được đặt nhiều nhất nhất trong năm 2022, bạn có thể đặt trước từ bây giờ để có giá tốt nhất"%}
     <div class="section-content image-slider">
-        {% for hotTour in hotTours %}
-        {% include 'Components/tour-card.html' with Tour=hotTour%}
+        {% for tour in tours %}
+            {% if tour.tour.isHot == True %}
+                {% include 'Components/tour-card.html' with Tour=tour%}
+            {% endif %}
         {% endfor %}
     </div>
     <div class="see-more">
@@ -19,8 +21,10 @@
 <div class="domestic-tours tours-section">
     {% include 'Components/tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC TOUR TRONG NƯỚC NĂM 2022" content="Các tour du lịch Việt Nam năm 2022"%}
     <div class="section-content image-slider">
-        {% for domesticTour in domesticTours %}
-        {% include 'Components/tour-card.html' with Tour=domesticTour%}
+        {% for tour in tours %}
+            {% if tour.tour.isDomestic == True %}
+                {% include 'Components/tour-card.html' with Tour=tour%}
+            {% endif %}
         {% endfor %}
     </div>
     <div class="see-more">
@@ -32,8 +36,10 @@
 <div class="foreign-tours tours-section">
     {% include 'Components/tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="TOUR NƯỚC NGOÀI NĂM 2022" content="Trải Nghiệm Thế Giới, Khám Phá Bản Thân"%}
     <div class="section-content image-slider">
-        {% for foreignTour in foreignTours %}
-        {% include 'Components/tour-card.html' with Tour=foreignTour%}
+        {% for tour in tours %}
+            {% if tour.tour.isDomestic == False %}
+                {% include 'Components/tour-card.html' with Tour=tour%}
+            {% endif %}
         {% endfor %}
     </div>
     <div class="see-more">
