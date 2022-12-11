@@ -29,8 +29,10 @@
             </p>
         </div>
         <div class="tour-prices">
-            <p class="old-price">{{Tour.tour.old_price}} <sup>đ</sup></p>
-            <p class="price-differentiate">-{{Tour.tour.price_differentiate}}<sup>đ</sup></p>
+            {% if Tour.tour.old_price < Tour.tour.price %}
+                <p class="old-price">{{Tour.tour.old_price}} <sup>đ</sup></p>
+                <p class="price-differentiate">-{{Tour.tour.price_differentiate}}<sup>đ</sup></p>
+            {% endif %}
             <p class="price">{{Tour.tour.price}} <sup>đ</sup></p>
         </div>
     </div>
