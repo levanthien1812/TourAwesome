@@ -129,7 +129,7 @@ def showBookings(request):
 @login_required
 @allowed_user(['admin'])
 def manageUser(request):
-    users = User.objects.all() or None
+    users = User.objects.filter(is_superuser=False).all() or None
     
     staffs_count = User.objects.filter(is_staff=True).count
     users_count = User.objects.filter(is_staff=False, is_superuser=False).count
@@ -179,6 +179,7 @@ def manageTour(request):
 @allowed_user(['admin'])
 def manageBookings(request):
     bookings = Booking.objects.all() or None
+    
     
     bookingFilter = BookingFilter(request.GET, queryset=bookings)
     bookings = bookingFilter.qs

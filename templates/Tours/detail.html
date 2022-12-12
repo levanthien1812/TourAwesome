@@ -132,7 +132,12 @@
         <input type="number" name="quantity" id="quantity" value="1" />
       </div>
       <div class="book-btn">
-        <button>Đặt tour</button>
+        {% if request.user.is_authenticated %}
+          <button>Đặt tour</button>
+        {% else %}
+          <p>Vui lòng <a href="{% url 'login' %}">đăng nhập</a> để đặt tour</p>
+          <button disabled>Đặt tour</button>
+        {% endif %}
       </div>
     </div>
     <div class="tour-counselor">

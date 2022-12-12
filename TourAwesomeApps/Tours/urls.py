@@ -11,4 +11,6 @@ urlpatterns = [
     path('<slug:pk>/delete', views.deleteTour, name='delete-tour'),
     path('<slug:pk>/book', views.bookTour, name='book-tour'),
     path('introduce/', views.introduce, name='introduce'),
+    
+    # path('<slug:pk>/detail-check-login', views.detailCheckLogin, name='detail-check-login')
 ]

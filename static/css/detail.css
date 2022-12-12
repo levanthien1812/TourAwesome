@@ -221,6 +221,17 @@
     text-align: center;
 }
 
+.tour-booking .book-btn p {
+    color: red;
+}
+.tour-booking .book-btn p a {
+    color: inherit;
+    border-bottom: 1px solid red;
+}
+.tour-booking .book-btn p a:hover {
+    font-weight: bold;
+}
+
 .tour-booking .book-btn button {
     margin-top: 20px;
     padding: 10px 48px;
@@ -233,7 +244,12 @@
     transition: all .6s ease;
 }
 
-.tour-booking .book-btn button:hover {
+.tour-booking .book-btn button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.tour-booking .book-btn button:not(:disabled):hover {
     position: relative;
     bottom: 3px;
     right: 3px;

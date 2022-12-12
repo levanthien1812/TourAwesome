@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.db.models import F
 
 from .models import Tour, TourImage, TourVehicle, TourLocation
 from TourAwesomeApps.Users.models import Booking
@@ -159,8 +160,14 @@ def createTour(request):
         
     return render(request, 'Tours/create.html', {'form': form, 'vehicles': vehicles_choices})
 
+# def detailCheckLogin(request, pk):
+#     if request.user:
+#         return render(request, 'Components/not-allow.html')
+    
+#     getTour(request, pk)
+
 def getTour(request, pk):
-    try:
+    # try:
         tour = Tour.objects.get(id=pk)
         
         images = TourImage.objects.filter(tour=tour)
@@ -169,11 +176,14 @@ def getTour(request, pk):
             'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
         timeline = timeline_file.read()
         
-        bookingDetailForm = BookingDetailForm(initial={
-            'name': request.user.name, 
-            'email': request.user.email,
-            'phoneNum': request.user.phoneNum,
-        })
+        if request.user.is_authenticated:
+            bookingDetailForm = BookingDetailForm(initial={
+                'name': request.user.name,
+                'email': request.user.email,
+                'phoneNum': request.user.phoneNum,
+            })
+        else:
+            bookingDetailForm = None
         
         context = {
             'tour': tour,
@@ -183,9 +193,9 @@ def getTour(request, pk):
             'bookingDetailForm': bookingDetailForm
         }
         return render(request, 'Tours/detail.html', context)
-    except:
-        tour = None
-        return render(request, 'Components/404page.html')
+    # except:
+    #     tour = None
+    #     return render(request, 'Components/404page.html')
 
 @login_required
 @allowed_user(['admin'])
@@ -264,6 +274,7 @@ def bookTour(request, pk):
             if bookingDetail.bookingID_id == None:
                 bookingDetail.bookingID_id = booking.id
             bookingDetail.save()
+            Tour.objects.filter(id=pk).update(bookingCount=F('bookingCount')+1)
             
             if booking:
                 messages.success(request, 'Bạn đã đặt tour thành công! Đơn đặt tour của bạn sẽ được duyệt sớm nhất có thể!')
