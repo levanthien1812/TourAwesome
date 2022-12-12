@@ -25,30 +25,12 @@
             <div class="title">
                 <p>Blog</p>
             </div>
-            <div class="blog-simple">
-                <div class="img">
-                    <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
-                </div>
-                <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
-            </div>
-            <div class="blog-simple">
-                <div class="img">
-                    <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
-                </div>
-                <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
-            </div>
-            <div class="blog-simple">
-                <div class="img">
-                    <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
-                </div>
-                <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
-            </div>
             {% for blog in blogs %}
                 <div class="blog-simple">
                     <div class="img">
-                        <img src="https://img.freepik.com/free-vector/flat-design-lake-scenery_23-2149161405.jpg?w=2000" alt="">
+                        <img src="{{MEDIA_URL}}{{blog.image}}" alt="">
                     </div>
-                    <p class="title">Lý do bạn nên “xách ba lô” trải nghiệm tour du lịch Tây Nguyên Tết 2023</p>
+                    <p class="title">{{blog.title}}</p>
                 </div>
             {% endfor %}
         </div>

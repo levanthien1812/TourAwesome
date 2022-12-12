@@ -74,6 +74,10 @@
     text-align: right;
 }
 
+.tour-card .tour-info .tour-other-info .booking-count {
+    text-align: right;
+}
+
 .tour-card .tour-info .tour-prices {
     padding-top: 8px;
     display: grid;
@@ -169,9 +173,11 @@
     height: 250px;
     position: relative;
     overflow: hidden;
+    margin-bottom: 16px;
 }
 
 .tour-card-hori .tour-image {
+    min-height: 0;
     position: relative;
 }
 
@@ -298,7 +304,7 @@
     display: grid;
     height: 100px;
     grid-template-columns: 100px 1fr;
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: 70px 1fr;
     align-items: center;
     gap: 8px;
     margin-bottom: 10px;

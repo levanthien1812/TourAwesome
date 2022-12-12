@@ -21,12 +21,14 @@ def homeView(request):
     updateHotTours()
     
     tours = toursWithImages(Tour.objects.all()[:20])
+    hotTours = getHotTours()
     tourLocations = getTourLocations()
     blogs = Blog.objects.all()[:6]
     
     
     if not ('location' in request.GET):
         context = {
+            'hotTours': hotTours,
             'tours': tours,
             'blogs': blogs,
             'locations': tourLocations,
@@ -57,15 +59,10 @@ def toursWithImages(tours):
                 {'tour': tour, 'image': image, 'vehicles': vehicles})
     return toursWithImages
     
-def showDomesticTours(request):
-    domesticTours = getDomesticTour(True)
-    if (domesticTours != None):
-        return render(request, 'Tours/domestic-tours.html', {'tours': domesticTours})
-
-def showForeignTours(request):
-    foreignTours = getDomesticTour(False)
-    if (foreignTours != None):
-        return render(request, 'Tours/foreign-tours.html', {'tours': foreignTours})
+def getHotTours():
+    tours = Tour.objects.all().order_by('-bookingCount')
+    tours = toursWithImages(tours)
+    return tours
 
 def updateHotTours():
     tours = Tour.objects.all()
@@ -78,21 +75,12 @@ def updateHotTours():
             tour.save()
             
 def getTourLocations():
-    tourLcts = TourLocation.objects.filter(numTours__gte=1).order_by('numTours')[:10] or None
+    tourLcts = TourLocation.objects.filter(numTours__gte=1).order_by('-numTours')[:10] or None
     return tourLcts
 
 def getToursByLocation(location):
-    try:
-        tours = Tour.objects.filter(location__icontains = location) or None
-        locationTours = []
-        for tour in tours:
-            image = TourImage.objects.filter(tour=tour).first()
-            vehicles = TourVehicle.objects.filter(tour=tour)
-            locationTours.append(
-                {'tour': tour, 'image': image, 'vehicles': vehicles})
-    except:
-        locationTours = None
-    return locationTours
+    tours = Tour.objects.filter(location__icontains = location, detailLocation__icontains = location) or None
+    return toursWithImages(tours)
 
 def deleteTourImage(tour):
     TourImage.objects.filter(tour=tour).delete()

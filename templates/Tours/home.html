@@ -6,7 +6,7 @@
 <div class="hot-tours tours-section">
     {% include 'Components/tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC TOUR HOT NHẤT NĂM 2022" content="Các tour tìm kiếm và được đặt nhiều nhất nhất trong năm 2022, bạn có thể đặt trước từ bây giờ để có giá tốt nhất"%}
     <div class="section-content image-slider">
-        {% for tour in tours %}
+        {% for tour in hotTours %}
             {% if tour.tour.isHot == True %}
                 {% include 'Components/tour-card.html' with Tour=tour%}
             {% endif %}
@@ -64,7 +64,7 @@
 
 {% comment %} HOT PLACES TO GO {% endcomment %}
 
-<div class="tours-section">
-    {% include 'Components/tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC ĐỊA ĐIỂM DU LỊCH PHỔ BIẾN" content="Bao La Thế Giới Bốn Bể Là Nhà" %}
+{% comment %} <div class="tours-section">
+    {% include 'Components/tour-section-header.html' with subtitle="Hãy đặt tour sớm nhất" title="CÁC ĐỊA ĐIỂM DU LỊCH PHỔ BIẾN" content="Bao La Thế Giới Bốn Bể Là Nhà" %} {% endcomment %}
 
 {% endblock toursContent %}

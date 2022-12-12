@@ -30,6 +30,7 @@ class Tour (models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     isHot = models.BooleanField(default=True)
     old_price = models.BigIntegerField(null=True)
+    bookingCount = models.PositiveIntegerField(default=0, null=True)
 
     @property
     def duration(self):
