@@ -1,5 +1,9 @@
 {% extends "Users/manage.html" %}
 
+{% block title %}
+  <title>Các tour đã đặt</title>
+{% endblock title %}
+
 {% load static %}
 
 {% block manage %}
@@ -20,8 +24,9 @@
                 <p class="price">
                     Tổng tiền đặt tour: {{booking.price}}
                 </p>
-                <div class="status {{booking.status}}">
-                    <button>{{booking.get_status_display}}</button>
+                <div class="status">
+                    <a class="detail-btn button" href="{% url 'get-tour' booking.tourID.id %}">Xem chi tiết</a>
+                    <button class="{{booking.status}}">{{booking.get_status_display}}</button>
                 </div>
             </div>
         {% endfor %}

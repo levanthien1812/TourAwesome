@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.db.models import F
+from django.db.models import F, Q
 
 from .models import Tour, TourImage, TourVehicle, TourLocation
 from TourAwesomeApps.Users.models import Booking
@@ -80,7 +80,7 @@ def getTourLocations():
     return tourLcts
 
 def getToursByLocation(location):
-    tours = Tour.objects.filter(location__icontains = location, detailLocation__icontains = location) or None
+    tours = Tour.objects.filter(Q(location__icontains=location) | Q(detailLocation__icontains=location)) or None
     return toursWithImages(tours)
 
 def deleteTourImage(tour):
@@ -167,7 +167,7 @@ def createTour(request):
 #     getTour(request, pk)
 
 def getTour(request, pk):
-    # try:
+    try:
         tour = Tour.objects.get(id=pk)
         
         images = TourImage.objects.filter(tour=tour)
@@ -193,9 +193,9 @@ def getTour(request, pk):
             'bookingDetailForm': bookingDetailForm
         }
         return render(request, 'Tours/detail.html', context)
-    # except:
-    #     tour = None
-    #     return render(request, 'Components/404page.html')
+    except:
+        tour = None
+        return render(request, 'Components/404page.html')
 
 @login_required
 @allowed_user(['admin'])

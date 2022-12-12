@@ -1,8 +1,20 @@
 {% extends "Users/manage.html" %}
 
+{% block title %}
+  <title>Tài khoản</title>
+{% endblock title %}
+
 {% load static %}
 
 {% block manage %}
+
+    {% if form.errors %}
+        {% for field, errors in form.errors.items %}
+            {% include 'Components/flash_message.html' with messages=errors%}
+        {% endfor %}
+    {% else %}
+        {% include 'Components/flash_message.html'%}
+    {% endif %}
 
     <form action="{% url 'update-account' %}" method="POST" class="update-user" enctype="multipart/form-data">
         {% csrf_token %}
@@ -41,21 +53,28 @@
                 {{form.phoneNum}}
             </div>
         </div>
+        <div class="submit">
+            <button type="submit" class="update-btn">Cập nhật</button>
+        </div>
+        {{form.errors}}
+    </form>
+
+    <form action="{% url 'update-password' %}" method="POST" class="update-user">
+        {% csrf_token %}
         <div class="section password">
             <p class="title">Mật khẩu</p>
             <div class="form-control">
                 <label for="password">Mật khẩu hiện tại</label>
-                {{form.password}}
+                <input type="password" name="password" id="password">
             </div>
             <div class="form-control">
                 <label for="newPassword">Mật khẩu mới</label>
-                {{form.newPassword}}
+                <input type="password" name="newPassword" id="newPassword">
             </div>
         </div>
 
-        {{form.errors}}
         <div class="submit">
-            <button type="submit" class="update-btn">Cập nhật</button>
+            <button type="submit" class="update-btn">Cập nhật mật khẩu</button>
         </div>
     </form>
 

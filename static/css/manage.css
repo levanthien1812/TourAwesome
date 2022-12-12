@@ -179,6 +179,7 @@
 .update-user .update-btn {
     background-color: var(--color-main);
     padding: 12px 32px;
+    margin-bottom: 24px;
     border-radius: 10px;
     color: white;
     font-size: inherit;
@@ -222,17 +223,25 @@
 
 .user-bookings .booking-item .status {
     grid-column: span 3;
-    text-align: right;
+    justify-content: flex-end;
+    gap: 8px;
+    display: flex;
+}
+
+.user-bookings .booking-item .status .detail-btn {
+    display: block;
+    background-color: var(--color-main);
+    color: white;
 }
 
 .user-bookings .booking-item .status button {
     cursor: default;
 }
 
-.user-bookings .booking-item .status.PENDING button{
+.user-bookings .booking-item .status button.PENDING{
     background-color: rgb(255, 196, 57);
 }
-.user-bookings .booking-item .status.ACCEPTED button{
+.user-bookings .booking-item .status button.ACCEPTED{
     background-color: rgb(0, 181, 0);
 }
 
@@ -318,6 +327,54 @@
 }
 .manage-tours .title .create-btn:hover {
     background-color: rgb(229, 80, 0);
+}
+
+.manage-bookings .statistics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.manage-bookings .statistics-item {
+    padding: 16px;
+    height: 150px;
+    border-radius: 8px;
+    color: white ;
+    position: relative;
+    overflow: hidden;
+}
+
+.manage-bookings .statistics-item:nth-child(1) {
+    background-color: #0099ff;
+    background-image: linear-gradient(to bottom right, #0080d5, #5bbdff);
+    box-shadow: 0 0 8px #0080d5;
+}
+.manage-bookings .statistics-item:nth-child(2) {
+    background-color: #ff951c;
+    background-image: linear-gradient(to bottom right, #ff8800, #ffac4e);
+    box-shadow: 0 0 8px #ff8800;
+}
+.manage-bookings .statistics-item:nth-child(3) {
+    background-color: #ff4b4b;
+    background-image: linear-gradient(to bottom right, #ff2626, #ff6f6f);
+    box-shadow: 0 0 8px #ff2626;
+}
+
+.manage-bookings .statistics-item .number {
+    font-size: 36px;
+    font-weight: bold;
+}
+.manage-bookings .statistics-item .name {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.manage-bookings .statistics-item img {
+    display: block;
+    width: 100px;
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    opacity: 0.9;
 }
 
 .manage-bookings button.pending {

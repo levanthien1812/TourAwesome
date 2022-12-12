@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from django.db.models import Sum
 
 from TourAwesomeApps.Users.forms import SignupForm, LoginForm, UpdateForm
 from .models import sex_choices, Booking
@@ -99,14 +100,9 @@ def update(request):
     
     if (request.method == 'POST'):
         form = UpdateForm(request.POST, request.FILES, instance=user)
-        print(request.POST)
-        # print(form.changed_data)
         
         if form.is_valid():
             user = form.save(commit=False)
-            newPassword = form.cleaned_data.get('newPassword')
-            if (newPassword != ''):
-                user.set_password(newPassword)
             user.save()
             
             messages.success(request, 'Cập nhật thông tin thành công')
@@ -116,6 +112,31 @@ def update(request):
             print('Form is invalid!')
         
     return render(request, 'Users/account.html', {'form': form, 'sex_choices': sex_choices})
+
+def updatePassword(request):
+    user = User.objects.get(id=request.user.id)
+    password = request.POST['password']
+    newPassword = request.POST['newPassword']
+    
+    if password.__len__() > 0:
+        if newPassword.__len__() == 0:
+            messages.error(
+                request, 'Bạn đang muốn đổi mật khẩu? Vui lòng nhập mật khẩu mới')
+        else:
+            if user.check_password(password) == True:
+                if password == newPassword:
+                    messages.error(
+                        request, 'Mật khẩu mới trùng với mật khẩu cũ! Vui lòng nhập mật khẩu khác.')
+                else:
+                    user.set_password(newPassword)
+                    messages.success(request, 'Cập nhật mật khẩu thành công')
+            else:
+                messages.error(
+                    request, 'Mật khẩu bạn nhập không chính xác! Vui lòng thử lại')
+    else:
+        messages.error(request, 'Vui lòng nhập mật khẩu hiện tại!')
+        
+    return redirect(reverse('update-account'))
 
 @login_required
 def showBookings(request):
@@ -179,12 +200,29 @@ def manageTour(request):
 @allowed_user(['admin'])
 def manageBookings(request):
     bookings = Booking.objects.all() or None
-    
-    
+    statistics = {}
+    if bookings != None:
+        bookingsCount = bookings.count
+        usersCount = Booking.objects.aggregate(Sum('quantity'))['quantity__sum']
+        revenue = Booking.objects.aggregate(Sum('price'))['price__sum']
+        
+        statistics = {
+            'bookingsCount': bookingsCount,
+            'usersCount': usersCount,
+            'revenue': revenue,
+        }
+    else:
+        statistics = {
+            'bookingsCount': '0',
+            'usersCount': '0',
+            'revenue': '0',
+        }
+        
     bookingFilter = BookingFilter(request.GET, queryset=bookings)
     bookings = bookingFilter.qs
 
     context = {
+        'statistics': statistics,
         'bookings': bookings,
         'bookingFilter': bookingFilter
     }

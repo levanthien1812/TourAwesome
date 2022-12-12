@@ -23,7 +23,7 @@
     <div class="signinup">
         <form action="{% url 'signup' %}" class="signup-form" method="POST">
             {% csrf_token %}
-            <div class="logo"><img src="{% static 'images/logo.png' %}" alt=""></div>
+            <a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.png' %}" alt=""></a>
             <p class="title">Đăng ký</p>
             <div class="info">
                 <div class="form-control">

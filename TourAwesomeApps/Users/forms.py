@@ -39,8 +39,8 @@ class UpdateForm(forms.ModelForm):
     }), required=False)
     birthday = forms.DateField(widget=forms.SelectDateWidget, required=False)
     sex = forms.ChoiceField(required=False, choices=sex_choices, widget=forms.RadioSelect)
-    password = forms.CharField(widget=forms.PasswordInput, min_length=8, required=False)
-    newPassword = forms.CharField(widget=forms.PasswordInput, required=False)
+    # password = forms.CharField(widget=forms.PasswordInput, min_length=8, required=False)
+    # newPassword = forms.CharField(widget=forms.PasswordInput, required=False)
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -51,29 +51,10 @@ class UpdateForm(forms.ModelForm):
                     "Email này đã được dùng cho một tài khoản khác")
                 
         return email
-
-    def clean_password(self):
-        email = self.cleaned_data.get("email")
-        password = self.cleaned_data.get('password')
-        if password != '':
-            user = User.objects.get(email__iexact=email)
-            if not user.check_password(password):
-                raise forms.ValidationError("Mật khẩu cũ không đúng")
-        else: 
-            user = User.objects.get(email__iexact=email)
-            password = user.password
-        return password
-
-    def clean_newPassword(self):
-        password = self.cleaned_data.get('password')
-        newPassword = self.cleaned_data.get('newPassword') or ''
-        if newPassword == password and newPassword != '':
-            raise forms.ValidationError("Mật khẩu mới trùng với mật khẩu cũ!")
-        return newPassword
     
     class Meta:
         model = User
-        fields = ['image', 'name', 'birthday', 'sex', 'email', 'phoneNum', 'password']
+        fields = ['image', 'name', 'birthday', 'sex', 'email', 'phoneNum']
 
 class LoginForm(forms.Form):
     email = forms.EmailField(max_length=50)

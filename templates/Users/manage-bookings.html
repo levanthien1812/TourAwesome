@@ -1,13 +1,31 @@
 {% extends "Users/manage.html" %}
 
+{% block title %}
+  <title>Quản lý đặt tour</title>
+{% endblock title %}
+
 {% load static %}
 
 {% block manage %}
 
 <div class="manage-bookings manage-section">
     <p class="title">Quản lý đặt tour</p>
-    <div class="count">
-        <p>Số lượng đặt tour: {{bookings.count}}</p>
+    <div class="statistics">
+        <div class="statistics-item bookings-count">
+            <p class="number">{{statistics.bookingsCount}}</p>
+            <p class="name">Lượt đặt tour</p>
+            <img src="{% static 'images/shopping-bag.png' %}" alt="">
+        </div>
+        <div class="statistics-item users-count">
+            <p class="number">{{statistics.usersCount}}</p>
+            <p class="name">Khách dùng tour</p>
+            <img src="{% static 'images/customer.png' %}" alt="">
+        </div>
+        <div class="statistics-item revenue">
+            <p class="number">{{statistics.revenue}} đ</p>
+            <p class="name">Doanh thu</p>
+            <img src="{% static 'images/salary.png' %}" alt="">
+        </div>
     </div>
     <form class="filter" method="GET">
         <p>Bộ lọc</p>
