@@ -176,21 +176,19 @@ def getTour(request, pk):
             'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
         timeline = timeline_file.read()
         
-        if request.user.is_authenticated:
-            bookingDetailForm = BookingDetailForm(initial={
-                'name': request.user.name,
-                'email': request.user.email,
-                'phoneNum': request.user.phoneNum,
-            })
-        else:
-            bookingDetailForm = None
+        bookingDetailForm = BookingDetailForm(initial={
+            'name': request.user.name,
+            'email': request.user.email,
+            'phoneNum': request.user.phoneNum,
+        })
         
         context = {
             'tour': tour,
             'images': images,
             'vehicles': vehicles,
             'timeline': timeline,
-            'bookingDetailForm': bookingDetailForm
+            'bookingDetailForm': bookingDetailForm,
+            'locations': getTourLocations(),
         }
         return render(request, 'Tours/detail.html', context)
     except:

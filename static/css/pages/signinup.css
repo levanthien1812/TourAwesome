@@ -1,0 +1,106 @@
+.signinup {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+}
+
+.signinup > * {
+  padding-left: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.signinup .info {
+  width: 400px;
+}
+
+.signinup{
+  background-color: rgba(255, 255, 255, 0.359);
+  background-image: url(../../static/images/signup-background.png);
+}
+
+.signinup .signup-form .logo img {
+  width: 450px;
+}
+
+.signinup .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+.signinup .signup-form {
+  color: #38caff;
+}
+
+.signinup .login-form {
+  color: white;
+  background-color: var(--color-main);
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  background-image: url(../../static/images/login-background-1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.signinup .form-control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 6px 0px;
+}
+
+.signinup .form-control label {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.signinup .form-control input {
+    border: none;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: inherit;
+}
+
+.signinup .signup-form input {
+  background-color: rgba(252, 252, 252, 0.85);
+}
+
+.signinup .form-control input:focus {
+    outline: 2px solid var(--color-main);
+}
+
+.signinup button {
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.signinup .signup-form button {
+  background-color: var(--color-main);
+  color: white;
+}
+
+.signinup .login-form button {
+  background-color: white;
+  color: var(--color-main);
+}
+
+/* .signinup .login-form .actions {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signinup .login-form .forget-password {
+  font-weight: 600;
+  font-style: italic;
+} */
+
+/* .signinup .login-form .forget-password:hover {
+  text-decoration: underline;
+} */

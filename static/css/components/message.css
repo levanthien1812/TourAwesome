@@ -1,0 +1,35 @@
+.messages li {
+  position: fixed;
+  width: 500px;
+  top: -100px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 15;
+  padding: 8px 36px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  animation-name: messages_appear;
+  animation-duration: 4s;
+}
+
+.messages li.success, .messages li {
+  background-color: rgba(130, 255, 222, 0.875);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.289);
+}
+.messages li.error {
+  background-color: rgba(255, 113, 113, 0.901);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.293);
+}
+
+@keyframes messages_appear {
+  0% { top: -100px;}
+  20% { top: 20px;}
+  80% { top: 20px;}
+  100% { top: -100px;}
+}
