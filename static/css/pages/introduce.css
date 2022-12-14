@@ -5,13 +5,13 @@
     width: 100%;
 }
 
-.content{
+.introduce .content{
     padding: 0px 10px 0px 10px;
     font-size: 20px;
     line-height: 36.4px;
 }
 
-.divcontent{
+.introduce .divcontent{
     background-color: white;
     padding: 48px 15% 32px 15%;
     margin-bottom: 50px;
@@ -19,7 +19,7 @@
     background-position: center;
 }
 
-.intro-title{
+.introduce .intro-title{
     color:#0066d9;
     font-size: 14px;
     font-weight: 500;
@@ -33,12 +33,8 @@
     padding: 20px 10px;
 }
 
-.p-content{
+.introduce .p-content{
     font-size: 20px;
     background-color: white;
     padding: 0px 10px 0px 10px;
-}
-
-*{
-    background-image: none;
 }
