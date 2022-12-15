@@ -21,8 +21,8 @@
         <div class="section personal-info">
             <p class="title">Thông tin người dùng</p>
             <div class="avt">
-                <div class="img">
-                    <img src="{{MEDIA_URL}}{{request.user.image}}" alt="">
+                <div class="img img-circle-frame">
+                    <img src="{{MEDIA_URL}}{{request.user.image}}" alt="" class="img-circle">
                 </div>
                 <label for="image" class="image-label">
                     {{form.image}}

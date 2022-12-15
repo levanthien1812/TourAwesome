@@ -24,20 +24,8 @@
 }
 
 .manage .menu .account-info .img {
-    aspect-ratio: 1/1;
     width: 75%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
     grid-row: span 2;
-    overflow: hidden;
-}
-
-.manage .menu .account-info .img img {
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
 }
 
 .manage .menu hr {
@@ -98,19 +86,7 @@
 
 .update-user .personal-info .avt .img {
     width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
     border: 2px solid rgb(202, 202, 202);
-}
-
-.update-user .personal-info .avt .img img{
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
 }
 
 .update-user .personal-info .avt .image-label {

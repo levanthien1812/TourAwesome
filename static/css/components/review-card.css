@@ -1,0 +1,31 @@
+.review-card, .add-review .new-review{
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.review-card .user-image, 
+.new-review .user-image {
+    width: 90%;
+    grid-row: span 3;
+}
+
+.reviews .review-content{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.278);
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.reviews .review-content::before {
+    content: '';
+    width: 16px; 
+    height: 16px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.278);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 10px;
+    left: -8px;
+    background-color: white;
+}

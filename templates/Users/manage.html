@@ -6,8 +6,8 @@
 <div class="manage">
     <div class="menu">
         <div class="account-info">
-            <div class="img">
-                <img src="{{ MEDIA_URL }}{{request.user.image}}" alt="User's avatar">
+            <div class="img img-circle-frame">
+                <img src="{{ MEDIA_URL }}{{request.user.image}}" alt="User's avatar" class="img-circle">
             </div>
             <p class="username">{{request.user.name}}</p>
             <p class="phoneNum">{{request.user.phoneNum}}</p>

@@ -119,6 +119,30 @@
         {% autoescape off %} {{timeline |safe}} {% endautoescape %}
       </div>
     </div>
+    <div class="detail-item reviews">
+      <p class="title">Đánh giá</p>
+      <div class="content">
+        {% if reviews %}
+          {% for review in reviews %}
+            {% include 'Components/reviewCard' with review=review%}
+          {% endfor %}
+        {% else %}
+          <p class="no-reviews">Chưa có đánh giá nào</p>
+        {% endif %}
+        <form class="add-review"  action="{% url 'add-review' tour.id %}" method="POST">
+          <div class="new-review">
+            <div class="user-image img-circle-frame">
+                <img src="{{MEDIA_URL}}{{request.user.image}}" alt="" class="img-circle">
+            </div>
+            <div class="review-content">
+                <p class="content">flasflskflskdf</p>
+            </div>
+          </div>
+          <button type="submit">Thêm đánh giá</button>
+        </form>
+      </div>
+      
+    </div>
   </div>
   <div class="tour-sidebar">
     <div class="tour-booking">

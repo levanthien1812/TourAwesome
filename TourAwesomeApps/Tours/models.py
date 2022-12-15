@@ -67,3 +67,10 @@ class TourLocation (models.Model):
     location = models.CharField(max_length=50)
     image = models.ImageField(upload_to=location_image_path, null=True)
     numTours = models.PositiveIntegerField(default=0, null=True)
+    
+class Review (models.Model):
+    rating = models.PositiveIntegerField(default=5)
+    content = models.CharField(max_length=500)
+    pub_date = models.DateTimeField(auto_now_add=True)
+    tour = models.ForeignKey('Tour', on_delete=models.CASCADE)
+    user = models.ForeignKey('Users.MyUser', on_delete=models.CASCADE)

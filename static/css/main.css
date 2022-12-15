@@ -6,7 +6,8 @@
 @import url(pages/introduce.css);
 @import url(pages/manage.css);
 @import url(components/message.css);
-@import url(components/error.css);
+@import url(pages/error.css);
+@import url(components/review-card.css);
 
 :root {
     --color-main: rgb(0, 150, 150);
@@ -46,6 +47,21 @@ a:visited,
 a:focus {
     text-decoration: none;
     color: black;
+}
+
+.img-circle-frame {
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.img-circle {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .main-content {

@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.db.models import F, Q
 
-from .models import Tour, TourImage, TourVehicle, TourLocation
+from .models import *
 from TourAwesomeApps.Users.models import Booking
 from TourAwesomeApps.Blogs.models import Blog
 from TourAwesomeApps.Tours.forms import CreateTourForm
@@ -167,11 +167,12 @@ def createTour(request):
 #     getTour(request, pk)
 
 def getTour(request, pk):
-    try:
+    # try:
         tour = Tour.objects.get(id=pk)
-        
         images = TourImage.objects.filter(tour=tour)
         vehicles = TourVehicle.objects.filter(tour=tour)
+        reviews = Review.objects.filter(tour=tour) or None
+        
         timeline_file = open(
             'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
         timeline = timeline_file.read()
@@ -188,12 +189,13 @@ def getTour(request, pk):
             'vehicles': vehicles,
             'timeline': timeline,
             'bookingDetailForm': bookingDetailForm,
+            'reviews': reviews,
             'locations': getTourLocations(),
         }
         return render(request, 'Tours/detail.html', context)
-    except:
-        tour = None
-        return render(request, 'Components/404page.html')
+    # except:
+    #     tour = None
+    #     return render(request, 'Components/404page.html')
 
 @login_required
 @allowed_user(['admin'])
@@ -286,3 +288,21 @@ def bookTour(request, pk):
 
 def introduce(request):
     return render(request, 'Tours/introduce.html')
+
+def addReview(request, pk):
+    try:
+        tour = Tour.objects.get(id=pk)
+        user = request.user
+        
+        newReview = {
+            'tour': tour,
+            'user': user,
+            'content': request.POST['content'],
+        }
+        
+        Review.objects.create(newReview)
+        
+        return redirect(reverse('get-tour'))
+    except:
+        tour = None
+        return render(request, 'Components/404page.html')
