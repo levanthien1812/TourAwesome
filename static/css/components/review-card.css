@@ -1,7 +1,7 @@
 .review-card, .add-review .new-review{
     display: grid;
     grid-template-columns: 50px 1fr;
-    gap: 8px;
+    column-gap: 8px;
     margin-top: 16px;
 }
 
@@ -11,21 +11,31 @@
     grid-row: span 3;
 }
 
+.review-card .review-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: rgb(117, 117, 117);
+    font-size: 14px;
+}
+
 .reviews .review-content{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.278);
-    padding: 24px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.137);
+    padding: 12px 24px;
     border-radius: 8px;
     position: relative;
 }
 
-.reviews .review-content::before {
-    content: '';
-    width: 16px; 
-    height: 16px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.278);
-    transform: rotate(45deg);
-    position: absolute;
-    top: 10px;
-    left: -8px;
-    background-color: white;
+.add-review .review-content input {
+    padding: 8px 0;
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: inherit;
+}
+
+.add-review button {
+    background-color: var(--color-main);
+    color: white;
+    margin-top: 20px;
 }

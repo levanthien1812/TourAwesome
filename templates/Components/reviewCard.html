@@ -3,8 +3,10 @@
         <img src="{{MEDIA_URL}}{{review.user.image}}" alt="" class="img-circle">
     </div>
     <div class="review-content">
-        <p class="pub-date">{{review.pub_date}}</p>
-        <p class="user-name">{{review.user.name}}</p>
+        <div class="review-info">
+            <p class="user-name">{{review.user.name}}</p>
+            <p class="pub-date">{{review.pub_date}}</p>
+        </div>
         <p class="content">{{review.content}}</p>
     </div>
 </div>

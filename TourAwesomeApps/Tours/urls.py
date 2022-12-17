@@ -11,7 +11,7 @@ urlpatterns = [
     path('<slug:pk>/delete', views.deleteTour, name='delete-tour'),
     path('<slug:pk>/book', views.bookTour, name='book-tour'),
     path('introduce/', views.introduce, name='introduce'),
-    path('<slug:id>/add-review', views.addReview, name='add-review')
+    path('<slug:pk>/add-review', views.addReview, name='add-review')
     
     # path('<slug:pk>/detail-check-login', views.detailCheckLogin, name='detail-check-login')
 ]

@@ -74,3 +74,6 @@ class Review (models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     tour = models.ForeignKey('Tour', on_delete=models.CASCADE)
     user = models.ForeignKey('Users.MyUser', on_delete=models.CASCADE)
+    
+    class Meta:
+        unique_together = ('tour', 'user')

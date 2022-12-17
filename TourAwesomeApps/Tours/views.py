@@ -300,9 +300,9 @@ def addReview(request, pk):
             'content': request.POST['content'],
         }
         
-        Review.objects.create(newReview)
+        Review.objects.create(**newReview)
         
-        return redirect(reverse('get-tour'))
+        return redirect(reverse('get-tour', args=[tour.id]))
     except:
         tour = None
         return render(request, 'Components/404page.html')
