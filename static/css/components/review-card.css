@@ -32,7 +32,8 @@
     gap: 2px;
     margin-bottom: 6px;
 }
-.reviews .review-content .rating > *{
+.reviews .review-content .rating > *,
+.tour-rating{
     width: 16px;
     fill: rgb(255, 191, 0);
 }

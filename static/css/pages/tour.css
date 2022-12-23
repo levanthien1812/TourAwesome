@@ -10,6 +10,19 @@
     margin-bottom: 20px;
 }
 
+.tour-detail .tour-rating {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 8px;
+    align-items: center;
+    gap: 4px;
+}
+
+.tour-detail .tour-rating .star {
+    flex-shrink: 0;
+    width: 20px;
+}
+
 .tour-detail .tour-images {
     width: 90%;
 }

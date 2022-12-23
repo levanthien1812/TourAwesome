@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.db.models import F, Q
+from django.db.models import F, Q, Avg
 
 from .models import *
 from TourAwesomeApps.Users.models import Booking
@@ -310,6 +310,13 @@ def addReview(request, pk):
         }
         
         Review.objects.create(**newReview)
+        
+        # Tour.objects.filter(id=pk).update(ratingsQuantity=F('ratingsQuantity') + 1)
+        tour.ratingsQuantity += 1
+        ratingsAverage = Review.objects.filter(tour=tour).aggregate(Avg('rating'))['rating__avg']
+        print(ratingsAverage)
+        tour.ratingsAverage = ratingsAverage
+        tour.save()
         
         return redirect(reverse('get-tour', args=[tour.id]))
     except:

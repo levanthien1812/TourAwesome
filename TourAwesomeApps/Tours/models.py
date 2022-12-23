@@ -32,6 +32,8 @@ class Tour (models.Model):
     isHot = models.BooleanField(default=True)
     old_price = models.BigIntegerField(null=True)
     bookingCount = models.PositiveIntegerField(default=0, null=True)
+    ratingsAverage = models.FloatField(null=True)
+    ratingsQuantity = models.PositiveIntegerField(default=0, null=True)
 
     @property
     def duration(self):
