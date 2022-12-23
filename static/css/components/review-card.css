@@ -26,6 +26,17 @@
     position: relative;
 }
 
+.reviews .review-content .rating,
+.add-review .review-content .rating {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 6px;
+}
+.reviews .review-content .rating > *{
+    width: 16px;
+    fill: rgb(255, 191, 0);
+}
+
 .add-review .review-content input {
     padding: 8px 0;
     width: 100%;
@@ -38,4 +49,10 @@
     background-color: var(--color-main);
     color: white;
     margin-top: 20px;
+}
+
+.add-review .rating > * {
+    width: 16px;
+    fill: rgb(255, 191, 0);
+    cursor: pointer;
 }

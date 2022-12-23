@@ -177,11 +177,17 @@ def getTour(request, pk):
             'media/{0}'.format(tour.timeline), 'r', encoding="utf8")
         timeline = timeline_file.read()
         
-        bookingDetailForm = BookingDetailForm(initial={
-            'name': request.user.name,
-            'email': request.user.email,
-            'phoneNum': request.user.phoneNum,
-        })
+        bookingDetailForm = None
+        includeUser = False
+        if request.user.is_anonymous == False:
+            bookingDetailForm = BookingDetailForm(initial={
+                'name': request.user.name,
+                'email': request.user.email,
+                'phoneNum': request.user.phoneNum,
+            })
+            
+            includeUser = Booking.objects.filter(tourID=tour, userID=request.user).exists()
+            hasUserReview = Review.objects.filter(tour=tour, user=request.user).exists()
         
         context = {
             'tour': tour,
@@ -191,6 +197,8 @@ def getTour(request, pk):
             'bookingDetailForm': bookingDetailForm,
             'reviews': reviews,
             'locations': getTourLocations(),
+            'includeUser': includeUser,
+            'hasUserReview': hasUserReview
         }
         return render(request, 'Tours/detail.html', context)
     # except:
@@ -298,6 +306,7 @@ def addReview(request, pk):
             'tour': tour,
             'user': user,
             'content': request.POST['content'],
+            'rating': request.POST['rating']
         }
         
         Review.objects.create(**newReview)

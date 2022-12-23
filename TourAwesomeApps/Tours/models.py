@@ -20,6 +20,7 @@ class Tour (models.Model):
     detailLocation = models.CharField(max_length=80, null= True)
     price = models.BigIntegerField()
     startDate = models.DateField()
+    startLocation = models.CharField(max_length=50, null=True)
     specialNote = models.CharField(max_length=50, null=True)
     description = models.CharField(max_length=1000)
     highlight = models.CharField(max_length=1000)

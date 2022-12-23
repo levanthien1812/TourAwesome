@@ -36,7 +36,7 @@
 
 .signinup .login-form {
   color: white;
-  background-color: var(--color-main);
+  background-image: linear-gradient();
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
   background-image: url(../../../static/images/login-background-1.png);
