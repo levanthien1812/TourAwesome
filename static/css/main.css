@@ -21,6 +21,7 @@
 
 body {
     font-family: 'Playfair Display', serif;
+    position: relative;
 }
 
 button, a.button {
@@ -67,4 +68,34 @@ a:focus {
 .main-content {
     background-color: rgb(225, 225, 225);
     position: relative;
+}
+
+.scroll-to-top-btn {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.171);
+    position: fixed;
+    bottom: 48px;
+    right: -50px;
+    transition: all .4s ease;
+}
+
+.scroll-to-top-btn.show {
+    right: 24px;
+}
+
+.scroll-to-top-btn svg {
+    width: 80%;
+    height: 80%;
+    fill: rgba(101, 101, 101, 0.724);
+    transition: all .4s ease;
+}
+
+.scroll-to-top-btn:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.228);
+}
+
+.scroll-to-top-btn:hover svg {
+    width: 90%;
+    fill: var(--color-main);
 }
